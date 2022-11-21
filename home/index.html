@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>OptiCash</title>
+<meta name="description" content="OptiCash">
+<meta name="author" content="OptiCash">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+<!-- start: Favicon and Touch Icons -->
+<link rel="shortcut icon" href="favicon.png">
+<!-- end: Favicon and Touch Icons -->
+
+<!-- Google web fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<!-- styles for this template -->
+<link href="fonts/nasalization-bold.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+	
+<div id="site-content" class="show-loader">
+<div class="site-loader">
+	<div><img class="loader-logo" src="./images/opticash-icon.svg" alt=""></div>
+</div>
+<!---START: Header-->
+<header id="header" class="fixed-top">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-md-2 col-6">
+				<div class="logo"><a href="index.html"><img src="images/logo.png" alt="OptiCash"/></a></div>
+				<div class="logo"></div>
+			</div>
+			<div class="col-md-10 col-6 d-flex">
+				<div id="site-menu" class="navbar-expand-lg ms-auto">
+                    <button class="navbar-toggler lines-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <i class="visually-hidden">Menu Toggle</i>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbar">
+						<ul class="list-unstyled list-inline top-link menu">
+							<li class="list-inline-item"><a class="active" href="#win150K">Win $150K</a></li>
+							<li class="list-inline-item"><a href="#whatOpticash">What is Opticash</a></li>
+							<li class="list-inline-item"><a href="#tokenSale" onClick="setupChart()" >Tokenomics</a></li>
+							<li class="list-inline-item"><a href="#roadmap">Roadmap</a></li>
+							<li class="list-inline-item"><a href="#">Apps</a></li>
+							<li class="list-inline-item"><a href="#">Teams</a></li>
+							<li class="list-inline-item"><a href="#fAQs">FAQs</a></li>
+							<li class="list-inline-item"><a href="#footer">Contact</a></li>
+						</ul>
+						<ul class="list-unstyled list-inline login">
+							<li class="list-inline-item"><a href="https://app.opticash.io/auth/sign-up" target="_blank" class="btn btn-link">Sign Up</a></li>
+							<li class="list-inline-item"><a href="https://app.opticash.io/auth/sign-in" target="_blank" class="btn btn-primary">Sign In</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<!---END: Header-->
+
+<!---START: Home Layout-->
+<main id="page-content" class="landing-page" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-smooth-scroll="true" data-bs-offset="500">
+
+	<div id="win150K" class="page-hero">
+		<div class="container">
+			<div class="social-icon">
+				<a href="https://twitter.com/Opticash_io" target="_blank"><img src="images/icon_twitter.svg" alt=""></a>
+				<a href="https://t.me/opticash_io" target="_blank"><img src="images/icon_telegram.svg" alt=""></a>
+				<a href="https://discord.gg/R27c2yDjuV" target="_blank"><img src="images/icon_discord.svg" alt=""></a>
+				<a href="https://www.reddit.com/r/opticash/" target="_blank"><img src="images/icon_reddit.svg" alt=""></a>
+				<a href="https://www.linkedin.com/company/opticash/" target="_blank"><img src="images/icon_linkedin.svg" alt=""></a>
+				<a href="https://www.instagram.com/opticash.io" target="_blank"><img src="images/icon_instagram.svg" alt=""></a>
+				<a href="https://www.youtube.com/@opticash" target="_blank"><img src="images/icon_youtube.svg" alt=""></a>
+				<a href="https://opticash.medium.com" target="_blank"><img src="images/icon_medium.svg" alt=""></a>
+				<a href="https://linktr.ee/opticash" target="_blank"><img src="images/icon_linktree.svg" alt=""></a>
+			</div>
+			<div class="row">
+				<div class="col-md-7">
+					<div class="box">
+						<h1><span>Send</span> fast payments worldwide using blockchain</h1>
+						<p>Opticash is a web app that allows users to send fast <br> payments worldwide using blockchain technology.</p>
+						<br>
+						<a href="#" class="btn btn-primary btn-lg">Enter Presale</a>
+						<a href="#" class="btn btn-link btn-lg">Whitepaper</a>
+					</div>
+				</div>
+				<div class="col-md-5 image">
+					<img src="images/coming-soon.png" alt="">
+					<!-- <div class="right-box">
+						<h2>Presale End in</h2>
+						<h3>1 Opticash = 0.10USDT</h3>
+						<img src="images/img1.png" alt="">
+						<div class="bottom"><a href="#">Connect Wallet</a></div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="whatOpticash" class="what-opticash page-section">
+		<div class="container">
+			<div class="logo-list row">
+				<div class="col-md-3 col-6"><div class="box d-flex justify-content-center align-items-center"><img src="./images/logos/gate-io.png" alt=""></div></div>
+				<div class="col-md-3 col-6"><div class="box d-flex justify-content-center align-items-center"><img src="./images/logos/binance-nft-colored.png" alt=""></div></div>
+				<div class="col-md-3 col-6"><div class="box d-flex justify-content-center align-items-center"><img src="./images/logos/NFTrade.png" alt=""></div></div>
+				<div class="col-md-3 col-6"><div class="box d-flex justify-content-center align-items-center"><img src="./images/logos/market-square-io.png" alt=""></div></div>
+			</div>
+			<div class="opticash-box">
+				<div class="inner-box">
+				<img class="star" src="./images/star.png" alt="">
+				<div class="row">
+					<div class="col-md-5">
+						<h2>What is Opticash?</h2>
+						<p>Opticash is an all-in-one platform that simplifies money remittance across the world using crypto and blockchain technology. You can trade, invest, chat and transfer fiat to crypto and vice versa very conveniently.</p>
+					</div>
+					<div class="ms-auto col-xl-6 col-md-7">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="box">
+									<img src="images/icon-secure-plaform.png" alt="">
+									<p>Realiable and Trusted</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="box">
+									<img src="./images/icon-user.png" alt="">
+									<p>Easy and seamless user experience</p>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="box">
+									<img src="./images/icon-worldwide.png" alt="">
+									<p>Worldwide payment gateway</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="why-opticash page-section">
+		<div class="container">
+			<div class="top">
+				<h2>Why you should use Opticash?</h2>
+				<p>Opticash is a fast and reliable platform to send payment worldwide using blockchain.</p>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<img src="./images/icon-fast-payment.png" alt="">
+					<h3>Fast Payment</h3>
+					<p>Ultra fast payment remitance using blockchain.</p>
+				</div>
+				<div class="col-md-3">
+					<img src="./images/icon-good-rates.png" alt="">
+					<h3>Low Commissions</h3>
+					<p>Earn more crypto for your money, and Pay less for trade and transfers.</p>
+				</div>
+				<div class="col-md-3">
+					<img src="./images/icon-secure-plaform1.png" alt="">
+					<h3>Secure Platform</h3>
+					<p>Industry-leading security standards keep your data and money safe.</p>
+				</div>
+				<div class="col-md-3">
+					<img src="./images/icon-security-your-money.png" alt="">
+					<h3>User Friendly</h3>
+					<p>Adaptable and Foolproof interface to pamper users with handy features.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="roadmap" class="road-map page-section">
+		<div class="container">
+			<div class="top">
+				<h2>Road map</h2>
+				<p>We have a clear development roadmap to surpass our big goals <br> and with every passing day, we are working hard to achieve it.
+				</p>
+			</div>
+			<div class="timeline">
+				<ul class="list">
+					<li class="box1">
+						<div class="box">
+							<div class="time">(Aug-22 - Oct 22)</div>
+							<div class="q">Q3</div>
+							<ul>
+								<li>Idea Conceptualized</li>
+								<li>Team Building</li>
+							</ul>
+						</div>
+					</li>
+					<li class="box1">
+						<div class="box">
+							<div class="time">(Oct 22 - Dec 22)</div>
+							<div class="q">Q4</div>
+							<ul>
+								<li>Concept Paper</li>
+								<li>Create OPTICASH Smart Contract</li>
+								<li>Token Testnet Launch</li>
+								<li>Smart Contract Audit - Security</li>
+								<li>Token Production Launch </li>
+								<li>Website Launch </li>
+							</ul>
+						</div>
+					</li>
+					<li class="box3">
+						<div class="box">
+							<div class="time">(Jan 23 - Mar 23)</div>
+							<div class="q">Q1</div>
+							<ul>
+								<li>Private Sale/Seed Round</li>
+								<li>Marketing activities phase 1</li>
+								<li>White paper Launch </li>
+								<li>Community Building (Telegram, Twitter, Medium, Instagram)</li>
+								<li>Create Buzz for PreSale</li>
+								<li>Events/Promotions</li>
+							</ul>
+						</div>
+					</li>
+					<li class="box4">
+						<div class="box">
+							<div class="time">(Apr 23 - Jun 23)</div>
+							<div class="q">Q2</div>
+							<ul>
+								<li>OPTICASH listing on Kucoin, Binance etc : Presale Phase 1 Launch / IEO</li>
+								<li>Marketing activities phase 2</li>
+								<li>Influencers partnership </li>
+								<li>Presale phase 2</li>
+								<li>Market prototype </li>
+								<li>Beta testing</li>
+								<li>Community Development </li>
+								<li>Marketing active phase 3</li>
+								<li>Presale finish</li>
+								<li>Airdrop </li>
+								<li>OPTICASH Listing coin market cap, Coingecko</li>
+							</ul>
+						</div>
+					</li>
+					<li class="box5">
+						<div class="box">
+							<div class="time">(Jul 23 - Sep 23)</div>
+							<div class="q">Q3</div>
+							<ul>
+								<li>Network events</li>
+								<li>Stage 2 Prototype testing</li>
+								<li>Mobile App IOS / Android application </li>
+								<li>Platform staking</li>
+								<li>OPTICASH exchange/ payment platform Launch </li>
+								<li>Widget components </li>
+								<li>Platform messenger </li>
+								<li>Integrate Platform with exchanges </li>
+								<li>OPTICASH visa/ Mastercard</li>
+							</ul>
+						</div>
+					</li>
+					<li class="box6">
+						<div class="box">
+							<div class="time">(Oct 23 - Dec 23)</div>
+							<div class="q">Q4</div>
+							<ul>
+								<li>Platform development </li>
+								<li>New Associations</li>
+								<li>Community expansion </li>
+								<li>Marketing stage 4</li>
+								<li>Charity/ organization foundation - Philanthropist</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="opti-contract page-section">
+		<div class="container">
+			<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+				<div id="toastNotice" class="toast align-items-center text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="d-flex">
+						<div class="toast-body" id="toastNoticeText">
+							Token Copied!
+						</div>
+						<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+				</div>
+			</div>
+			<h2>OPTI CONTRACT</h2>
+			<p class="top-p">Use the contract information below to add the OPCH token to your wallet. Please do not send any tokens to this address as they will be lost.</p>
+			<div class="row">
+				<div class="col-12 mb-5">
+					<div class="box d-flex token-address">
+						<div>
+							<span>Address</span>
+							<a href="https://goerli.etherscan.io/address/0xd307e69756c5adce00234dbff03681c71e0daf86" target="_blank" class="external" id="tokenAddress">0xd307e69756c5adce00234dbff03681c71e0daf86</a>
+						</div>
+						<a href="javascript:void(0)" onClick="copyToClipboard('#tokenAddress')" class="align-self-end ms-md-5"><u>COPY</u></a>
+					</div>
+				</div>
+				<div class="col-md-4 col-4">
+					<div class="box">
+						<span>Decimal</span>
+						18
+					</div>
+				</div>
+				<div class="col-md-4 col-4">
+					<div class="box">
+						<span>Network</span>
+						ETH
+					</div>
+				</div>
+				<div class="col-md-4 col-4">
+					<div class="box">
+						<span>Token Symbol</span>
+						OPCH
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="tokenSale" class="token-sales page-section">
+		<div class="container">
+			<div class="top">
+				<h2>TOKENOMICS</h2>
+				<p>Crafted with heart and mind, our token distribution, locking, and vesting mechanism ensures that the project remains well funded, <br>distributed among large communities, backed by motivated contributors, and lives on the expectations of investors and the believer's community. </p>
+			</div>
+			<div class="text-center">
+			<div id="chart"></div>
+			</div>
+
+			<div id="carouselExampleFade" class="whitepaper carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="999999">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<div class="row">
+							<div class="col-md-6 content">
+								<h3><span>DOCUMENTS</span>LOOK UP WHITEPAPER</h3>
+								<p>Deep dive into the technical aspect to understand how our protocol works. We are making the next-generation project for transferring fiat currency worldwide using the blockchain and lots more including chat, trade, transfers, withdrawals and whatnot. The whitepaper is going to cover all such aspects.</p>
+							</div>
+							<div class="col-md-5 text-right ms-auto">
+								<img src="./images/whitepaper.png" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-md-6 content">
+								<h3><span>DOCUMENTS</span>LOOK UP CONCEPT PAPER</h3>
+								<p>Having a far-seeing objective, our concept behind opticash is based on numerous research, user conveyance, speed, consistency, security and transparency across financial transactions and making the ecosystem a better place to rely on. The concept paper will be soon available to download.</p>
+							</div>
+							<div class="col-md-5 text-right ms-auto">
+								<img src="./images/concept-paper.png" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+				</div>
+
+		</div>
+	</div>
+
+	<div id="fAQs" class="faq page-section">
+		<div class="container">
+			<div class="top1">
+				<h2>FAQs</h2>
+				<p>Got a Question? We have drilled down most commonly sought information below to help solve your search.</p>
+			</div>
+			<ul id="faqTab" role="tablist" class="tablist list-unstyled">
+				<li role="presentation">
+					<button class="btn-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#generalTab" type="button" role="tab">General</button>
+				</li>
+				<li role="presentation">
+					<button class="btn-link" id="token-sales-tab" data-bs-toggle="tab" data-bs-target="#tokenSalesTab" type="button" role="tab">Token sales</button>
+				</li>
+				<li role="presentation">
+					<button class="btn-link" id="legal-tab" data-bs-toggle="tab" data-bs-target="#legalTab" type="button" role="tab">Legal</button>
+				</li>
+				<li role="presentation">
+					<button class="btn-link" id="road-map-tab" data-bs-toggle="tab" data-bs-target="#roadMapTab" type="button" role="tab">Road map</button>
+				</li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="generalTab" role="tabpanel" aria-labelledby="general-tab">
+					<div class="qus-ans" id="generalFaq">
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#qus0" data-bs-target="#qus0">
+									<span>What is OptiCash?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#generalFaq" class="collapse show" id="qus0">
+								<div class="card-body">
+									Opticash is an all-in-one platform that simplifies money remittance across the world using crypto and blockchain technology. You can trade, invest, chat and transfer fiat to crypto and vice versa very conveniently.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#qus1" data-bs-target="#qus1" class="collapsed">
+									<span>How OptiCash Works?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#generalFaq" class="collapse" id="qus1">
+								<div class="card-body">Our on-ramp and off-ramp suite of product integrates with major payment methods including debit and credit card, local bank transfers and provides a seamless experience for converting between fiat currencies and cryptocurrencies as well as trade and transfers. </div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#qus3" data-bs-target="#qus3" class="collapsed">
+									<span>What is OPCH Token?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#generalFaq" class="collapse" id="qus3">
+								<div class="card-body">
+									OptiCash Coin abbreviated as OPCH is an ERC-20 crypto token based on the world's most popular Ethereum blockchain and is built to support the Opticash ecosystem.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#qus4" data-bs-target="#qus4" class="collapsed">
+									<span>Is OPCH Token Secure?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#generalFaq" class="collapse" id="qus4">
+								<div class="card-body">Yes, Opticash token is backboned by the ERC-20 standard and uses the most trusted Ethereum platform. Furthermore, all our token contracts will be audited by the renowned smart contract auditing firms. </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="tokenSalesTab" role="tabpanel" aria-labelledby="token-sales-tab">
+					<div class="qus-ans" id="tokenSalesFaq">
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#tokenSalesQus0" data-bs-target="#tokenSalesQus0">
+									<span>Is Opticash Coin Supply Limited?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#tokenSalesFaq" class="collapse show" id="tokenSalesQus0">
+								<div class="card-body">
+									Yes, All the OPCH token total supply will be pre-minted and will remain ever to 1 Billion.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#tokenSalesQus1" data-bs-target="#tokenSalesQus1" class="collapsed">
+									<span>How can I participate in a Private Sale?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#tokenSalesFaq" class="collapse" id="tokenSalesQus1">
+								<div class="card-body">Private sale is to seed fund the project and is available for early investors. you may write to us at info@opticash.io for more details. For community sale, we will soon be launching PRESALE for 25% of the total supply.</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#tokenSalesQus3" data-bs-target="#tokenSalesQus3" class="collapsed">
+									<span>What is the Presale Price?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#tokenSalesFaq" class="collapse" id="tokenSalesQus3">
+								<div class="card-body">
+									The OPCH token will most probably be listed at 0.1$ on Presale and very likely reach 1$ or more with our growing believer community and our unmatched product utility.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#tokenSalesQus4" data-bs-target="#tokenSalesQus4" class="collapsed">
+									<span>Can i sell my tokens after PreSale ?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#tokenSalesFaq" class="collapse" id="tokenSalesQus4">
+								<div class="card-body">All the OPCH tokens are locked with certain vesting schedules, so that no-one can dump tokens in market.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="legalTab" role="tabpanel" aria-labelledby="legal-tab">
+					<div class="qus-ans" id="legalFaq">
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#legalQus0" data-bs-target="#legalQus0">
+									<span>Is my investment secured with Opticash ?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#legalFaq" class="collapse show" id="legalQus0">
+								<div class="card-body">
+									Yes, Our infrastructure is secured from all modern threats and all our blockchain-based token contracts will be audited by the most renowned smart contract auditing firms. The OPCH Token is also protected by a well thought and planned token vesting and a locking mechanism that debars token dumping.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#legalQus1" data-bs-target="#legalQus1" class="collapsed">
+									<span>Do I have to Pay Tax If I received money through Opti-Cash?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#legalFaq" class="collapse" id="legalQus1">
+								<div class="card-body">Opticash provides Fiat on-ramp and off-ramp services platform to transfer fiat to crypto and vice versa. <br>
+									Fiat currency is subject to various countries' laws and taxations and you must adhere to your country's laws and provisions.</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#legalQus3" data-bs-target="#legalQus3" class="collapsed">
+									<span>Is there any processing fee for transfers?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#legalFaq" class="collapse" id="legalQus3">
+								<div class="card-body">
+									Tradionatal remittance via banks and Swift attracts a processing fee of 3-5%, but since Opticash uses blockchain, the transfer fee is going to be minimalistic to support the ecosystem.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#legalQus4" data-bs-target="#legalQus4" class="collapsed">
+									<span>Are there any limits for crypto or fiat transactions?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#legalFaq" class="collapse" id="legalQus4">
+								<div class="card-body">Opticash platform does not impose any limits on volume or quantity of transactions.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="roadMapTab" role="tabpanel" aria-labelledby="road-map-tab">
+					<div class="qus-ans" id="roadMapFaq">
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#roadMapus0" data-bs-target="#roadMapus0">
+									<span>When is the DEX/CEX listing plan?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#roadMapFaq" class="collapse show" id="roadMapus0">
+								<div class="card-body">
+									We are in talks with major crypto exchanges like Binance and KuKoin and after Presale, the token will be available across major DEX and Centralized exchanges for trade by mid-2023.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#roadMapus1" data-bs-target="#roadMapus1" class="collapsed">
+									<span>What is the project valuation we are expecting in a year?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#roadMapFaq" class="collapse" id="roadMapus1">
+								<div class="card-body">With our state-of-the-art and unique product offering, we are expecting at least 10k+ users actively using the service very soon and our token price to raise to 1$, which makes the overall project valuation to 1 billion USD.</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#roadMapus3" data-bs-target="#roadMapus3" class="collapsed">
+									<span>When can I buy OPCH token with a Debit/Credit Card?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#roadMapFaq" class="collapse" id="roadMapus3">
+								<div class="card-body">
+									Once the platform is launched, you can buy OPCH and other tokens with any Internationally accepted Debit/Credit card.
+								</div>
+							</div>
+						</div>
+						<div class="faq-card">
+							<div class="card-header">
+								<a data-bs-toggle="collapse" href="#roadMapus4" data-bs-target="#roadMapus4" class="collapsed">
+									<span>What happened if my funds are stuck/lost in transit?</span>
+								</a>
+							</div>
+							<div data-bs-parent="#roadMapFaq" class="collapse" id="roadMapus4">
+								<div class="card-body">Opticash uses the Ethereum blockchain which is most consistent in terms of transparency and trust. <br>
+									Although every transaction is traceable on blockchain and Opticash plans to have a dedicated support team to curb any user inconvenience issues.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="join-community page-section">
+		<div class="container">
+			<div class="box">
+				<div class="inner-box">
+					<h2>Join our Community</h2>
+					<p>Opticash is building an all-in-one platform that simplifies money remittance, enhances the crypto trade experience, and nurtures an ecosystem of users who can trade and send cross-border payments in multiple currencies at low transaction fees. We are working too hard with our roadmap. Join our community so you can stay connected.</p>
+					<a href="https://t.me/opticash_io" target="_blank" class="btn btn-primary">JOIN COMMUNITY</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</main>
+<!---END: Home Layout-->
+
+
+<!---START: Footer-->
+<footer id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-5">
+				<h2>Don't miss out, Stay updated</h2>
+				<p>Don't hesitate to subscribe to latest news about OptiCash</p>
+				<div class="subscribe-form">
+					<input type="text" name="subscribe" id="subscribe" placeholder="Enter your email" class="input">
+					<button type="submit" class="btn btn-primary" id="subscribeBtn" onClick="subscribe('#subscribe')">SUBSCRIBE</button>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-5 ms-auto">
+				<p>Don't hesitate to subscribe to latest news about OptiCash services as well as crucial financial knowledge to become successful investor globally.</p>
+				<div class="social-icon">
+					<a href="https://twitter.com/Opticash_io" target="_blank"><img src="images/icon_twitter.svg" alt=""></a>
+					<a href="https://t.me/opticash_io" target="_blank"><img src="images/icon_telegram.svg" alt=""></a>
+					<a href="https://discord.gg/R27c2yDjuV" target="_blank"><img src="images/icon_discord.svg" alt=""></a>
+					<a href="https://www.reddit.com/r/opticash/" target="_blank"><img src="images/icon_reddit.svg" alt=""></a>
+					<a href="https://www.linkedin.com/company/opticash/" target="_blank"><img src="images/icon_linkedin.svg" alt=""></a>
+					<a href="https://www.instagram.com/opticash.io" target="_blank"><img src="images/icon_instagram.svg" alt=""></a>
+					<a href="https://www.youtube.com/@opticash" target="_blank"><img src="images/icon_youtube.svg" alt=""></a>
+					<a href="https://opticash.medium.com" target="_blank"><img src="images/icon_medium.svg" alt=""></a>
+					<a href="https://linktr.ee/opticash" target="_blank"><img src="images/icon_linktree.svg" alt=""></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copyright">
+		<div class="container">&copy; 2022. All rights reserved by Opticash</div>
+	</div>
+</footer>
+<!---END: Footer-->
+
+</div>
+<!-- <div class="position-fixed start-0 end-0 p-3" style="z-index: 11"> -->
+	<div id="toastNotice" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+		<div class="d-flex">
+			<div class="toast-body">
+				Token Copied!
+			</div>
+			<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	</div>
+<!-- </div> -->
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/d3pie.js"></script>
+<script>
+	var pie =  {
+		header: {
+			title: {
+				text: "Distribution",
+				color:"#FFFFFF",
+				font: "Source Sans Pro",
+				fontSize: 18,
+			},
+			location: "pie-center"
+		},
+		size: {
+			pieInnerRadius: "30%",
+			canvasHeight: 280,
+			canvasWidth: 360,
+		},
+		data: {
+			sortOrder: "none",
+			smallSegmentGrouping: {
+				enabled: false,
+				value: 1,
+				valueType: "percentage",
+				label: "Other",
+				color: "#000"
+			},
+			content: [
+			{ label: 'Ecosystem Parters/Marketing', value: 25, caption: '10% on allocation then <br> vesting of 365 days'},
+			{ label: 'Team/Development/ Operations', value: 6, caption: 'locking for 1 year, then<br> vesting of 365 days'},
+			{ label: 'Core Contributors (Strategic)', value: 10, caption: 'locking for 1 year, then<br> vesting of 365 days'},
+			{ label: 'Community Sale', value: 25, caption: '20% on allocation, then<br> monthly release of 20%'},
+			{ label: 'Liquidity', value: 10, caption: 'Unlocked'},
+			{ label: 'Private Sale', value: 10, caption: '10% on allocation then<br> vesting of 365 days'},
+			{ label: 'Foundation/Treasury', value: 10, caption: 'locking for 1 year, then<br> vesting of 365 days'},
+			{ label: 'Bounty/Advisors\'s', value: 4, caption:'10% on allocation then<br> vesting of 365 days' },
+			]
+		},
+		labels: {
+			mainLabel: {
+				color: "#FFFFFF",
+				font: "Source Sans Pro",
+				fontSize: 18,
+			},
+			value: {
+				color: "#000",
+				font: "Source Sans Pro",
+				fontSize: 10
+			},
+			percentage: {
+				color: "#000",
+				font: "Source Sans Pro",
+				fontSize: 18
+			},
+		},
+		misc: {
+			colors: {
+				background: null,
+				segments: ['#94D13D', '#1B7B43','#7A6E05','#BDDA2D','#E4B334','#2EA761','#9CED18','#8DAA1C'],
+			}
+		},
+		tooltips: {
+			enabled: true,
+			type: "caption",
+			styles:{
+				backgroundColor: "#FFFFFF",
+				backgroundOpacity: 1,
+				color: "#000000",
+				font: "Source Sans Pro",
+				fontSize: 14,
+				padding: 6
+			}
+		}
+	};
+	
+	var chart, width, height, fontSize, innerRadius;
+	var isChartLoaded = false;
+
+	$(function() {
+		setTimeout(() => {
+			$('#site-content').removeClass('show-loader');
+			$('.site-loader').fadeOut();
+		}, 2000);
+		var chartTop = $('#chart').offset().top;
+		var wscroll = $(window).scrollTop();
+		if(wscroll >= (chartTop - 400) && !isChartLoaded){
+			setupChart();
+		}
+		$(window).scroll(function() {    
+			let scroll = $(window).scrollTop();
+			if (scroll >= 50) {
+				$("#header").addClass("darkHeader");
+			} else {
+				$("#header").removeClass("darkHeader");
+			}
+			if(scroll >= (chartTop - 400) && !isChartLoaded){
+				setupChart();
+			}
+		});
+		var bsCollapse = new bootstrap.Collapse(navbar, {
+			toggle: false
+		})
+		$('#site-menu .list-inline-item a').click(function () {
+			bsCollapse.hide();
+		})
+		$("body").click(function() {
+			
+			var clickover = $(event.target);
+			var $navbar = $(".navbar-collapse");               
+			var _opened = $navbar.hasClass("show");
+			if (_opened === true && !clickover.hasClass("navbar-toggler")) {      
+				console.log("here");
+				$navbar.collapse('hide');
+			}
+		});
+		
+		// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		// 	return new bootstrap.Tooltip(tooltipTriggerEl)
+		// })
+	});
+
+	function subscribe(element) {
+		var userEmail =$(element).val();
+		// call Api
+		//alert(userEmail);
+		document.getElementById("subscribeBtn").disabled = true;
+		var myAlert =document.getElementById('toastNotice');//select id of toast
+		document.getElementById("toastNoticeText").textContent="Subscribed successfully";
+		var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+		bsAlert.show();//show it
+		setTimeout(() => {
+			bsAlert.hide();
+		}, 2000);
+
+		return false;
+	}
+	
+	function copyToClipboard(element) {
+		var $temp = $("<input>");
+		$("body").append($temp);
+		$temp.val($(element).text()).select();
+		document.execCommand("copy");
+		$temp.remove();
+		var myAlert =document.getElementById('toastNotice');//select id of toast
+		document.getElementById("toastNoticeText").textContent="Token Copied";
+		var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+		bsAlert.show();//show it
+		setTimeout(() => {
+			bsAlert.hide();
+		}, 2000);
+		return false;
+	}
+
+	function setupChart(){
+		if(isChartLoaded){return};
+		isChartLoaded = true;
+		if($(window).width() > 800){
+			width = 740;
+			height = 600;
+			fontSize = 18;
+			innerRadius = '30%';
+			lineHeight = 10;
+		} else {
+			width = 370;
+			height = 300;
+			fontSize = 12;
+			innerRadius = '40%';
+			lineHeight = 7;
+		}
+		pie.size.canvasHeight = height;
+		pie.size.canvasWidth = width;
+		pie.labels.mainLabel.fontSize = fontSize-2;
+		pie.labels.percentage.fontSize = fontSize;
+		pie.header.title.fontSize = fontSize;
+		pie.size.pieInnerRadius = innerRadius;
+		chart = new d3pie("#chart", pie);
+		setTimeout(() => {
+			$('.p0_labelGroup-outer').each(function () {
+				const count = $(this).find('text').children().length;
+				$(this).find('text').css("transform","translateY(-"+(count * lineHeight)+"px)");
+			});
+
+			$('.p0_tooltip text').attr('y','-30');
+			$('.p0_tooltip rect').attr('y','-40');
+			$('#p0_tooltip0 rect').attr('x','-130','y','-15');
+			$('#p0_tooltip0 text').attr('transform','translate(-125,0)');
+			$('#p0_tooltip1 rect').attr('x','-130','y','-15');
+			$('#p0_tooltip1 text').attr('transform','translate(-125,0)');
+			$('#p0_tooltip2 rect').attr('x','-130','y','-15');
+			$('#p0_tooltip2 text').attr('transform','translate(-125,0)');
+			if($(window).width() < 800){
+				$('#p0_segmentMainLabel1-outer').attr('y','-14');
+				$('#p0_segmentMainLabel1-outer tspan').attr('x','-33');
+			}
+		}, 1000);
+	}
+
+	function wrap(text,type) {
+		if(!text){
+			return;
+		}
+		let words =[];
+		if(type === 'caption'){
+			words = text.split('<br>');
+		} else {
+			words = text.split(/\s+/);
+		}
+		tspan = '';
+		dy = 0
+		$.each( words, function( key, value ) {
+			if(key < 2){
+				dy = dy + lineHeight;
+			}
+			tspan = tspan + '<tspan x="0" dy="'+dy+'">'+value+'</tspan>';
+		});
+		return tspan;
+	}
+</script>
+</body>
+</html>

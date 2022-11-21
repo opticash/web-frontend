@@ -1,0 +1,23 @@
+.show-loader{overflow:hidden; height:100vh;}
+.site-loader{position:fixed; top:0; left:0; width:100%; height:100%; background-color:#1B1F11; z-index:9999;
+    display: flex; align-items: center; justify-content: center;
+    .loader-logo{transform-origin: 50% 50%; width:4.5rem;
+        animation: jump .5s linear alternate infinite;
+    }
+        //animation: rotating .5s linear infinite;}
+}
+
+@keyframes jump {
+    0%   {transform: translate3d(0,0,0) scale3d(1,1,1);}
+    40%  {transform: translate3d(0,30%,0) scale3d(.8,1.2,1);}
+    100% {transform: translate3d(0,100%,0) scale3d(1.2,.8,1);}
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

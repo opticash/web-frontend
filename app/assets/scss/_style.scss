@@ -1,0 +1,86 @@
+.site-form{
+    .form-box{margin-bottom:1rem;
+        .form-control{background: #1F1F1F; border: 1px solid #D3FF73; border-radius: 15px; color:#FFF; font-size:$ft18; padding:1.5rem 1rem;}
+        select.form-control{background-image: url(/assets/images/icon-arrow-bottom.svg); background-repeat: no-repeat; background-position: right 0.75rem center;}
+    }
+}
+
+.form-button{ 
+    .btn{padding:1.5rem 1rem; font-size:$ft22; font-weight:bold; text-transform:uppercase;}
+}
+
+.auth-page {
+    .top{text-align:center; margin-bottom:1.4rem;}
+    h1{font-size:$ft40; color:#FFF; font-weight: normal; margin:0;}
+    p{font-size:$ft18; color:#FFF; font-weight: normal;}
+    .bottom{font-size:$ft20; color:#FFF; font-weight: normal; margin-top:1rem; text-align:center;}
+}
+
+.main-page{
+    h2{font-size:$ft24; font-weight:bold; margin: 0 0 1rem;}
+    .balance-box{background: linear-gradient(138.21deg, rgba(255, 255, 255, 0.149) -23.04%, rgba(255, 255, 255, 0.012) 118.95%); padding:1.5rem; border-radius:12px;
+        h3{font-family:$ftDefault; font-size:$ft16; margin:0 0 1.5rem;}
+        .balance{ font-size:$ft24; font-weight:600; text-transform:uppercase; color:#FFF; margin-bottom:1rem;
+            span{color:#939393; font-size:12px; display:block; text-transform: none;}
+        }
+        .btn{font-size:$ft14; padding:.5rem 2rem; border-radius:6px;}
+        .raise-box{background: linear-gradient(116.57deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 145.83%); 
+            align-items: center; padding:1rem 2rem; border-radius:10px;
+            img{width:60px;}
+            &>div{flex:1; }
+            h3{margin:0 0 5px; font-size:13px;}
+            .amount{font-size:$ft18; font-weight:600; color:#FFF; margin-bottom:.5rem;
+                span{font-size:12px; font-weight:normal; line-height:12px; display:inline-block; margin-left:6px; margin-top:6px; vertical-align:top;}
+            }
+            .progress{background-color:#2E3223; height:4px;
+                .progress-bar{background-color: #7DA816;;}
+            }
+            .label{color:#929292; font-size:10px; margin-top:5px;}
+        }
+    }
+}
+
+.box1{background:#1F1F1F; border-radius:12px; padding:1.5rem;
+    .top{text-align:center;
+        h3{font-family:$ftDefault; font-size:$ft24; margin:0; font-weight:bold;}
+        p{font-size:13px; color:#C3FF43;}
+    }
+    .address-box{background: #2D2D2D url(../images/icon-ethereum.svg) 8px center no-repeat; border-radius:10px; padding:.5rem .5rem .5rem 3rem; min-height:4rem; margin-bottom:1rem;
+        display:flex; align-items:center;
+        input{ background:none; border:none; width:100%; color:#FFF; font-size:14px;}
+        .address{font-size:12px; color:#FFFFFF;  width:100%; line-height:1em;
+            span{white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display:block;}
+            a{color: #C3FF43; font-size:10px; cursor:pointer;}
+        }
+    }
+    .btn{padding:.75rem 1rem; font-size:$ft16; font-weight:bold; text-transform:uppercase; width:100%; }
+}
+
+.deposit-box{background: #1F1F1F;border-radius:8px; padding:1.5rem;
+    .top{ margin-bottom:1.5rem;
+        h3{font-size:$ft16; font-weight:bold; margin:0;
+            img{width:24px}
+        }
+    }
+}
+.site-form2{
+    .form-box{ margin-bottom:1rem;
+        label{color: #C3FF43; font-size:$ft13; margin-bottom:.5rem;}
+        .readonly{ display:flex; align-items: center; background-color:#2D2D2D; border-radius:10px; height:45px; padding:10px;
+            img{width:20px; margin-right:15px;}
+            span{flex:1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display:block; font-size:12px; color:#FFF;}
+        }
+        .form-control{ background-color:#2D2D2D; border:none; border-radius:10px; color:#FFF; font-size:14px; height:45px; padding:10px;}
+        .input-group-text{background-color:#2D2D2D; border-color:#2D2D2D; color:#FFF;}
+        select.form-control{background-image: url(/assets/images/icon-arrow-bottom.svg); background-repeat: no-repeat; background-position: right 0.75rem center;}
+    }
+    .button{margin-top:2rem;}
+    .btn{padding:.75rem 1rem; font-size:$ft16; font-weight:bold; text-transform:uppercase; width:100%; }
+}
+.payment-detail{text-align:center;
+    p{color:#FFF; font-size:12px; font-weight:600;}
+    .qr-code{margin:1rem 0;}
+    .value{color:#FFF; font-size:$ft22; font-weight:600; text-transform:uppercase;
+        span{color: #D1F81E; font-size:$ft14; display:inline-block; vertical-align:top; margin-top:6px;}
+    }
+}
