@@ -788,16 +788,32 @@
 	function subscribe(element) {
 		var userEmail =$(element).val();
 		// call Api
-		//alert(userEmail);
-		document.getElementById("subscribeBtn").disabled = true;
-		var myAlert =document.getElementById('toastNotice');//select id of toast
-		document.getElementById("toastNoticeText").textContent="Subscribed successfully";
-		var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-		bsAlert.show();//show it
-		setTimeout(() => {
-			bsAlert.hide();
-		}, 2000);
+		var data = JSON.stringify({"email": userEmail});
 
+		var config = {
+			method: 'post',
+			url: 'https://api.opticash.io/user/subscribe',
+			headers: { 
+				'Content-Type': 'application/json'
+			},
+			data : data
+		};
+
+		axios(config).then(function (response) {
+			//console.log(JSON.stringify(response.data));
+			document.getElementById("toastNoticeText").textContent=response.data.message;
+			var myAlert =document.getElementById('toastNotice');//select id of toast
+			var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+			bsAlert.show();//show it
+			setTimeout(() => {
+				bsAlert.hide();
+			}, 2000);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+
+		document.getElementById("subscribeBtn").disabled = true;
 		return false;
 	}
 	
@@ -882,5 +898,6 @@
 		return tspan;
 	}
 </script>
+<script src="js/axios.min.js"></script>
 </body>
 </html>
