@@ -1,0 +1,15 @@
+.auth-page{background: url(/assets/images/auth-background.png) no-repeat top center; background-size: cover;
+min-height:100vh; width:100%; padding-bottom:3rem;}
+
+.header{
+    .logo img{ width:180px;}
+}
+
+.main-page{margin-top:2rem;
+    .container{max-width:600px;}
+    .container-box{background: #1A1A1A; border-radius: 40px; padding:2rem 3rem;}
+}
+
+.footer{ margin-top:3rem;
+    a{color: #898989; font-size:1.125rem; margin-left:2rem;}
+}

@@ -1,0 +1,81 @@
+.user-pages{background:linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, rgba(18, 18, 18, 0) 0.01%, #02030B 49.53%); min-height:100vh;}
+.header{ height:100px; background-color: #111111;
+    .logo{background-color: #111111; width:225px; height:100%; display: flex;
+        justify-content: center;
+        align-items: center;
+        img{width:120px;}
+    }
+    .user-header{flex:1; display:flex; align-items:center; padding:1rem 2.5rem; border-bottom: solid 3px #202020;;
+        .info{ 
+            h1{font-family:'Source Sans Pro', sans-serif; color:#FFF; font-weight:600; font-size:1.500rem; margin:0; text-transform:capitalize;}
+            p{margin:0;}
+        }
+        .notification{height:4rem; width:4rem; border-radius:50%; background:#262626; display: flex; justify-content: center; align-items: center; position: relative;
+            .dot{background-color:#F60B0B; height:12px; width:12px; border-radius:50%; position:absolute; top:4px; right:4px;}
+        }
+    }
+}
+.header-block{height:100px;}
+
+.lines-button{ width:26px; height:19px; position:relative; cursor:pointer; margin:0; padding:0; border:none; background:none;
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+       -moz-transition: .5s ease-in-out;
+         -o-transition: .5s ease-in-out;
+            transition: .5s ease-in-out;
+    span { display: block; position:absolute; height:3px; width:100%; background:#FFF; border-radius:9px!important; opacity:1; left: 0;
+        -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+        -o-transition: .25s ease-in-out;
+        transition: .25s ease-in-out;}
+    //&:hover span{ background-color:$clBlue;}
+    span:nth-child(1) { top:8px; width:0%; left:50%;}
+    span:nth-child(2) {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);}
+    span:nth-child(3) {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);}
+    span:nth-child(4) {top:8px; width: 0%; left: 50%;}
+    &.collapsed span{
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    &.collapsed span:nth-child(1){top: 0px; width:100%; left:0;}
+    &.collapsed span:nth-child(2),
+    &.collapsed span:nth-child(3){top:8px;}
+    &.collapsed span:nth-child(4){top:16px; width:100%; left:0;}
+}
+
+
+.container-page{display:flex;}
+.side-bar{background-color:#19191C; min-height:calc(100vh - 100px); width:225px; padding:2rem 1rem 2rem; flex:0 0 auto;
+    ul{padding:0; margin:0; list-style:none; padding-left:2rem;
+        li{font-size:0.937rem;; color: #B6FF59; padding:1rem 0; position: relative;
+            &.active::after{ content:''; position: absolute; top:50%; right:0; transform:translateY(-50%); width:6px; height:35px;
+                background: url(/assets/images/icon-menu-active.svg) no-repeat right center; background-size:100% 100%;}
+            a{background: url(/assets/images/icon-home.svg) no-repeat left center; background-size:14px 14px; min-height:16px; padding:4px 20px 4px 26px; color: #72767C;
+                &:hover{color: #B6FF59;}
+                &.disabled{color: #72767C!important; cursor:default;}
+            }
+            &.active a{color: #B6FF59;}
+            &.transactions a{background-image:url(/assets/images/icon-chart.svg);}
+            &.buy-token a{background-image:url(/assets/images/icon-buy-token.svg);}
+            &.account a{background-image:url(/assets/images/icon-setting.svg);}
+            &.logout a{background-image:url(/assets/images/icon-logout.svg);}
+        }
+    }
+    .help{margin-top:4rem; text-align:center;
+        img{max-width:150px;}
+    }
+}
+.main-page{flex:1; padding:3rem 2.5rem;}

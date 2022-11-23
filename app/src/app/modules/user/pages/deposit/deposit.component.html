@@ -1,0 +1,85 @@
+<h2>Deposit</h2>
+<div class="row">
+    <div class="col-md-4">
+        <div  *ngIf="!isSendEth" class="deposit-box">
+            <div class="top d-flex justify-content-between">
+                <h3>Enter details</h3>
+            </div>
+            <form class="site-form2" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-box">
+                    <label>Your ETH Wallet address (ERC 20)</label>
+                    <div class="readonly">
+                        <img src="/assets/images/image.png" alt="">
+                        <span>{{userData.wallet_addr}}</span>
+                    </div>
+                </div>
+                <div class="form-box">
+                    <label>Payment method</label>
+                    <select class="form-control" formControlName="currency" 
+                        [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
+                        <!-- <option value="">Select Payment method</option> -->
+                        <option value="ETH">ETH</option>
+                        <option value="USD">USD</option>
+                    </select>
+                    <div *ngIf="submitted && f['currency'].errors" class="invalid-feedback">
+                        <div *ngIf="f['currency'].errors['required']">Payment method is required</div>
+                    </div>
+                </div>
+                <div class="form-box">
+                    <label>Enter amount</label>
+                    <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f['amount'].errors }">
+                        <input type="text" class="form-control" formControlName="amount">
+                        <span class="input-group-text" id="basic-addon2">{{form.value.currency}}</span>
+                    </div>
+                    <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
+                        <div *ngIf="f['amount'].errors['required']">Amount is required</div>
+                        <div *ngIf="f['amount'].errors['pattern']">Amount must be number only</div>
+                    </div>
+                </div>
+                <div class="button d-grid">
+                    <button type="submit" [disabled]="isButtonClicked" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="isSendEth" class="deposit-box">
+            <div class="top d-flex justify-content-between align-items-center">
+                <h3 (click)="showForm()"><img src="/assets/images/icon-arrow.svg" alt=""> Back</h3>
+                <div>SEND ETH</div>
+            </div>
+            <div class="payment-detail">
+                <p>Send only Ethereum (ETH) to this address.
+                Sending any other coins may result in permanent loss.</p>
+                <div class="qr-code">
+                    <img src="/assets/images/qr-code.png" alt="">
+                    <!-- <qrcode
+                        [qrdata]="userData.wallet_addr"
+                        [allowEmptyString]="true"
+                        [ariaLabel]="'Ethereum (ETH) address'"
+                        [cssClass]="'center'"
+                        [colorDark]="'#000000ff'"
+                        [colorLight]="'#ffffffff'"
+                        [elementType]="'canvas'"
+                        [errorCorrectionLevel]="'M'"
+                        [imageSrc]="'./assets/images/qr-code-icon.png'"
+                        [imageHeight]="45"
+                        [imageWidth]="45"
+                        [margin]="4"
+                        [scale]="1"
+                        [title]="'Ethereum (ETH) address'"
+                        [width]="284"
+                    ></qrcode> -->
+                </div>
+                <div *ngIf="form.value.currency==='ETH';else otherValue" class="value">{{form.value.amount}} ETH <span>= ${{usdValue}}</span></div>
+                <ng-template #otherValue>
+                    <div class="value">$ {{form.value.amount | number : '.2-2'}} USD </div>
+                </ng-template>
+                <p>{{ethAddress}}</p>
+                <div class="green-box">
+                    <div (click)="copyMessage(ethAddress)">Copy <img src="./assets/images/icon-copy.svg" alt=""></div>
+                    <div (click)="showForm()">Edit Amount <img src="./assets/images/icon-note-edit.svg" alt=""></div>
+                    <!-- <div>Share <img src="./assets/images/icon-share.svg" alt=""></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

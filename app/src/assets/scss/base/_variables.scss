@@ -1,0 +1,101 @@
+/*Site Colors*/
+$clDefault : #A1A1A1; //Gray (Default Color)
+$clPrimary : #C3FF43; 
+$clWhite   : #FFFFFF; 
+$clBlack   : #000000; 
+
+/*Site Font*/
+$ftDefault : 'Source Sans Pro', sans-serif;
+$ftPrimary : 'nasalizationbold', sans-serif;
+
+$ft13  : 0.813rem;
+$ft14  : 0.875rem;
+$ft15  : 0.937rem;
+$ft16  : 1.000rem;  //(base)
+$ft18  : 1.125rem;
+$ft20  : 1.250rem;
+$ft21  : 1.313rem;
+$ft22  : 1.375rem;
+$ft24  : 1.500rem;
+$ft25  : 1.563rem;
+$ft26  : 1.625rem;
+$ft28  : 1.750rem;
+$ft30  : 1.875rem;
+$ft32  : 2.000rem;
+$ft34  : 2.125rem;
+$ft36  : 2.250rem;
+$ft40  : 2.500rem;
+$ft50  : 3.125rem;
+
+
+$ftLG: 300;
+$ftRg: 400;
+$ftSB: 600;
+$ftB:  700;
+
+
+/*CSS Property*/
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+}
+/*@include box-shadow(0, 2px, 5px, rgba(187, 69, 17, 0.75));*/
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+/*@include border-radius(4px);*/
+
+
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+@mixin transition-property($property...) {
+    -moz-transition-property:    $property;
+    -webkit-transition-property: $property;
+    transition-property:         $property;
+}
+@mixin transition-duration($duration...) {
+    -moz-transition-property:    $duration;
+    -webkit-transition-property: $duration;
+    transition-property:         $duration;
+}
+@mixin transition-timing-function($timing...) {
+    -moz-transition-timing-function:    $timing;
+    -webkit-transition-timing-function: $timing;
+    transition-timing-function:         $timing;
+}
+@mixin transition-delay($delay...) {
+    -moz-transition-delay:    $delay;
+    -o-transition-delay:      $delay;
+    -webkit-transition-delay: $delay;
+    transition-delay:         $delay;
+}
+/* @include transition(background-color 1s .5s);*/
+
+// Defining breakpoints values
+$screen-xs-min: 576px;
+$screen-xs-max: ($screen-xs-min - 1);
+$screen-sm-min: 768px;
+$screen-sm-max: ($screen-sm-min - 1);
+$screen-md-min: 992px;
+$screen-md-max: ($screen-md-min - 1);
+$screen-lg-min: 1200px;
+$screen-lg-max: ($screen-lg-min - 1);
+
+
+// @media (min-width: $screen-xs-min) { ... }
+// @media (max-width: $screen-xs-max) { ... }
+// @media (min-width: $screen-sm-min) { ... }
+// @media (max-width: $screen-sm-max) { ... }
+// @media (max-width: $screen-md-max) { ... }
+// @media (min-width: $screen-md-min) { ... }
+// @media (max-width: $screen-lg-max) { ... }
+// @media (min-width: $screen-lg-min) { ... } 

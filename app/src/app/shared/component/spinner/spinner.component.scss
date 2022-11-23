@@ -1,0 +1,22 @@
+.spinner{position:fixed; top:0px; left:0; right:0; height:100%; background-color: rgba(0, 0, 0, 0.6); z-index:1520;
+    .loader{position:absolute; text-align:center; top:50%; transform:translateY(-50%); width:100%;
+        h3{margin-top:10px; font-size: 26px; font-weight: 300; color:#FFF;}
+        p{margin-top:10px; font-size: 16px; font-weight: 400; color:#FFF;
+            a{color:#FFF; text-decoration: none;}
+        }
+        .la-ball-clip-rotate{display:block; margin:auto; width:64px; height:64px; font-size: 0; color:#FFF;
+            & > div{width: 64px; height: 64px; border-width: 4px; display: inline-block; float: none; border: 2px solid currentColor; background: 0 0; border-bottom-color: transparent; border-radius: 100%; animation: .75s linear infinite ball-clip-rotate;}
+        }
+    }
+}
+
+@-webkit-keyframes ball-clip-rotate{
+    0%{-webkit-transform:rotate(0);transform:rotate(0)}
+    50%{-webkit-transform:rotate(180deg);transform:rotate(180deg)}
+    100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
+}
+@keyframes ball-clip-rotate{
+    0%{-webkit-transform:rotate(0);transform:rotate(0)}
+    50%{-webkit-transform:rotate(180deg);transform:rotate(180deg)}
+    100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
+}

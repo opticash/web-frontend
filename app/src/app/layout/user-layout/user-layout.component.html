@@ -1,0 +1,48 @@
+<div class="user-pages navbar-expand-lg">
+    <div class="header-block"></div>
+    <header class="header fixed-top d-flex">
+        <div class="logo"><a routerLink="/dashboard"><img src="/assets/images/logo.png" alt=""></a></div>
+        <div class="user-header">
+            <div class="info">
+                <h1>Welcome, {{userData.name}}!</h1>
+                <!-- <p>Monday, 07 November 2022</p> -->
+            </div>
+            <div class="notification ms-auto">
+                <img src="/assets/images/notification.svg" alt="">
+                <!-- <span class="dot"></span> -->
+            </div>
+            <button #eref class="navbar-toggler lines-button" [ngClass]="{'collapsed' : isCollapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" (click)="isCollapsed = !isCollapsed;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <i class="visually-hidden">Menu Toggle</i>
+            </button>
+        </div>
+    </header>
+    <div class="menu-overlay" [hidden]="isCollapsed" (click)="isCollapsed = true;"></div>
+    <div class="container-page">
+        <nav class="side-bar navbar-collapse collapse" [ngClass]="{'show' : !isCollapsed}"  id="navbar">
+            <div>
+                <ul class="side-menu">
+                    <li class="dashboard active"><a (click)="hideMenu()" routerLink="/dashboard">Dashboard</a></li>
+                    <li class="transactions"><a (click)="hideMenu()" class="disabled">Transactions</a></li>
+                    <li class="buy-token"><a (click)="hideMenu()" class="disabled">Buy Token</a></li>
+                    <li class="separator"></li>
+                    <li class="account"><a (click)="hideMenu()" class="disabled">Account</a></li>
+                    <li class="logout"><a (click)="hideMenu()" href="javascript:void()" (click)="logout()">Logout</a></li>
+                </ul>
+                <div class="help">
+                    <a href="javascript:void(0);"><img src="/assets/images/help-cemter.svg" alt=""></a>
+                </div>
+            </div>
+        </nav>
+        <div class="main-page">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+
+
+

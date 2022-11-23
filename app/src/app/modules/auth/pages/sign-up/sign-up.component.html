@@ -1,0 +1,72 @@
+<div *ngIf="!isSignUpCompleted">
+    <div class="top">
+        <h1>Sign Up</h1>
+        <p>Sign Up with your credential</p>
+    </div>
+    <form class="site-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-box">
+            <input type="text" formControlName="name" class="form-control" placeholder="Name"
+                [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"/>
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="f['name'].errors['required']">Name is required</div>
+                <div *ngIf="f['name'].errors['minlength']">Name must be at least 3 characters</div>
+                <div *ngIf="f['name'].errors['maxlength']">Name must not exceed 50 characters</div>
+                <div *ngIf="f['name'].errors['pattern']">Name must be alphabetic only</div>
+            </div>
+        </div>
+        <div class="form-box">
+            <input type="text" formControlName="email" class="form-control" placeholder="Email"
+            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                <div *ngIf="f['email'].errors['maxlength']">Email must not exceed 100 characters</div>
+            </div>
+        </div>
+        <div class="form-box">
+            <select formControlName="country" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['country'].errors }">
+                <option value="">Select Country</option>
+                <option *ngFor="let country of countryList" [value]="country">{{country}}</option>
+            </select>
+            <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+                <div *ngIf="f['country'].errors['required']">Country is required</div>
+            </div>
+        </div>
+        <div class="form-box">
+            <input type="password" formControlName="passwd" class="form-control" placeholder="Password"
+                [ngClass]="{ 'is-invalid': submitted && f['passwd'].errors }" />
+            <div *ngIf="submitted && f['passwd'].errors" class="invalid-feedback">
+                <div *ngIf="f['passwd'].errors['required']">Password is required</div>
+                <div *ngIf="f['passwd'].errors['minlength']"> Password must be at least 3 characters</div>
+                <div *ngIf="f['passwd'].errors['maxlength']">Password must not exceed 20 characters</div>
+            </div>
+        </div>
+        <div class="form-box">
+            <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Repeat Password"
+                [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+            <div
+                *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback" >
+                <div *ngIf="f['confirmPassword'].errors['required']">Confirm Password is required</div>
+                <div *ngIf="f['confirmPassword'].errors['matching']">Confirm Password does not match</div>
+            </div>
+        </div>
+        <div class="form-button d-grid">
+            <button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
+        </div>
+        <p class="bottom">Already have an account? <a routerLink="/auth/sign-in">Sign In Here</a></p>
+    </form>
+</div>
+<div *ngIf="isSignUpCompleted">
+    <div class="top">
+        <img src="/assets/images/sign-up-successful.svg" alt="">
+        <br><br>
+        <h1>Sign Up Successful</h1>
+    </div>
+    <div class="site-form">
+        <br>
+        <div class="form-button d-grid">
+            <button type="button" routerLink="/auth/sign-in" class="btn btn-primary btn-block">SIGN In</button>
+        </div>
+    </div>
+</div>
