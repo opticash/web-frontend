@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DepositComponent } from './pages/deposit/deposit.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { TransactionsComponent } from './pages/transactions/transactions.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,14 @@ const routes: Routes = [
       {
         path: 'deposit',
         component: DepositComponent
+      },
+      {
+        path: 'transactions',
+        component: TransactionsComponent
+      },
+      {
+        path: 'my-account',
+        component: MyAccountComponent
       },
     ]
   }

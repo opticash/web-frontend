@@ -25,11 +25,11 @@
         <nav class="side-bar navbar-collapse collapse" [ngClass]="{'show' : !isCollapsed}"  id="navbar">
             <div>
                 <ul class="side-menu">
-                    <li class="dashboard active"><a (click)="hideMenu()" routerLink="/dashboard">Dashboard</a></li>
-                    <li class="transactions"><a (click)="hideMenu()" class="disabled">Transactions</a></li>
-                    <li class="buy-token"><a (click)="hideMenu()" class="disabled">Buy Token</a></li>
+                    <li class="dashboard" routerLinkActive="active" ><a (click)="hideMenu()" routerLink="/dashboard">Dashboard</a></li>
+                    <li class="transactions" routerLinkActive="active" ><a (click)="hideMenu()" routerLink="/transactions">Transactions</a></li>
+                    <li class="buy-token" routerLinkActive="active" ><a (click)="hideMenu()" routerLink="/deposit">Buy Token</a></li>
                     <li class="separator"></li>
-                    <li class="account"><a (click)="hideMenu()" class="disabled">Account</a></li>
+                    <li class="account" routerLinkActive="active"><a (click)="hideMenu()" routerLink="my-account" >Account</a></li>
                     <li class="logout"><a (click)="hideMenu()" href="javascript:void()" (click)="logout()">Logout</a></li>
                 </ul>
                 <div class="help">
