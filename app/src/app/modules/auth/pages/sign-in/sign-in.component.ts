@@ -21,7 +21,6 @@ export class SignInComponent implements OnInit {
         private authenticationService:AuthenticationService,
         private toastrService:ToastrService,
         private router: Router,
-        private spinner: SpinnerService
     ) { }
 
     ngOnInit(): void {
@@ -37,7 +36,6 @@ export class SignInComponent implements OnInit {
         if (this.form.invalid) {
             return;
         }
-        console.log(this.form.value.passwd);
         this.form.value.passwd = Md5.hashStr(this.form.value.passwd);
         this.isButtonClicked = true;
         this.authService.login(this.form.value).subscribe((data)=>{

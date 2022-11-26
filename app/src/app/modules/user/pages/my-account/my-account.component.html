@@ -1,43 +1,62 @@
 <h2>My Account</h2>
 
-<div class="account-box">
+<div class="account-box" *ngIf="userData">
     <div class="d-flex top">
         <div class="flex-grow-1 left">
-            <h3>Opticash Admin</h3>
-            <p>0x4Hd94erGJt89hkkjgrnC1E876e454tbbeE09C97A76 <img src="/assets/images/icon-ethereum.svg" alt=""></p>
+            <h3>{{userData.name}}</h3>
+            <p>{{userData.wallet_addr}} <img src="/assets/images/icon-ethereum.svg" alt=""></p>
         </div>
         <div class="align-self-center right">
-            <button class="btn btn-primary">Edit Profile</button>
+            <button class="btn btn-primary" [disabled]="isEditView" (click)="editView()">Edit Profile</button>
         </div>
     </div>
-    <!-- <div class="row view">
+    <div class="row view"  *ngIf="!isEditView">
         <div class="col-md-4">
             <span>Email</span>
-            Opticashadmin@opticash.io
+            {{userData.email}}
         </div>
         <div class="col-md-4">
             <span>Country</span>
-            United Kingdom
+            {{userData.country}}
         </div>
-    </div> -->
-    <div class="site-form3">
+    </div>
+    <form class="site-form3" [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isEditView">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-box">
                     <label>First Name</label>
-                    <input type="text" class="form-control"/>
+                    <input type="text" formControlName="name" class="form-control" 
+                        [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"/>
+                    <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors['required']">Name is required</div>
+                        <div *ngIf="f['name'].errors['minlength']">Name must be at least 3 characters</div>
+                        <div *ngIf="f['name'].errors['maxlength']">Name must not exceed 50 characters</div>
+                        <div *ngIf="f['name'].errors['pattern']">Name must be alphabetic only</div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-box">
                     <label>Last Name</label>
-                    <input type="text" class="form-control"/>
+                    <input type="text" formControlName="lname" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['lname'].errors }"/>
+                    <div *ngIf="submitted && f['lname'].errors" class="invalid-feedback">
+                        <div *ngIf="f['lname'].errors['maxlength']">Last Name must not exceed 50 characters</div>
+                        <div *ngIf="f['lname'].errors['pattern']">Last Name must be alphabetic only</div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-box">
                     <label>Country</label>
-                    <input type="text" class="form-control"/>
+                    <select formControlName="country" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['country'].errors }">
+                        <option value="">Select Country</option>
+                        <option *ngFor="let country of countryList" [value]="country">{{country}}</option>
+                    </select>
+                    <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+                        <div *ngIf="f['country'].errors['required']">Country is required</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,13 +64,18 @@
             <div class="col-md-4">
                 <div class="form-box">
                     <label>Email</label>
-                    <input type="text" class="form-control"/>
+                    <input type="text" formControlName="email" class="form-control" readonly/>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-box">
                     <label>Wallet Addess (ETH)</label>
-                    <input type="text" class="form-control"/>
+                    <input type="text" formControlName="wallet_addr" class="form-control" 
+                        [ngClass]="{ 'is-invalid': submitted && f['wallet_addr'].errors }"/>
+                    <div *ngIf="submitted && f['wallet_addr'].errors" class="invalid-feedback">
+                        <div *ngIf="f['wallet_addr'].errors['required']">Wallet Addess is required</div>
+                        <div *ngIf="f['wallet_addr'].errors['addressInvalid']"> Invalid address.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,16 +83,26 @@
             <div class="col-md-4">
                 <div class="form-box">
                     <label>Create new password</label>
-                    <input type="text" class="form-control"/>
+                    <input type="password" formControlName="passwd" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['passwd'].errors }" />
+                    <div *ngIf="submitted && f['passwd'].errors" class="invalid-feedback">
+                        <div *ngIf="f['passwd'].errors['minlength']"> Password must be at least 3 characters</div>
+                        <div *ngIf="f['passwd'].errors['maxlength']">Password must not exceed 20 characters</div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-box">
                     <label>Confirm password</label>
-                    <input type="text" class="form-control"/>
+                    <input type="password" formControlName="confirmPassword" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+                    <div
+                        *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback" >
+                        <div *ngIf="f['confirmPassword'].errors['matching']">Confirm Password does not match</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="mt-3"><button class="btn btn-primary">Save Profil</button></div>
-    </div>
+        <div class="mt-3"><button class="btn btn-primary" [disabled]="isSignUpCompleted">Save Profil</button></div>
+    </form>
 </div>

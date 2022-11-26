@@ -24,6 +24,14 @@ export class UserService {
     savePayment(data:any) {
         return this.baseService.postRequest(ApiConstants.SAVEPAYMENT,data);
     }
+    
+    getTransactions(data:any) {
+        return this.baseService.postRequest(ApiConstants.GET_TRANSACTIONS,data);
+    }
+
+    updateProfile(data:any) {
+        return this.baseService.postRequest(ApiConstants.UPDATE_PROFILE,data);
+    }
 
     getEthValue() {
         const EthToUsdApiURL:string = 'https://min-api.cryptocompare.com/data/price?api_key=a46081438f9c55f1b22305d56c9653fc809f0dff128bee4c1c78ea5f8c021f5f&fsym=ETH&tsyms=USD'

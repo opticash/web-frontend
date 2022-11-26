@@ -59,7 +59,7 @@
 
 
 .container-page{display:flex;}
-.side-bar{background-color:#19191C; min-height:calc(100vh - 100px); width:225px; padding:2rem 1rem 2rem; flex:0 0 auto;
+.side-bar{background-color:#19191C; min-height:calc(100vh - 100px); width:225px; padding:2rem 1rem 2rem; flex:0 0 auto; align-items: start;
     ul{padding:0; margin:0; list-style:none; padding-left:2rem;
         li{font-size:0.937rem;; color: #B6FF59; padding:1rem 0; position: relative;
             &.active::after{ content:''; position: absolute; top:50%; right:0; transform:translateY(-50%); width:6px; height:35px;

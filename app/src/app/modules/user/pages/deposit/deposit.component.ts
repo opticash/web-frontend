@@ -42,6 +42,7 @@ export class DepositComponent implements OnInit {
             amount: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(10)]),
         });
         this.submitted = false;
+        this.getEthValue();
     }
 
     onSubmit(){
@@ -53,16 +54,17 @@ export class DepositComponent implements OnInit {
         var obj = {
             walletAddress:this.userData.wallet_addr,
             amount:this.form.value.amount,
-            currency:this.form.value.currency
+            currency:this.form.value.currency,
+            usdValue: this.form.value.currency === 'ETH' ? (this.usdValue * this.form.value.amount) : this.form.value.amount,
         }
         this.userServce.savePayment(obj).subscribe((data)=>{
             this.isButtonClicked = false;
             if(data.type === true){
                 this.isSendEth = true;
                 // this.toastrService.success(data.message);
-                if(this.form.value.currency === 'ETH'){
-                    this.getEthValue();
-                }
+                // if(this.form.value.currency === 'ETH'){
+                //     this.getEthValue();
+                // }
             }
         });
     }
@@ -78,8 +80,9 @@ export class DepositComponent implements OnInit {
 
     getEthValue(){
         this.userServce.getEthValue().subscribe(data => {
-            this.usdValue = Number(data.USD) * Number(this.form.value.amount);
-            this.usdValue = Number(parseFloat(this.usdValue.toString()).toFixed(2));
+            this.usdValue = Number(data.USD);
+            // this.usdValue = Number(data.USD) * Number(this.form.value.amount);
+            // this.usdValue = Number(parseFloat(this.usdValue.toString()).toFixed(2));
         })
     }
 

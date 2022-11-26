@@ -19,7 +19,7 @@
                         [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
                         <!-- <option value="">Select Payment method</option> -->
                         <option value="ETH">ETH</option>
-                        <option value="USD">USD</option>
+                        <option value="USDT">USDT</option>
                     </select>
                     <div *ngIf="submitted && f['currency'].errors" class="invalid-feedback">
                         <div *ngIf="f['currency'].errors['required']">Payment method is required</div>
@@ -69,9 +69,9 @@
                         [width]="284"
                     ></qrcode> -->
                 </div>
-                <div *ngIf="form.value.currency==='ETH';else otherValue" class="value">{{form.value.amount}} ETH <span>= ${{usdValue}}</span></div>
+                <div *ngIf="form.value.currency==='ETH';else otherValue" class="value">{{form.value.amount}} ETH <span>= ${{(usdValue*form.value.amount)  | number : '1.2-2'}}</span></div>
                 <ng-template #otherValue>
-                    <div class="value">$ {{form.value.amount | number : '.2-2'}} USD </div>
+                    <div class="value">$ {{form.value.amount}} USD </div>
                 </ng-template>
                 <p>{{ethAddress}}</p>
                 <div class="green-box">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-transactions',
@@ -6,13 +7,24 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
+    pageData: any;
     constructor(
+        private userServce: UserService,
     ) { }
 
     ngOnInit(): void {
-    
     }
 
-    
+    ngAfterViewInit() {
+        this.getData();
+      }
+
+    getData(){
+        this.userServce.getTransactions({}).subscribe(resp =>{
+            if(resp.type === true){
+                this.pageData = resp.data;
+            }
+        });
+    }
 
 }

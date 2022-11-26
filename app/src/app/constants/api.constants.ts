@@ -12,5 +12,7 @@ export class ApiConstants {
     public static get DASHBOARD() : string { return this.API_URL + 'user/dashboard'}
     public static get UPDATE() : string { return this.API_URL + 'user/update'}
     public static get SUBSCRIBE() : string { return this.API_URL + 'user/subscribe'}
+    public static get UPDATE_PROFILE() : string { return this.API_URL + 'user/updateProfile'}
+    public static get GET_TRANSACTIONS() : string { return this.API_URL + 'user/getTransactions'}
 
 }
