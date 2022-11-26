@@ -1,0 +1,39 @@
+<div *ngIf="!isSignUpCompleted">
+<div class="top">
+    <h1>Verify Email</h1>
+    <p>Please enter OTP to verify email</p>
+</div>
+<form class="site-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-box">
+        <input type="text" formControlName="otp" class="form-control" type="tel" placeholder="OTP" 
+        [ngClass]="{ 'is-invalid': submitted && f['otp'].errors }" maxlength="6" />
+        <div *ngIf="submitted && f['otp'].errors" class="invalid-feedback">
+            <div *ngIf="f['otp'].errors['required']">OTP is required</div>
+            <div *ngIf="f['otp'].errors['pattern']">OTP is invalid</div>
+            <div *ngIf="f['otp'].errors['maxlength']">OTP must be 6 characters</div>
+        </div>
+    </div>
+    <br>
+    <div class="form-button d-grid">
+        <button type="submit" [disabled]="isButtonClicked" class="btn btn-primary btn-block">Submit</button>
+    </div>
+    <div class="resend">
+        <a *ngIf="counter <= 0 else timer" (click)="resend()">Resend</a>
+        <ng-template #timer>Resend OTP in <strong>{{counter}}s</strong> </ng-template>
+    </div>
+    <p class="bottom">Already have an account? <a routerLink="/auth/sign-in">Sign In Here</a></p>
+</form>
+</div>
+<div *ngIf="isSignUpCompleted && !isPrevSignInPage">
+    <div class="top">
+        <img src="/assets/images/sign-up-successful.svg" alt="">
+        <br><br>
+        <h1>Sign Up Successful</h1>
+    </div>
+    <div class="site-form">
+        <br>
+        <div class="form-button d-grid">
+            <button type="button" routerLink="/auth/sign-in" class="btn btn-primary btn-block">SIGN In</button>
+        </div>
+    </div>
+</div>

@@ -44,7 +44,8 @@ export class AuthenticationService {
 
     public islogin(): boolean {
         const token = localStorage.getItem('auth');
-        if(token){
+        const userData = this.getUserData();
+        if(token && userData.is_verified === "TRUE"){
             return true;
         }
         return false;

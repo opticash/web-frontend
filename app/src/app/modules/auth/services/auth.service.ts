@@ -29,6 +29,14 @@ export class AuthService {
         return this.baseService.postRequest(ApiConstants.RESETPASSWD,data);
     }
 
+    verify_user(data:any) {
+        return this.baseService.postRequest(ApiConstants.VERIFY_USER,data);
+    }
+
+    resend_otp(data:any) {
+        return this.baseService.postRequest(ApiConstants.RESEND_OTP,data);
+    }
+
     setAuthToken(token:any){
         this.authToken = token;
     }

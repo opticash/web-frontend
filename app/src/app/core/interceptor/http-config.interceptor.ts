@@ -33,7 +33,8 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         if(this.authenticationService.getUserAuth()){
             authorization = this.authenticationService.getUserAuth();
         }
-        if(request.url.includes('user/reset-passwd') && this.authService.getAuthToken()){
+        console.log('getAuthToken '+this.authService.getAuthToken());
+        if(this.authService.getAuthToken() && (request.url.includes('user/reset-passwd') || request.url.includes('user/verify-user') || request.url.includes('user/resend-otp')) ){
             authorization = this.authService.getAuthToken();
         }
         request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + authorization) });

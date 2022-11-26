@@ -8,6 +8,8 @@ export class ApiConstants {
     public static get LOGIN() : string { return this.API_URL + 'user/login'}
     public static get FORGOTPASSWD() : string { return this.API_URL + 'user/forgot-passwd'}
     public static get RESETPASSWD() : string { return this.API_URL + 'user/reset-passwd'}
+    public static get VERIFY_USER() : string { return this.API_URL + 'user/verify-user'}
+    public static get RESEND_OTP() : string { return this.API_URL + 'user/resend-otp'}
     public static get SAVEPAYMENT() : string { return this.API_URL + 'user/savePayment'}
     public static get DASHBOARD() : string { return this.API_URL + 'user/dashboard'}
     public static get UPDATE() : string { return this.API_URL + 'user/update'}

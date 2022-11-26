@@ -24,6 +24,7 @@ export class SignInComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.authenticationService.logout();
         this.form = new FormGroup({
             email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(100),]),
             passwd: new FormControl('', [Validators.required]),
@@ -44,7 +45,11 @@ export class SignInComponent implements OnInit {
                 if(data.type === true){
                     this.authenticationService.setUserAuth(data.auth);
                     this.authenticationService.setUserData(data.data);
-                    this.router.navigate(['/dashboard']);
+                    if(data.data.is_verified === 'TRUE'){
+                        this.router.navigate(['/dashboard']);
+                    } else {
+                        this.router.navigate(['/auth/verify-email']);
+                    }
                 } else if(data.type === 'error'){
                     this.toastrService.error(data.message);
                 }

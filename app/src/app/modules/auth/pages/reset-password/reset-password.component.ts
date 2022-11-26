@@ -27,7 +27,7 @@ import {Md5} from 'ts-md5';
             this.router.navigate(['auth/forgot-password']);
         }
         this.form = new FormGroup({
-            otp: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(100),]),
+            otp: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(6),]),
             passwd1: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
             passwd2: new FormControl('', Validators.required),
         },

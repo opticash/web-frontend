@@ -1,4 +1,3 @@
-<div *ngIf="!isSignUpCompleted">
     <div class="top">
         <h1>Sign Up</h1>
         <p>Sign Up with your credential</p>
@@ -56,17 +55,3 @@
         </div>
         <p class="bottom">Already have an account? <a routerLink="/auth/sign-in">Sign In Here</a></p>
     </form>
-</div>
-<div *ngIf="isSignUpCompleted">
-    <div class="top">
-        <img src="/assets/images/sign-up-successful.svg" alt="">
-        <br><br>
-        <h1>Sign Up Successful</h1>
-    </div>
-    <div class="site-form">
-        <br>
-        <div class="form-button d-grid">
-            <button type="button" routerLink="/auth/sign-in" class="btn btn-primary btn-block">SIGN In</button>
-        </div>
-    </div>
-</div>
