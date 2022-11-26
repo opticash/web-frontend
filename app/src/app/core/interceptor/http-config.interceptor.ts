@@ -15,6 +15,7 @@ import { SpinnerService } from 'app/shared/services/spinner.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 import { AuthService } from 'app/modules/auth/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
@@ -23,6 +24,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         private router: Router,
         private authenticationService : AuthenticationService,
         private authService : AuthService,
+        private toastrService: ToastrService
     ) {
     }
     
@@ -50,9 +52,19 @@ export class HttpConfigInterceptor implements HttpInterceptor {
             }),
             catchError((error: HttpErrorResponse) => {
                 this.spinner.hide();
+                console.log(error.error);
                 if(error.error.message === 'jwt expired'){
                     this.authenticationService.logout();
                     this.router.navigate(['auth/sign-in']);
+                } else {
+                    let msg = '';
+                    if(error.error.errors && error.error.errors.length > 0){
+                        const com = error.error.errors.length > 1 ? ', ' : ' ';
+                        error.error.errors.forEach((err:any) => {
+                            msg = msg +' '+ err.msg+com;
+                        });
+                    }
+                    this.toastrService.error(msg, error.error.message)
                 }
                 return throwError(error);
             })

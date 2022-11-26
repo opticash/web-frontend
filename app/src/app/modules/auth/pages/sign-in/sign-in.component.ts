@@ -38,15 +38,20 @@ export class SignInComponent implements OnInit {
         }
         this.form.value.passwd = Md5.hashStr(this.form.value.passwd);
         this.isButtonClicked = true;
-        this.authService.login(this.form.value).subscribe((data)=>{
-            this.isButtonClicked = false;
-            if(data.type === true){
-                console.log(data);
-                this.authenticationService.setUserAuth(data.auth);
-                this.authenticationService.setUserData(data.data);
-                this.router.navigate(['/dashboard']);
-            } else if(data.type === 'error'){
-                this.toastrService.error(data.message);
+        this.authService.login(this.form.value).subscribe({
+            next: (data) => {
+                this.isButtonClicked = false;
+                if(data.type === true){
+                    this.authenticationService.setUserAuth(data.auth);
+                    this.authenticationService.setUserData(data.data);
+                    this.router.navigate(['/dashboard']);
+                } else if(data.type === 'error'){
+                    this.toastrService.error(data.message);
+                }
+            },
+            error: (error) => {
+                this.isButtonClicked = false;
+                console.error(error);
             }
         });
     }

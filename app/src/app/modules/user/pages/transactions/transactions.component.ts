@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { UserService } from '../../services/user.service';
     templateUrl: './transactions.component.html',
     styleUrls: ['./transactions.component.scss']
 })
-export class TransactionsComponent implements OnInit {
+export class TransactionsComponent implements OnInit, AfterViewInit {
     pageData: any;
     constructor(
         private userServce: UserService,
@@ -17,7 +17,7 @@ export class TransactionsComponent implements OnInit {
 
     ngAfterViewInit() {
         this.getData();
-      }
+    }
 
     getData(){
         this.userServce.getTransactions({}).subscribe(resp =>{

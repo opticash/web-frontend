@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="form-button d-grid">
-            <button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
+            <button type="submit" [disabled]="isButtonClicked" class="btn btn-primary btn-block">SIGN UP</button>
         </div>
         <p class="bottom">Already have an account? <a routerLink="/auth/sign-in">Sign In Here</a></p>
     </form>

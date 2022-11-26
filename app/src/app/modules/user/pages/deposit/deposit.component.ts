@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/core/service/authentication.service';
@@ -39,7 +39,7 @@ export class DepositComponent implements OnInit {
         };
         this.form = new FormGroup({
             currency: new FormControl('ETH', [Validators.required]),
-            amount: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(10)]),
+            amount: new FormControl('',[Validators.required, Validators.pattern(/^\d*(?:[.,]\d{1,6})?$/), Validators.maxLength(20)]),
         });
         this.submitted = false;
         this.getEthValue();
@@ -57,14 +57,21 @@ export class DepositComponent implements OnInit {
             currency:this.form.value.currency,
             usdValue: this.form.value.currency === 'ETH' ? (this.usdValue * this.form.value.amount) : this.form.value.amount,
         }
-        this.userServce.savePayment(obj).subscribe((data)=>{
-            this.isButtonClicked = false;
-            if(data.type === true){
-                this.isSendEth = true;
-                // this.toastrService.success(data.message);
-                // if(this.form.value.currency === 'ETH'){
-                //     this.getEthValue();
-                // }
+
+        this.userServce.savePayment(obj).subscribe({
+            next: (data) => {
+                this.isButtonClicked = false;
+                if(data.type === true){
+                    this.isSendEth = true;
+                    // this.toastrService.success(data.message);
+                    // if(this.form.value.currency === 'ETH'){
+                    //     this.getEthValue();
+                    // }
+                }
+            },
+            error: (error) => {
+                this.isButtonClicked = false;
+                console.error(error);
             }
         });
     }

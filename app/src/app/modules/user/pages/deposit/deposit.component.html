@@ -34,6 +34,7 @@
                     <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
                         <div *ngIf="f['amount'].errors['required']">Amount is required</div>
                         <div *ngIf="f['amount'].errors['pattern']">Amount must be number only</div>
+                        <div *ngIf="f['amount'].errors['maxlength']">Amount must not exceed 20 characters</div>
                     </div>
                 </div>
                 <div class="button d-grid">
@@ -47,7 +48,7 @@
                 <div>SEND ETH</div>
             </div>
             <div class="payment-detail">
-                <p>Send only Ethereum (ETH) to this address.
+                <p>Send only on Ethereum blockchain (ERC20) to this address.
                 Sending any other coins may result in permanent loss.</p>
                 <div class="qr-code">
                     <img src="/assets/images/qr-code.png" alt="">
