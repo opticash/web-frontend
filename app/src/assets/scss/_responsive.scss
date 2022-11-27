@@ -87,12 +87,13 @@
     }
 
     body .account-box{padding:2rem 1.5rem!important;
-        .top{display:block!important; border-bottom:1px solid #626262; padding-bottom:2rem;
+        .top{display:block!important; border-bottom:1px solid #626262; padding-bottom:2rem!important;
             p img{width:22px;}
             .left{border-bottom:none!important;}
             .right{padding-left:0!important;}
         }
-        .btn{font-size: 13px!important;}
+        .view > div{margin-bottom:1rem;}
+        .btn{font-size:13px!important;}
     }
     .site-form3 .form-box label {font-size:12px;}
 
