@@ -50,13 +50,13 @@
                     </button>
                     <div class="navbar-collapse collapse" id="navbar">
 						<ul class="list-unstyled list-inline top-link menu">
-							<li class="list-inline-item"><a class="active" href="win-150k">Win $150K</a></li>
-							<li class="list-inline-item"><a href="#whatOpticash">What is Opticash</a></li>
-							<li class="list-inline-item"><a href="#tokenSale" onClick="setupChart()" >Tokenomics</a></li>
-							<li class="list-inline-item"><a href="#roadmap">Roadmap</a></li>
-							<li class="list-inline-item"><a href="#">Apps</a></li>
-							<li class="list-inline-item"><a href="#">Teams</a></li>
-							<li class="list-inline-item"><a href="#fAQs">FAQs</a></li>
+							<li class="list-inline-item"><a class="active" href="win-50k.html">Win $50K</a></li>
+							<li class="list-inline-item"><a href="index.html#whatOpticash">What is Opticash</a></li>
+							<li class="list-inline-item"><a href="index.html#tokenSale" onClick="setupChart()" >Tokenomics</a></li>
+							<li class="list-inline-item"><a href="index.html#roadmap">Roadmap</a></li>
+							<!-- <li class="list-inline-item"><a href="#">Apps</a></li>
+							<li class="list-inline-item"><a href="#">Teams</a></li> -->
+							<li class="list-inline-item"><a href="index.html#fAQs">FAQs</a></li>
 							<li class="list-inline-item"><a href="#footer">Contact</a></li>
 						</ul>
 						<ul class="list-unstyled list-inline login">
@@ -80,8 +80,8 @@
 				<div class="col-md-7">
 					<h1>Win $50k worth of <span>Opticash</span> token!</h1>
 					<p>Its our duty to grow our online community and give lucky customers the chance to win $50k worth of <span>Opticash token ($OPCH)</span></p>
-					<p class="p2">Be a lucky winner by following the instruction! A user have to hold atleast $120 worth of $OPCH to stand a chance to be a winner</p>
-					<button class="btn btn-primary">ENTER DRAW</button>
+					<p class="p2">Be a lucky winner by following the instruction! A user have to hold atleast $100 worth of $OPCH to stand a chance to be a winner</p>
+					<a href="https://gleam.io/competitions/GHmy6--opch-tokens-worth-of-50000-usd-giveaway" target="_blank" class="btn btn-primary">ENTER DRAW</a>
 				</div>
 				<div class="col-md-5 align-self-center">
 					<div class="img1"><img src="images/win-150k.png" alt=""></div>
@@ -94,12 +94,14 @@
 						<div>
 							<p>1234 Total Entries</p>
 							<p class="p1">$50k</p>
-							<button class="btn btn-primary">ENTER DRAW</button>
+							<a href="https://gleam.io/competitions/GHmy6--opch-tokens-worth-of-50000-usd-giveaway" target="_blank" class="btn btn-primary">ENTER DRAW</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<img src="images/img-61.png" alt="">
+					<div class="iframe-box">
+						<iframe src="https://gleam.io/competitions/GHmy6--opch-tokens-worth-of-50000-usd-giveaway" frameborder="0"></iframe>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -144,36 +146,34 @@
 <!---END: Footer-->
 
 </div>
-<!-- <div class="position-fixed start-0 end-0 p-3" style="z-index: 11"> -->
-	<div id="toastNotice" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+	<div id="toastNotice" class="toast align-items-center text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
 		<div class="d-flex">
-			<div class="toast-body">
+			<div class="toast-body" id="toastNoticeText">
 				Token Copied!
 			</div>
 			<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
 		</div>
 	</div>
-<!-- </div> -->
+</div>
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.min.js"></script>
-<script src="js/d3.min.js"></script>
-<script src="js/d3pie.js"></script>
+<script src="js/axios.min.js"></script>
 <script>
+	
 	$(function() {
 		setTimeout(() => {
 			$('#site-content').removeClass('show-loader');
 			$('.site-loader').fadeOut();
 		}, 2000);
+		var wscroll = $(window).scrollTop();
 		$(window).scroll(function() {    
 			let scroll = $(window).scrollTop();
 			if (scroll >= 50) {
 				$("#header").addClass("darkHeader");
 			} else {
 				$("#header").removeClass("darkHeader");
-			}
-			if(scroll >= (chartTop - 400) && !isChartLoaded){
-				setupChart();
 			}
 		});
 		var bsCollapse = new bootstrap.Collapse(navbar, {
@@ -191,6 +191,11 @@
 				$navbar.collapse('hide');
 			}
 		});
+		
+		// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		// 	return new bootstrap.Tooltip(tooltipTriggerEl)
+		// })
 	});
 
 	function subscribe(element) {
@@ -225,22 +230,7 @@
 		return false;
 	}
 	
-	function copyToClipboard(element) {
-		var $temp = $("<input>");
-		$("body").append($temp);
-		$temp.val($(element).text()).select();
-		document.execCommand("copy");
-		$temp.remove();
-		var myAlert =document.getElementById('toastNotice');//select id of toast
-		document.getElementById("toastNoticeText").textContent="Token Copied";
-		var bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-		bsAlert.show();//show it
-		setTimeout(() => {
-			bsAlert.hide();
-		}, 2000);
-		return false;
-	}
 </script>
-<script src="js/axios.min.js"></script>
+
 </body>
 </html>
