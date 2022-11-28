@@ -4,6 +4,7 @@ import Validation from 'app/shared/utils/validation';
 import { AuthService } from '../../services/auth.service';
 import {Md5} from 'ts-md5';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-sign-up',
@@ -18,6 +19,7 @@ export class SignUpComponent implements OnInit {
     constructor(
         private authService:AuthService,
         private router: Router,
+        private toastrService:ToastrService,
     ) { }
 
     ngOnInit(): void {
@@ -44,9 +46,11 @@ export class SignUpComponent implements OnInit {
         this.authService.register(this.form.value).subscribe({
             next: (data) => {
                 this.isButtonClicked = false;
-                if(data.type){
+                if(data.type === true){
                     this.authService.setAuthToken(data.auth);
                     this.router.navigate(['auth/verify-email']);
+                } else if(data.type === 'error'){
+                    this.toastrService.error(data.message);
                 }
             },
             error: (error) => {

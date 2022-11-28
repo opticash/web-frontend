@@ -5,7 +5,6 @@ import { Md5 } from 'ts-md5';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/core/service/authentication.service';
-import { SpinnerService } from 'app/shared/services/spinner.service';
 
 @Component({
   selector: 'app-sign-in',
