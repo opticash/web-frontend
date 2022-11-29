@@ -45,3 +45,26 @@ caption{ padding:0;}
 .carousel-control-prev-icon:hover{background-image:url(../images/icon-arrow-circle-left.png);}
 .carousel-control-next-icon:hover{background-image:url(../images/icon-arrow-circle-right.png);}
 
+
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  *{
+    scrollbar-width: auto;
+    scrollbar-color: #c4c4c4 #f2f2f2;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f2f2f208;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #c3ff4323;
+    border-radius: 10px;
+    border: none;
+  }
