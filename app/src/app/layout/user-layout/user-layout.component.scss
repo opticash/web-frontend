@@ -69,10 +69,17 @@
                 &.disabled{color: #72767C!important; cursor:default;}
             }
             &.active a{color: #B6FF59;}
+            &.dashboard.active a{background-image:url(/assets/images/icon-home-active.svg);}
             &.transactions a{background-image:url(/assets/images/icon-chart.svg);}
+            &.transactions.active a{background-image:url(/assets/images/icon-chart-active.svg);}
+            &.transactions a{background-image:url(/assets/images/icon-chart.svg);}
+            &.transactions.active a{background-image:url(/assets/images/icon-chart-active.svg);}
             &.buy-token a{background-image:url(/assets/images/icon-buy-token.svg);}
+            &.buy-token.active a{background-image:url(/assets/images/icon-buy-token-active.svg);}
             &.account a{background-image:url(/assets/images/icon-setting.svg);}
+            &.account.active a{background-image:url(/assets/images/icon-setting-active.svg);}
             &.logout a{background-image:url(/assets/images/icon-logout.svg);}
+            &.logout.active a{background-image:url(/assets/images/icon-logout-active.svg);}
         }
     }
     .help{margin-top:4rem; text-align:center;
