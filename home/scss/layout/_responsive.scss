@@ -24,6 +24,8 @@
         .menu>li{margin:0 7px;}
         .btn{padding:.5rem 1.5rem;}
     }
+
+    .offer-section ul li .box{min-height:325px;}
 }
 
 @media (max-width: $screen-md-max) {
@@ -59,6 +61,42 @@
         .carousel-control-next,
         .carousel-control-prev{bottom:10px;}
     }
+
+    .about-hero{ padding-top:100px; padding-bottom:4rem;
+        h1{font-size:2.75rem; margin-bottom:.5rem;}
+        .box{padding:1.75rem; font-size:2rem; max-width:450px;}
+    }
+    .offer-section ul li{
+        .box{padding:1rem; min-height:260px;}
+        .icon{height:48px; width:48px; 
+            img{width:30px;}
+        }
+        h3{font-size:1.175rem;}
+    }
+    .about-section{padding-bottom:10rem;
+        .box {padding:3rem 0 .5rem;
+            &>.row>div{padding:1rem 4rem 0}
+            h4{font-size:2rem;}
+            p{font-size:1.175rem;}
+        }
+    }
+    .value-section {
+        h2{font-size:2rem;}
+        p{font-size:1.175rem;}
+    }
+    .started-steps { padding:5rem 0;
+        .steps{
+            .box{min-height:245px;}
+             .number{font-size:2.75rem; margin-bottom:.5rem; line-height:1.4em;}
+        }
+    }
+    .secured-platform {
+        h2{font-size:2rem;}
+        p{font-size:1.175rem;}
+        img{max-width:300px;}
+    }
+    .about-section .top1 h3,
+    .about-page .top h2{font-size:2rem;}
 }
 
 
@@ -192,6 +230,56 @@
         .circle{width:260px; height:260px; margin:auto; margin-bottom:4rem;
             p.p1{font-size:4rem;}
         }
+    }
+
+    .about-page{
+        .container{padding:0 2rem;}
+    }
+
+    .about-hero{padding:12rem 0 7rem; background-image: url(../images/bg10.jpg);
+        h1{font-size:2.25rem;}
+        .box{margin-left:2rem; margin-top:-3rem; padding:1.25rem; font-size:1.35rem; max-width:220px;}
+    }
+
+    .offer-section{
+        .container{max-width:300px;}
+        .top{margin-bottom:2rem;}
+        ul li {
+            .box{padding:2rem; min-height:200px; margin-bottom:2rem;}
+            h3{font-size:1.75rem; font-weight:600; margin:1rem 0;}
+            p{font-size:1.125rem;}
+        }
+    }
+    .about-section {padding-bottom:5rem;
+        .top1{padding-top:2rem;
+            p{max-width:100%;}
+        }
+        h3{margin-bottom:1rem;}
+        .box>.row>div{padding:1rem 4rem 0 2rem;
+            &:first-child{border-right:none;
+                p{border-bottom:solid 2px #D9D9D9; padding-bottom:3rem;}
+            }
+        }
+    }
+    .value-section {
+        p{line-height:1.8em;}
+        .image{margin-top:0;}
+    }
+
+    .started-steps{
+        .container{max-width:380px;}
+        .steps{margin:3rem 2rem 0;
+            &::after{left:50%; right:inherit;top:0; height:70%; width:1px; background-image:url(../images/progress-line1.svg);}
+            .box{margin-bottom:3rem;}
+            .number{margin:1.5rem;}
+            h3{font-size:1.75rem;}
+            p{font-size:1.1rem;}
+        }
+    }
+    .secured-platform{
+        h2{margin-bottom:1rem;}
+        .row div:last-child{text-align:center;}
+        img{width:260px;}
     }
 }
 
