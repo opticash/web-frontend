@@ -51,13 +51,13 @@
                     <div class="navbar-collapse collapse" id="navbar">
 						<ul class="list-unstyled list-inline top-link menu">
 							<li class="list-inline-item"><a href="win-50k.html">Win $50K</a></li>
-							<li class="list-inline-item"><a href="#whatOpticash">What is Opticash</a></li>
-							<li class="list-inline-item"><a href="#tokenSale" onClick="setupChart()" >Tokenomics</a></li>
-							<li class="list-inline-item"><a href="#roadmap">Roadmap</a></li>
-							<li class="list-inline-item"><a href="about.html">About</a></li>
+							<li class="list-inline-item"><a href="index.html#whatOpticash">What is Opticash</a></li>
+							<li class="list-inline-item"><a href="index.html#tokenSale" onClick="setupChart()" >Tokenomics</a></li>
+							<li class="list-inline-item"><a href="index.html#roadmap">Roadmap</a></li>
+							<li class="list-inline-item"><a class="active" href="about.html">About</a></li>
 							<!-- <li class="list-inline-item"><a href="#">Apps</a></li>
 							<li class="list-inline-item"><a href="#">Teams</a></li> -->
-							<li class="list-inline-item"><a href="#fAQs">FAQs</a></li>
+							<li class="list-inline-item"><a href="index.html#fAQs">FAQs</a></li>
 							<li class="list-inline-item"><a href="#contact">Contact</a></li>
 						</ul>
 						<ul class="list-unstyled list-inline login">
@@ -73,7 +73,7 @@
 <!---END: Header-->
 
 <!---START: Home Layout-->
-<main id="page-content" class="about-page landing-page" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+<main id="page-content" class="about-page landing-page">
 
 	<div class="about-hero">
 		<div class="container">
@@ -266,7 +266,7 @@
 		setTimeout(() => {
 			$('#site-content').removeClass('show-loader');
 			$('.site-loader').fadeOut();
-		}, 200);
+		}, 2000);
 		var wscroll = $(window).scrollTop();
 		$(window).scroll(function() {    
 			let scroll = $(window).scrollTop();
