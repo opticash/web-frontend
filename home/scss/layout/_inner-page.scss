@@ -110,11 +110,18 @@
     h2{font-family:$ftDefault; font-size:$ft40; color:#C3FF43; font-weight:600; margin-bottom:2rem;}
     p{font-size:$ft22; text-align:justify; color:#FFF; margin-bottom:2rem;}
     img{max-width:400px;}
+
+    &.animation{
+        img{animation: jump1 1s linear;}
+        @keyframes jump1 {
+            0%   {transform: translate3d(0,0,0);}
+            50%  {transform: translate3d(0,-30%,0);}
+            100% {transform: translate3d(0,0%,0);}
+        }
+    }
 }
 
 .about-bottom{min-height:8rem;}
-
-
 
 .promocional-dialog{
     .modal-content{background: url(../images/web-pop-background.jpg) no-repeat; background-size:cover; padding:2rem 4rem 4rem;}
