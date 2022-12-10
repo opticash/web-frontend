@@ -189,7 +189,7 @@
 		</div>
 	</div>
 
-	<div class="secured-platform">
+	<div id="securedPlatform" class="secured-platform">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7 align-self-center">
@@ -286,6 +286,13 @@
 			if (_opened === true && !clickover.hasClass("navbar-toggler")) {      
 				console.log("here");
 				$navbar.collapse('hide');
+			}
+		});
+		const securedPlatformTop = $('#securedPlatform').offset().top;
+		$(window).scroll(function() {
+			var wscroll = $(window).scrollTop();
+			if(wscroll >= (securedPlatformTop - 400)){
+				$('#securedPlatform').addClass('animation');
 			}
 		});
 		

@@ -1,5 +1,10 @@
 #header{
-    .logo h1{margin:0;}
+    .logo { position: relative;
+        h1{margin:0;}
+        #google_translate_element{position:absolute; top:32px; left:100%; margin-left: 10px;
+            .goog-te-combo{width:63px;}
+        }
+    }
     ul{margin-bottom:0;}
     .btn{padding:.5rem 2rem;}
     .btn-link{color:$clWhite;}
@@ -50,4 +55,31 @@
     &.collapsed span:nth-child(2),
     &.collapsed span:nth-child(3){top:8px;}
     &.collapsed span:nth-child(4){top:16px; width:100%; left:0;}
+}
+
+.goog-te-combo{ background: none; border:none; color:#FFF;
+    option{ color:#000;} 
+}
+
+.goog-logo-link {
+    display:none !important;
+} 
+    
+.goog-te-gadget{
+    color: transparent !important;
+}
+
+.translated-rtl,.translated-ltr{
+    .fixed-top{top:40px;}
+}
+
+html:lang(ar) {
+    #header .menu>li{margin:0 10px;}
+}
+html:lang(pt) {
+    #header .menu>li{margin:0 8px;}
+}
+html:lang(de),html:lang(ru),html:lang(es) {
+    #header .menu>li{margin:0 4px;}
+    #header .btn{padding:.5rem 1rem}
 }
