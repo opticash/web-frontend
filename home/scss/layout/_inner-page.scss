@@ -113,3 +113,12 @@
 }
 
 .about-bottom{min-height:8rem;}
+
+
+
+.promocional-dialog{
+    .modal-content{background: url(../images/web-pop-background.jpg) no-repeat; background-size:cover; padding:2rem 4rem 4rem;}
+    h3{font-family:$ftDefault; font-size:$ft40; text-transform: uppercase; color:#FFF; font-weight:600; margin-bottom:2rem;}
+    .btn{font-size:$ft26; font-weight:700; padding:.65rem 3rem;}
+    .dialog-close{background:#FFF url(../images/X.svg) center center no-repeat; background-size:60% 60%; height:3rem; width:3rem; border-radius:50%;}
+}
