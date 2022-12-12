@@ -68,10 +68,15 @@
 .goog-te-gadget{
     color: transparent !important;
 }
-
-.translated-rtl,.translated-ltr{
-    .fixed-top{top:40px;}
-}
+body {
+    top: 0px !important; 
+    }
+// .translated-rtl,.translated-ltr{
+//     .fixed-top{top:40px;}
+// }
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    } 
 
 html:lang(ar) {
     #header .menu>li{margin:0 10px;}
