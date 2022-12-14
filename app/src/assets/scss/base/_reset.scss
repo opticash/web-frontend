@@ -26,6 +26,8 @@ img.media-object,
 caption{ padding:0;}
 .btn{border-radius:.6rem;}
 
-.btn-primary{background: linear-gradient(260deg, #C3FF43 20%, #E4D14E 96%); border:none; color:$clBlack;}
+.btn-primary{background: linear-gradient(260deg, #C3FF43 20%, #E4D14E 96%); border:none; color:$clBlack;
+	&:hover{background:linear-gradient(0deg, #A9F52C, #A9F52C); color:$clBlack;}
+}
 .btn-link{text-decoration:none;}
 .btn.disabled, .btn:disabled{background:#4E4E4E; color:#000; opacity:1;}
