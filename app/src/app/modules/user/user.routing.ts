@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DepositComponent } from './pages/deposit/deposit.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { MyTokenComponent } from './pages/my-token/my-token.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'my-account',
         component: MyAccountComponent
+      },
+      {
+        path: 'my-token',
+        component: MyTokenComponent
       },
     ]
   }

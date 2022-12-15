@@ -80,6 +80,8 @@
             &.account.active a{background-image:url(/assets/images/icon-setting-active.svg);}
             &.logout a{background-image:url(/assets/images/icon-logout.svg);}
             &.logout.active a{background-image:url(/assets/images/icon-logout-active.svg);}
+            &.wallet a{background-image:url(/assets/images/icon-wallet.svg);}
+            &.wallet.active a{background-image:url(/assets/images/icon-wallet-active.svg);}
         }
     }
     .help{margin-top:4rem; text-align:center;

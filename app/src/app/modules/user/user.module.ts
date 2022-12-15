@@ -7,13 +7,15 @@ import { UserRoutingModule } from './user.routing';
 import { QRCodeModule } from 'angularx-qrcode';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { MyTokenComponent } from './pages/my-token/my-token.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     DepositComponent,
     TransactionsComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    MyTokenComponent
   ],
   imports: [
     UserRoutingModule,
