@@ -26,8 +26,8 @@
 </head>
 
 <body>
-	
 <div id="site-content">
+<div id="snow"></div>
 <div class="site-loader" style="display:none">
 	<div><img class="loader-logo" src="./images/opticash-icon.svg" alt=""></div>
 </div>
@@ -38,6 +38,7 @@
 			<div class="col-md-2 col-6">
 				<div class="logo">
 					<a href="index.html"><img src="images/logo.png" alt="OptiCash"/></a>
+					<span id="setLanguage" class="set-language" onClick="setLanguage('en')">en</span>
 					<div id="google_translate_element" title="Select Language"></div>
 				</div>
 			</div>
@@ -672,11 +673,38 @@
   </div>
 
 <script type="text/javascript">
-	setCookie('googtrans', '/en/en', 1);
+	//|| navigator.userLanguage || navigator.languages;
+	var userLang = navigator.language; 
+	if (userLang.substr(0,2) != "en"){
+		setCookie('googtrans', '/en/'+userLang, 1);
+		document.getElementById("google_translate_element").style.display="none";
+	} else {
+		document.getElementById("setLanguage").style.display="none";
+	}
+
 	function googleTranslateElementInit() {
-		new google.translate.TranslateElement({
-			includedLanguages : 'en,zh-CN,zh-TW,es,ar,de,pt,fr'
-		}, 'google_translate_element');
+		new google.translate.TranslateElement(
+			{ includedLanguages : 'en,zh-CN,zh-TW,es,ar,de,pt,fr'},
+			'google_translate_element')
+		;
+	}
+
+	function setLanguage(){
+		console.log(123);
+		var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+		if(!iframe) return;
+
+		var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+		var restore_el = innerDoc.getElementsByTagName("button");
+
+		for(var i = 0; i < restore_el.length; i++){
+			if(restore_el[i].id.indexOf("restore") >= 0) {
+			restore_el[i].click();
+			var close_el = innerDoc.getElementsByClassName("goog-close-link");
+			close_el[0].click();
+			return;
+			}
+		}
 	}
 	function setCookie(key, value, expiry) {
 		var expires = new Date();
@@ -690,6 +718,7 @@
 <script src="js/d3.min.js"></script>
 <script src="js/d3pie.js"></script>
 <script src="js/axios.min.js"></script>
+<script src="js/PureSnow.js"></script>
 <script>
 	var myModal = new bootstrap.Modal(document.getElementById('promocionalDialog'), {
 		keyboard: false
@@ -778,19 +807,35 @@
 		document.getElementsByClassName('site-loader')[0].style.display = 'flex';
 		setTimeout(() => {
 			myModal.show();
-		}, 6000);
+		}, 8000);
 	}
 
 	$(function() {
 		if(!$('.goog-te-combo').val()){
-			console.log(2);
 			$('.goog-te-combo').val('en').change();
 		}
 		
 		setTimeout(() => {
 			$('#site-content').removeClass('show-loader');
 			$('.site-loader').fadeOut();
-		}, 200);
+		}, 3000);
+
+		setTimeout(() => {
+			$('#snow').fadeIn();
+		}, 10000);
+
+		setTimeout(() => {
+			$('#snow').fadeOut();
+		}, 15000);
+
+		setTimeout(() => {
+			$('#snow').fadeIn();
+		}, 20000);
+
+		setTimeout(() => {
+			$('#snow').fadeOut();
+		}, 25000);
+
 		var chartTop = $('#chart').offset().top;
 		var wscroll = $(window).scrollTop();
 		if(wscroll >= (chartTop - 400) && !isChartLoaded){

@@ -256,11 +256,38 @@
 	</div>
 </div>
 <script type="text/javascript">
-	setCookie('googtrans', '/en/en', 1);
+	//|| navigator.userLanguage || navigator.languages;
+	var userLang = navigator.language; 
+	if (userLang.substr(0,2) != "en"){
+		setCookie('googtrans', '/en/'+userLang, 1);
+		document.getElementById("google_translate_element").style.display="none";
+	} else {
+		document.getElementById("setLanguage").style.display="none";
+	}
+
 	function googleTranslateElementInit() {
-		new google.translate.TranslateElement({
-			includedLanguages : 'en,zh-CN,zh-TW,es,ar,de,pt,fr'
-		}, 'google_translate_element');
+		new google.translate.TranslateElement(
+			{ includedLanguages : 'en,zh-CN,zh-TW,es,ar,de,pt,fr'},
+			'google_translate_element')
+		;
+	}
+
+	function setLanguage(){
+		console.log(123);
+		var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+		if(!iframe) return;
+
+		var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+		var restore_el = innerDoc.getElementsByTagName("button");
+
+		for(var i = 0; i < restore_el.length; i++){
+			if(restore_el[i].id.indexOf("restore") >= 0) {
+			restore_el[i].click();
+			var close_el = innerDoc.getElementsByClassName("goog-close-link");
+			close_el[0].click();
+			return;
+			}
+		}
 	}
 	function setCookie(key, value, expiry) {
 		var expires = new Date();

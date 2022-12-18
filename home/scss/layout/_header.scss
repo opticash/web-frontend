@@ -4,6 +4,8 @@
         #google_translate_element{position:absolute; bottom:0; left:100%; margin-left:10px;
             .goog-te-combo{width:65px;}
         }
+        #google_translate_element{display:none;}
+        .set-language{ position: absolute; cursor: pointer; bottom: 20px; left: 100%; margin-left: 7px; border-left: solid 1px #FFF; color: #FFF; line-height:.8em; display:block; padding: 0 0 3px 5px;}
     }
     ul{margin-bottom:0;}
     .btn{padding:.5rem 2rem;}
@@ -68,15 +70,16 @@
 .goog-te-gadget{
     color: transparent !important;
 }
-body {
-    top: 0px !important; 
-    }
 // .translated-rtl,.translated-ltr{
 //     .fixed-top{top:40px;}
 // }
+
+body {
+    top: 0px !important; 
+}
 .goog-te-banner-frame.skiptranslate {
     display: none !important;
-    } 
+}
 
 html:lang(ar) {
     #header .menu>li{margin:0 8px;}
