@@ -821,19 +821,19 @@
 
 		setTimeout(() => {
 			$('#snow').fadeIn();
+		}, 4000);
+
+		setTimeout(() => {
+			$('#snow').fadeOut();
 		}, 10000);
 
 		setTimeout(() => {
-			$('#snow').fadeOut();
+			$('#snow').fadeIn();
 		}, 15000);
 
 		setTimeout(() => {
-			$('#snow').fadeIn();
-		}, 20000);
-
-		setTimeout(() => {
 			$('#snow').fadeOut();
-		}, 25000);
+		}, 21000);
 
 		var chartTop = $('#chart').offset().top;
 		var wscroll = $(window).scrollTop();
