@@ -26,11 +26,11 @@
 </head>
 
 <body>
-<div id="site-content">
 <div id="snow"></div>
 <div class="site-loader" style="display:none">
 	<div><img class="loader-logo" src="./images/opticash-icon.svg" alt=""></div>
 </div>
+<div id="site-content">
 <!---START: Header-->
 <header id="header" class="fixed-top">
 	<div class="container">
@@ -823,17 +823,7 @@
 			$('#snow').fadeIn();
 		}, 4000);
 
-		setTimeout(() => {
-			$('#snow').fadeOut();
-		}, 10000);
-
-		setTimeout(() => {
-			$('#snow').fadeIn();
-		}, 15000);
-
-		setTimeout(() => {
-			$('#snow').fadeOut();
-		}, 25000);
+		
 
 		var chartTop = $('#chart').offset().top;
 		var wscroll = $(window).scrollTop();
