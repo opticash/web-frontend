@@ -1,57 +1,67 @@
 <div class="token-page">
-    <div class="token-box">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h3>Top up your account with more opticash token!</h3>
-                <p>Your next 100x Token</p>
-            </div>
-            <div>
-                <button class="btn btn-light">Buy Token</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="nav nav-tabs" id="tokenTab" role="tablist">
-        <button class="btn" [ngClass]="{'active': activeToken === 'Community'}" (click)="getTokenData('Community')">Community</button>
-        <button class="btn" [ngClass]="{'active': activeToken === 'Marketing'}"  (click)="getTokenData('Marketing')">Marketing</button>
-        <button class="btn" [ngClass]="{'active': activeToken === 'Strategic'}"  (click)="getTokenData('Strategic')">Strategic</button>
-        <button class="btn" [ngClass]="{'active': activeToken === 'Private'}"  (click)="getTokenData('Private')">Private Sale</button>
-        <button class="btn" [ngClass]="{'active': activeToken === 'Foundation'}"  (click)="getTokenData('Foundation')">Foundation</button>
-        <button class="btn" [ngClass]="{'active': activeToken === 'Adviser'}"  (click)="getTokenData('Adviser')">Adviser</button>
-        <button class="btn" [ngClass]="{'active': activeToken === 'Team'}"  (click)="getTokenData('Team')">Team</button>
-    </div>
-    <div class="token-content">
-        <h3>My Token</h3>
-        <div class="box-list row">
-            <div class="col-md-3 col-6">
-                <div class="box first">
-                    <p>
-                        <span>Current balance</span>
-                        {{currentBalance}}
-                    </p>
+    <div *ngIf="isWebConnected && !wrongNetwork">
+        <div class="token-box">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Top up your account with more opticash token!</h3>
+                    <p>Your next 100x Token</p>
                 </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="box">
-                    <p><span>Allocation</span>
-                        {{allocation}}</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="box">
-                    <p><span>Unlocked</span>
-                        {{unlocked}}</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="box">
-                    <p><span>Claimed</span>
-                        {{claimed}}</p>
+                <div>
+                    <button class="btn btn-light" routerLink="/deposit">Buy Token</button>
                 </div>
             </div>
         </div>
-    </div>
+        
+        <div class="nav nav-tabs" id="tokenTab" role="tablist">
+            <button class="btn" [ngClass]="{'active': activeToken === 'Community'}" (click)="getTokenData('Community')">Community</button>
+            <button class="btn" [ngClass]="{'active': activeToken === 'Marketing'}"  (click)="getTokenData('Marketing')">Marketing</button>
+            <button class="btn" [ngClass]="{'active': activeToken === 'Strategic'}"  (click)="getTokenData('Strategic')">Strategic</button>
+            <button class="btn" [ngClass]="{'active': activeToken === 'Private'}"  (click)="getTokenData('Private')">Private Sale</button>
+            <button class="btn" [ngClass]="{'active': activeToken === 'Foundation'}"  (click)="getTokenData('Foundation')">Foundation</button>
+            <button class="btn" [ngClass]="{'active': activeToken === 'Adviser'}"  (click)="getTokenData('Adviser')">Adviser</button>
+            <button class="btn" [ngClass]="{'active': activeToken === 'Team'}"  (click)="getTokenData('Team')">Team</button>
+        </div>
+        <div class="token-content">
+            <h3>My Token</h3>
+            <div class="box-list row">
+                <div class="col-md-3 col-6">
+                    <div class="box first">
+                        <p>
+                            <span>Current balance</span>
+                            {{currentBalance}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="box">
+                        <p><span>Allocation</span>
+                            {{allocation}}</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="box">
+                        <p><span>Unlocked</span>
+                            {{unlocked}}</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="box">
+                        <p><span>Claimed</span>
+                            {{claimed}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <button class="claim-btn btn btn-primary" (click)="claimAllocationProcess()">Claim Now</button>
+        <button class="claim-btn btn btn-primary" (click)="claimAllocationProcess()">Claim Now</button>
+    </div>
+    <div *ngIf="!isWebConnected || wrongNetwork" class="placeholder-box">
+        <div class="text-center">
+            <h3>{{overlayMsg}}</h3>
+            <br>
+            <button *ngIf="!isWebConnected" (click)="connectWalletAction()" class="btn btn-primary btn-lg">Connect Wallet</button>
+            <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger btn-lg">Wrong Wallet</button>
+        </div>
+    </div>
 
 </div>

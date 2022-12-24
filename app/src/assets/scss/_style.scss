@@ -16,7 +16,7 @@
     .bottom{font-size:$ft20; color:#FFF; font-weight: normal; margin-top:1rem; text-align:center;}
 }
 
-.main-page{
+.main-page{ position: relative;
     h2{font-size:$ft24; font-weight:bold; margin: 0 0 1rem;}
     .balance-box{background: linear-gradient(138.21deg, rgba(255, 255, 255, 0.149) -23.04%, rgba(255, 255, 255, 0.012) 118.95%); padding:1.5rem; border-radius:12px;
         h3{font-family:$ftDefault; font-size:$ft16; margin:0 0 1.5rem;}

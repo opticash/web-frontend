@@ -1,4 +1,4 @@
-.token-page{max-width:1100px; margin-bottom:5rem;}
+ .token-page{max-width:1100px; margin-bottom:5rem;}
 
 .token-box{background:#010A06  url(/assets/images/token-box.png) no-repeat right center; padding:1.75rem 6rem 1.75rem 3rem; margin-bottom:4rem;
     h3{font-size:1.375rem; font-weight:700;}
@@ -29,6 +29,14 @@
 
 .claim-btn{font-size:.875rem; font-weight:700; padding:.75rem 2rem;}
 
+.placeholder-box{ flex:1; display:flex; align-items:center;  justify-content: center; height:60vh; 
+    .box{max-width:300px; font-size:1.125rem; color:#FFF; text-align:center;}
+    .btn{font-weight:700; padding:.75rem 3rem;}
+}
+// .page-overlay{position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(52, 52, 52, 0.40); z-index:100;
+//     flex:1; display:flex; align-items:center;  justify-content: center;
+//     .box{width:100px; font-size:1.125rem; color:#1A1C22; background-color:#C3FF43; border-radius:10px; text-align:center;}
+// }
 
 
 @media (max-width: 767px) {

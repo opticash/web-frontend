@@ -12,7 +12,7 @@
                     <button *ngIf="!walletAddress" (click)="connectWalletAction()" class="btn btn-primary">Connect Wallet</button>
                     <span *ngIf="walletAddress">
                         <span *ngIf="!wrongNetwork" class="address">{{walletAddress}}</span>
-                        <button *ngIf="wrongNetwork" class="btn btn-danger">Wrong Wallet</button>
+                        <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger">Wrong Wallet</button>
                     </span>
                 </div>
                 
