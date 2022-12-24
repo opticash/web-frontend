@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@shapeshiftoss/proto-tx-builder": "^0.6.0",
+    "@walletconnect/web3-provider": "^1.4.1",
     "angularx-qrcode": "^14.0.0",
     "assert": "^2.0.0",
     "bnc-onboard": "^1.39.1",

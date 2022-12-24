@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import Web3 from "web3";
-import Onboard from 'bnc-onboard'
+import Web3Modal from "web3modal";
+import WalletConnectProvider from '@walletconnect/web3-provider'
 import { config } from 'app/constants/config';
 import { ToastrService } from 'ngx-toastr';
 declare let window: any;
@@ -10,27 +11,49 @@ declare let window: any;
   providedIn: 'root'
 })
 export class Web3Service {
-    wallet: any = null;
-    onboard: any = null;
     web3js: any;
     web3Wallet:any;
     web3Provider:any;
     isWalletConnected:boolean = false; 
     walletAddress: string = ''
     wrongNetwork: boolean = false;
-    wallets = [
-        { walletName: "metamask", preferred: true },
-        {
-            walletName: "walletConnect",
-            infuraKey: config.onboard.infura_id,
-            rpc: {
-                ['80001']: 'https://rpc-mumbai.maticvigil.com/',
-                ['4']: 'https://goerli.infura.io/v3/' + config.onboard.infura_id
-            }
+
+    private provider: any;
+    private accounts: any;
+    
+    providerOptions:any = {
+        injected: {
+          display: {
+            description: " "
+          },
+          package: null
         },
-        { walletName: "coinbase", preferred: true },
-        { walletName: "trust", preferred: true, rpcUrl: 'https://goerli.infura.io/v3/' + config.onboard.infura_id }
-    ];
+        walletconnect: {
+          package: WalletConnectProvider,
+          display: {
+            description: " "
+          },
+          options: {
+            infuraId: config.onboard.infura_id,
+            rpc: {
+              5: 'https://goerli.infura.io/v3/',
+            }
+          },
+        }
+    };
+
+    web3Modal:any = new Web3Modal({
+        network: "mainnet", // optional
+        cacheProvider: true, // optional
+        providerOptions:this.providerOptions, // required
+        theme: {
+          background: "rgb(39, 49, 56)",
+          main: "rgb(199, 199, 199)",
+          secondary: "rgb(136, 136, 136)",
+          border: "rgba(195, 195, 195, 0.14)",
+          hover: "rgb(16, 26, 32)"
+        }
+    });
     private walletAddressSource = new Subject<any>();
     walletAddress$ = this.walletAddressSource.asObservable();
     private accountStatusSource = new Subject<any>();
@@ -51,51 +74,71 @@ export class Web3Service {
             this.isWalletConnected = true;
         }
 
-        this.onboard = Onboard({
-            dappId: config.onboard.key,       // [String] The API key created by step one above
-            networkId: config.onboard.network,  // [Integer] The Ethereum network ID your Dapp uses.
-            darkMode: true,
-            blockPollingInterval: 4000,
-            walletSelect: { wallets: this.wallets },
-            subscriptions: {
-                address: address => {
-                    if (this.wallet.provider !== undefined) {
-                        if (address && address !== undefined) {
-                            this.setWeb3WalletData(this.wallet.provider,address);
-                            this.walletAddress = address;
-                        } else {
-                            this.logoutWallet();
-                        }
-                        this.walletAddressSource.next(this.walletAddress)
-                    }
-                },
-                network: network => {
-                    if (network !== undefined && network != config.onboard.network ) {
-                        this.wrongNetwork = true;
-                        this.toastrService.info("Please choose proper blockchain");
-                    } else {
-                        this.wrongNetwork = false;
-                    }
-                    this.accountStatusSource.next(this.wrongNetwork)
-                },
-                wallet: wallet => {
-                    this.connectWallet(wallet);
-                }
-            },
+        // this.onboard = Onboard({
+        //     dappId: config.onboard.key,       // [String] The API key created by step one above
+        //     networkId: config.onboard.network,  // [Integer] The Ethereum network ID your Dapp uses.
+        //     darkMode: true,
+        //     blockPollingInterval: 4000,
+        //     walletSelect: { wallets: this.wallets },
+        //     subscriptions: {
+        //         address: address => {
+        //             if (this.wallet.provider !== undefined) {
+        //                 if (address && address !== undefined) {
+        //                     this.setWeb3WalletData(this.wallet.provider,address);
+        //                     this.walletAddress = address;
+        //                 } else {
+        //                     this.logoutWallet();
+        //                 }
+        //                 this.walletAddressSource.next(this.walletAddress)
+        //             }
+        //         },
+        //         network: network => {
+        //             if (network !== undefined && network != config.onboard.network ) {
+        //                 this.wrongNetwork = true;
+        //                 this.toastrService.info("Please choose proper blockchain");
+        //             } else {
+        //                 this.wrongNetwork = false;
+        //             }
+        //             this.accountStatusSource.next(this.wrongNetwork)
+        //         },
+        //         wallet: wallet => {
+        //             this.connectWallet(wallet);
+        //         }
+        //     },
+        // });
+
+        window.ethereum.on('accountsChanged', async (accounts:any) => {
+            console.log('wrongNetwork',this.wrongNetwork);
+            this.walletAddressSource.next(accounts[0]);
+            const network = await this.web3js.eth.net.getId();
+            this.isWrongNetwork(network);
+        });
+        
+        window.ethereum.on('networkChanged', async (network:any) => {
+            this.isWrongNetwork(network);
         });
     }
 
     connectWalletAction = async () => {
-        await this.onboard.walletReset();
-        await this.onboard.walletSelect();
-        await this.onboard.walletCheck();
+        this.web3Modal.clearCachedProvider();
+        this.provider = await this.web3Modal.connect(); // set provider
+        this.web3js = new Web3(this.provider); // create web3 instance
+        this.walletAddress = await this.web3js.eth.getAccounts(); 
+        const network = await this.web3js.eth.net.getId();
+        this.isWrongNetwork(network);
+        this.walletAddressSource.next(this.walletAddress);
+        this.setWeb3WalletData(this.provider,this.walletAddress);
     }
 
-    connectWallet = async (wallet: any) => {
-        if (wallet && wallet !== undefined) {
-            this.wallet = wallet;
-        }
+    isWrongNetwork(network:any){
+        if (network !== undefined && network != config.onboard.network ) {
+            this.wrongNetwork = true;
+        } else {
+            this.wrongNetwork = false;
+        };
+        this.accountStatusSource.next(this.wrongNetwork)
     }
+
 
     setWeb3WalletData(provider:any, address:any):void{
         this.walletAddress = address;
@@ -105,7 +148,9 @@ export class Web3Service {
     }
 
     logoutWallet = async () => {
-        await this.onboard.walletReset();
+        await this.provider.close();
+        await this.web3Modal.clearCachedProvider();
+        this.provider = null;
     }
 
     setIsWalletConnected(value:boolean) : void{

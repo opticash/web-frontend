@@ -60,7 +60,7 @@
             <h3>{{overlayMsg}}</h3>
             <br>
             <button *ngIf="!isWebConnected" (click)="connectWalletAction()" class="btn btn-primary btn-lg">Connect Wallet</button>
-            <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger btn-lg">Wrong Wallet</button>
+            <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger btn-lg">Connect Wallet</button>
         </div>
     </div>
 

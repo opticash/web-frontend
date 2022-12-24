@@ -59,6 +59,7 @@ export class UserLayoutComponent implements OnInit {
         this.web3Service.logoutWallet();
         this.authenticationService.logout();
         this.router.navigate(['auth/sign-in']);
+        window.location.reload();
     }
 
     hideMenu(){
