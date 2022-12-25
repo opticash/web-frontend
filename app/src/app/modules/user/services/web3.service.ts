@@ -5,7 +5,9 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import { config } from 'app/constants/config';
 import { ToastrService } from 'ngx-toastr';
+import WalletLink from 'WalletLink'
 declare let window: any;
+declare let $: any;
 
 @Injectable({
   providedIn: 'root'
@@ -23,36 +25,76 @@ export class Web3Service {
     
     providerOptions:any = {
         injected: {
-          display: {
-            description: " "
+            display: {
+              description: " "
+            },
+            package: null
           },
-          package: null
-        },
-        walletconnect: {
-          package: WalletConnectProvider,
-          display: {
-            description: " "
+          'custom-walletlink': {
+            display: {
+              logo: 'assets/images/coinbase-wallet.svg',
+              name: 'Coinbase',
+              description: " "
+            },
+            options: {
+              appName: 'Opticash', // Your app name
+              networkUrl: `https://goerli.infura.io/v3/defa9004b56046e1a9ba73bc5d9e5776`,
+              chainId: 5,
+            },
+            package: WalletLink,
+            connector: async (_:any, options:any) => {
+              const { appName, networkUrl, chainId } = options
+              const walletLink = new WalletLink({
+                appName
+              });
+              const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
+              await provider.enable();
+              return provider;
+            },
           },
-          options: {
-            infuraId: config.onboard.infura_id,
-            rpc: {
-              5: 'https://goerli.infura.io/v3/',
-            }
-          },
-        }
+          walletconnect: {
+            package: WalletConnectProvider,
+            display: {
+              description: " "
+            },
+            options: {
+              infuraId: config.onboard.infura_id,
+              rpc: {
+                5: 'https://goerli.infura.io/v3/',
+              }
+            },
+          }
+        // injected: {
+        //   display: {
+        //     description: " "
+        //   },
+        //   package: null
+        // },
+        // walletconnect: {
+        //   package: WalletConnectProvider,
+        //   display: {
+        //     description: " "
+        //   },
+        //   options: {
+        //     infuraId: config.onboard.infura_id,
+        //     rpc: {
+        //       5: 'https://goerli.infura.io/v3/',
+        //     }
+        //   },
+        // }
     };
 
     web3Modal:any = new Web3Modal({
         network: "mainnet", // optional
         cacheProvider: true, // optional
         providerOptions:this.providerOptions, // required
-        theme: {
-          background: "rgb(39, 49, 56)",
-          main: "rgb(199, 199, 199)",
-          secondary: "rgb(136, 136, 136)",
-          border: "rgba(195, 195, 195, 0.14)",
-          hover: "rgb(16, 26, 32)"
-        }
+        // theme: {
+        //   background: "rgb(39, 49, 56)",
+        //   main: "rgb(199, 199, 199)",
+        //   secondary: "rgb(136, 136, 136)",
+        //   border: "rgba(195, 195, 195, 0.14)",
+        //   hover: "rgb(16, 26, 32)"
+        // }
     });
     private walletAddressSource = new Subject<any>();
     walletAddress$ = this.walletAddressSource.asObservable();
@@ -106,17 +148,26 @@ export class Web3Service {
         //         }
         //     },
         // });
+        if(window.ethereum){
+            window.ethereum.on('accountsChanged', async (accounts:any) => {
+                console.log('wrongNetwork',this.wrongNetwork);
+                this.walletAddressSource.next(accounts[0]);
+                const network = await this.web3js.eth.net.getId();
+                this.isWrongNetwork(network);
+            });
+            
+            window.ethereum.on('networkChanged', async (network:any) => {
+                this.isWrongNetwork(network);
+            });
+        }
+        this.installMetamask()
+    }
 
-        window.ethereum.on('accountsChanged', async (accounts:any) => {
-            console.log('wrongNetwork',this.wrongNetwork);
-            this.walletAddressSource.next(accounts[0]);
-            const network = await this.web3js.eth.net.getId();
-            this.isWrongNetwork(network);
-        });
-        
-        window.ethereum.on('networkChanged', async (network:any) => {
-            this.isWrongNetwork(network);
-        });
+    installMetamask() {
+        if (!(window.web3 || window.ethereum)) {
+          if ($('#installMetaMask').length < 1)
+            $('.web3modal-modal-card').prepend('<div id="installMetaMask" class="cjAFRf web3modal-provider-wrapper"><a href="https://metamask.io/" target="_blank" class="cjAFRf web3modal-provider-container"><div class="jMhaxE web3modal-provider-icon"><img src="assets/images/metamask.svg" alt="MetaMask"></div><div class="bktcUM sc-web3modal-provider-name mt-0">Install MetaMask</div><div class="eFHlqH web3modal-provider-description">Connect using browser wallet</div></a></div>')
+        }
     }
 
     connectWalletAction = async () => {
@@ -132,6 +183,7 @@ export class Web3Service {
 
     isWrongNetwork(network:any){
         if (network !== undefined && network != config.onboard.network ) {
+            this.toastrService.info("Please choose proper blockchain",'',{positionClass:'toast-bottom-right'});
             this.wrongNetwork = true;
         } else {
             this.wrongNetwork = false;
