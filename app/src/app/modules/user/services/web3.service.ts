@@ -18,85 +18,59 @@ export class Web3Service {
     web3Provider:any;
     isWalletConnected:boolean = false; 
     walletAddress: string = ''
-    wrongNetwork: boolean = false;
+    wrongNetwork: boolean = true;
 
     private provider: any;
-    private accounts: any;
     
     providerOptions:any = {
         injected: {
             display: {
-              description: " "
+                description: " "
             },
             package: null
-          },
-          'custom-walletlink': {
+        },
+        'custom-walletlink': {
             display: {
-              logo: 'assets/images/coinbase-wallet.svg',
-              name: 'Coinbase',
-              description: " "
+                logo: 'assets/images/coinbase-wallet.svg',
+                name: 'Coinbase',
+                description: " "
             },
             options: {
-              appName: 'Opticash', // Your app name
-              networkUrl: `https://goerli.infura.io/v3/defa9004b56046e1a9ba73bc5d9e5776`,
-              chainId: 5,
+                appName: 'Opticash', // Your app name
+                networkUrl: `https://goerli.infura.io/v3/defa9004b56046e1a9ba73bc5d9e5776`,
+                chainId: 5,
             },
             package: WalletLink,
             connector: async (_:any, options:any) => {
-              const { appName, networkUrl, chainId } = options
-              const walletLink = new WalletLink({
+                const { appName, networkUrl, chainId } = options
+                const walletLink = new WalletLink({
                 appName: 'Opticash',
                 appLogoUrl: 'assets/images/logo.png',
                 darkMode: true
-              });
-              const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
-              await provider.enable();
-              return provider;
+                });
+                const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
+                await provider.enable();
+                return provider;
             },
-          },
-          walletconnect: {
+        },
+        walletconnect: {
             package: WalletConnectProvider,
             display: {
-              description: " "
+                description: " "
             },
             options: {
-              infuraId: config.onboard.infura_id,
-              rpc: {
+                infuraId: config.onboard.infura_id,
+                rpc: {
                 5: 'https://goerli.infura.io/v3/',
-              }
+                }
             },
-          }
-        // injected: {
-        //   display: {
-        //     description: " "
-        //   },
-        //   package: null
-        // },
-        // walletconnect: {
-        //   package: WalletConnectProvider,
-        //   display: {
-        //     description: " "
-        //   },
-        //   options: {
-        //     infuraId: config.onboard.infura_id,
-        //     rpc: {
-        //       5: 'https://goerli.infura.io/v3/',
-        //     }
-        //   },
-        // }
+        }
     };
 
     web3Modal:any = new Web3Modal({
         network: "mainnet", // optional
         cacheProvider: true, // optional
         providerOptions:this.providerOptions, // required
-        // theme: {
-        //   background: "rgb(39, 49, 56)",
-        //   main: "rgb(199, 199, 199)",
-        //   secondary: "rgb(136, 136, 136)",
-        //   border: "rgba(195, 195, 195, 0.14)",
-        //   hover: "rgb(16, 26, 32)"
-        // }
     });
     private walletAddressSource = new Subject<any>();
     walletAddress$ = this.walletAddressSource.asObservable();
@@ -106,62 +80,28 @@ export class Web3Service {
     constructor(
         private toastrService:ToastrService,
     ) {
-
-        if (typeof window.ethereum !== 'undefined') {
-            console .log('MetaMask is installed!');
+        this.walletAddress = window.localStorage.getItem('accountAddress');
+        if (typeof window.ethereum !== 'undefined' && this.walletAddress) {
+            this.getAccountData()
+            this.showModelConnetions();
+            this.isWalletConnected = true;
         } else {
             console .log('MetaMask is Not installed!');
         }
 
-        if (window.ethereum) {
-            this.getAccountData();
-            this.isWalletConnected = true;
-        }
-
-        // this.onboard = Onboard({
-        //     dappId: config.onboard.key,       // [String] The API key created by step one above
-        //     networkId: config.onboard.network,  // [Integer] The Ethereum network ID your Dapp uses.
-        //     darkMode: true,
-        //     blockPollingInterval: 4000,
-        //     walletSelect: { wallets: this.wallets },
-        //     subscriptions: {
-        //         address: address => {
-        //             if (this.wallet.provider !== undefined) {
-        //                 if (address && address !== undefined) {
-        //                     this.setWeb3WalletData(this.wallet.provider,address);
-        //                     this.walletAddress = address;
-        //                 } else {
-        //                     this.logoutWallet();
-        //                 }
-        //                 this.walletAddressSource.next(this.walletAddress)
-        //             }
-        //         },
-        //         network: network => {
-        //             if (network !== undefined && network != config.onboard.network ) {
-        //                 this.wrongNetwork = true;
-        //                 this.toastrService.info("Please choose proper blockchain");
-        //             } else {
-        //                 this.wrongNetwork = false;
-        //             }
-        //             this.accountStatusSource.next(this.wrongNetwork)
-        //         },
-        //         wallet: wallet => {
-        //             this.connectWallet(wallet);
-        //         }
-        //     },
-        // });
-        if(window.ethereum){
-            window.ethereum.on('accountsChanged', async (accounts:any) => {
-                console.log('wrongNetwork',this.wrongNetwork);
-                this.walletAddressSource.next(accounts[0]);
-                const network = await this.web3js.eth.net.getId();
-                this.isWrongNetwork(network);
-            });
+        // if(window.ethereum){
+        //     window.ethereum.on('accountsChanged', async (accounts:any) => {
+        //         console.log('wrongNetwork',this.wrongNetwork);
+        //         this.walletAddressSource.next(accounts[0]);
+        //         const network = await this.web3js.eth.net.getId();
+        //         this.isWrongNetwork(network);
+        //     });
             
-            window.ethereum.on('networkChanged', async (network:any) => {
-                this.isWrongNetwork(network);
-            });
-        }
+        //     window.ethereum.on('networkChanged', async (network:any) => {
+        //         this.isWrongNetwork(network);
+        //     });
+        // }
+        this.showModelConnetions();
         this.installMetamask()
     }
 
@@ -179,8 +119,8 @@ export class Web3Service {
         this.walletAddress = await this.web3js.eth.getAccounts(); 
         const network = await this.web3js.eth.net.getId();
         this.isWrongNetwork(network);
-        this.walletAddressSource.next(this.walletAddress);
         this.setWeb3WalletData(this.provider,this.walletAddress);
+        this.walletAddressSource.next(this.walletAddress);
     }
 
     isWrongNetwork(network:any){
@@ -193,18 +133,22 @@ export class Web3Service {
         this.accountStatusSource.next(this.wrongNetwork)
     }
 
-
     setWeb3WalletData(provider:any, address:any):void{
         this.walletAddress = address;
         this.web3Provider = provider;
         this.web3js = new Web3(this.web3Provider);
         this.isWalletConnected = true;
+        window.localStorage.setItem('accountAddress', this.walletAddress)
     }
 
     logoutWallet = async () => {
-        await this.provider.close();
-        await this.web3Modal.clearCachedProvider();
-        this.provider = null;
+        window.localStorage.removeItem('accountAddress');
+        if(this.provider){
+            console.log(123);
+            await this.provider.close();
+            await this.web3Modal.clearCachedProvider();
+            this.provider = null;
+        }
     }
 
     setIsWalletConnected(value:boolean) : void{
@@ -231,18 +175,55 @@ export class Web3Service {
     }
 
     getAccountData = async() => {
-        console.log(1);
         this.web3js = new Web3(window.ethereum);
         await this.web3js.eth.getAccounts((err:any, accounts:any) =>{
           console.error(err);
           console.log(accounts);
           if(accounts.length > 0){
+            this.walletAddress = accounts[0];
+            this.isWalletConnected = true;
             this.setWeb3WalletData(window.ethereum,accounts[0]);
             this.isWalletConnected = true;
-            this.walletAddress = accounts[0];
-            this.walletAddressSource.next(this.walletAddress)
           }
         });
-      }
+        const network = await this.web3js.eth.net.getId();
+        this.isWrongNetwork(network);
+        this.walletAddressSource.next(this.walletAddress);
+    }
 
+    showModelConnetions = async() => {
+        // Subscribe to accounts change
+        window.ethereum.on('accountsChanged', (account:any) => {
+            console.log(account);
+            if (null !== account && account.length > 0) {
+                this.walletAddress = account[0];
+                this.setWeb3WalletData(this.provider,this.walletAddress);
+                this.walletAddressSource.next(this.walletAddress);
+                window.location.reload();
+            } else {
+                this.logoutWallet();
+            }
+        })
+
+        // Subscribe to chainId change
+        // this.provider.on('chainChanged', (chainId:any) => {
+        //     window.location.reload();
+        // });
+
+        window.ethereum.on('networkChanged', (network:any) => {
+            console.log('networkChanged ');
+            this.isWrongNetwork(network);
+            window.location.reload();
+        });
+
+        // Subscribe to provider connection
+        window.ethereum.on('connect', (info:any) => {
+            console.log(info);
+        })
+
+        // Subscribe to provider disconnection
+        window.ethereum.on('disconnect', (error:any) => {
+            this.logoutWallet();
+        })
+    }
 }

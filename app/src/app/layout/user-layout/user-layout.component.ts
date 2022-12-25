@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/core/service/authentication.service';
 import { Web3Service } from 'app/modules/user/services/web3.service';
 
-
-
 @Component({
     selector: 'app-user-layout',
     templateUrl: './user-layout.component.html',
@@ -18,6 +16,7 @@ export class UserLayoutComponent implements OnInit {
     onboard: any = null;
     walletAddress: string = ''
     wrongNetwork: boolean = false;
+    disconnect: boolean = false;
     
     constructor(
         private authenticationService:AuthenticationService,
@@ -54,7 +53,10 @@ export class UserLayoutComponent implements OnInit {
     changeNetwork(){
         this.web3Service.switchToBinance();
     }    
-
+    logoutWallet(){
+        this.web3Service.logoutWallet();
+        window.location.reload();
+    }
     logout(){
         this.web3Service.logoutWallet();
         this.authenticationService.logout();

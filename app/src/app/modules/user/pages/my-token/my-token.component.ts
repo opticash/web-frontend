@@ -33,23 +33,35 @@ export class MyTokenComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.wrongNetwork = this.web3Service.wrongNetwork;
         this.walletAddress = this.web3Service.walletAddress;
         this.activeToken = 'Community';
-        if(this.walletAddress){
+        if(this.walletAddress ){
             this.isWebConnected = true;
             this.web3js = new Web3(this.web3Service.web3Provider);
-            this.tokenBalance();
-            this.getTokenData(this.activeToken);
+            if(!this.wrongNetwork){
+                console.log(1);
+                this.tokenBalance();
+                this.getTokenData(this.activeToken);
+                }
         } else {
             this.isWebConnected = false;
             this.overlayMsg = 'Please connect your wallet.'
         }
+        if(this.wrongNetwork){
+            this.isWebConnected = true;
+            this.overlayMsg = 'Please choose proper blockchain'
+        }
+        
         this.web3Service.walletAddress$.subscribe(x => {
             this.walletAddress = x;
             this.isWebConnected = true;
             this.web3js = new Web3(this.web3Service.web3Provider);
-            this.tokenBalance();
-            this.getTokenData(this.activeToken);
+            if(!this.wrongNetwork){
+                console.log(2);
+                this.tokenBalance();
+                this.getTokenData(this.activeToken);
+            }
         });
         this.web3Service.accountStatus$.subscribe(x => {
             this.wrongNetwork = x;
@@ -57,6 +69,7 @@ export class MyTokenComponent implements OnInit {
                 this.overlayMsg = 'Please choose proper blockchain'
             } else {
                 if(this.walletAddress){
+                    console.log(3);
                     this.tokenBalance();
                     this.getTokenData(this.activeToken);
                 }
@@ -141,7 +154,7 @@ export class MyTokenComponent implements OnInit {
     }
 
     tokenBalance = async () => {
-        let addrr = this.walletAddress //"0x46ed2A88D9F786EA233d0D783847e0a2502dA101"    
+        let addrr = this.walletAddress //"0x46ed2A88D9F786EA233d0D783847e0a2502dA101"
         const myContractInstance = new this.web3js.eth.Contract(AbiTB, config.Token);
         await myContractInstance.methods.balanceOf(addrr).call().then((data: any,error: any) => {
           if (error) {
