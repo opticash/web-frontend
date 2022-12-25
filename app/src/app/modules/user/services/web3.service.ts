@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import { config } from 'app/constants/config';
 import { ToastrService } from 'ngx-toastr';
-import WalletLink from 'WalletLink'
+import WalletLink from 'walletlink'
 declare let window: any;
 declare let $: any;
 
@@ -45,7 +45,9 @@ export class Web3Service {
             connector: async (_:any, options:any) => {
               const { appName, networkUrl, chainId } = options
               const walletLink = new WalletLink({
-                appName
+                appName: 'Opticash',
+                appLogoUrl: 'assets/images/logo.png',
+                darkMode: true
               });
               const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
               await provider.enable();
