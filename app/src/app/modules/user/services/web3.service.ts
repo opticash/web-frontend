@@ -18,7 +18,7 @@ export class Web3Service {
     web3Provider:any;
     isWalletConnected:boolean = false; 
     walletAddress: string = ''
-    wrongNetwork: boolean = true;
+    wrongNetwork: boolean = false;
 
     private provider: any;
     
@@ -116,9 +116,10 @@ export class Web3Service {
         this.web3Modal.clearCachedProvider();
         this.provider = await this.web3Modal.connect(); // set provider
         this.web3js = new Web3(this.provider); // create web3 instance
-        this.walletAddress = await this.web3js.eth.getAccounts(); 
+        const account = await this.web3js.eth.getAccounts(); 
         const network = await this.web3js.eth.net.getId();
         this.isWrongNetwork(network);
+        this.walletAddress = account[0]
         this.setWeb3WalletData(this.provider,this.walletAddress);
         this.walletAddressSource.next(this.walletAddress);
     }
@@ -211,7 +212,7 @@ export class Web3Service {
         // });
 
         window.ethereum.on('networkChanged', (network:any) => {
-            console.log('networkChanged ');
+            console.log('networkChanged');
             this.isWrongNetwork(network);
             window.location.reload();
         });

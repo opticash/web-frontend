@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <button class="claim-btn btn btn-primary" (click)="claimAllocationProcess()">Claim Now</button>
+        <button class="claim-btn btn btn-primary" [disabled]="unlocked==0" (click)="claimAllocationProcess()">Claim Now</button>
     </div>
     <div *ngIf="!isWebConnected" class="placeholder-box">
         <div class="text-center">

@@ -16,7 +16,7 @@ export class MyTokenComponent implements OnInit {
     public wallet: any = null;
     currentBalance: string;
     allocation: string;
-    unlocked: string;
+    unlocked: any;
     claimed: string;
     activeToken:string;
     walletAddress: string = ''
@@ -39,11 +39,13 @@ export class MyTokenComponent implements OnInit {
         if(this.walletAddress ){
             this.isWebConnected = true;
             this.web3js = new Web3(this.web3Service.web3Provider);
+            console.log('web3Provider',this.web3Service.web3Provider);
+            console.log('walletAddress',this.walletAddress);
             if(!this.wrongNetwork){
                 console.log(1);
                 this.tokenBalance();
                 this.getTokenData(this.activeToken);
-                }
+            }
         } else {
             this.isWebConnected = false;
             this.overlayMsg = 'Please connect your wallet.'
@@ -52,6 +54,8 @@ export class MyTokenComponent implements OnInit {
             this.isWebConnected = true;
             this.overlayMsg = 'Please choose proper blockchain'
         }
+        console.log('isWebConnected', this.isWebConnected);
+        console.log('wrongNetwork', this.wrongNetwork);
         
         this.web3Service.walletAddress$.subscribe(x => {
             this.walletAddress = x;
