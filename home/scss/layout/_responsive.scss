@@ -103,6 +103,16 @@
         .dialog-close{width:2.5rem; height:2.5rem;}
         .btn {font-size: 1.25rem;padding: 0.4rem 2rem; }
     }
+    .how-buy {
+        h3{font-size:2rem;}
+        .top{margin-bottom:3rem;}
+        .steps {
+            .step-box{padding:1rem 2rem;
+                p{font-size:1rem; margin:0;}
+            }
+            .step-box1 .content p{min-height:260px;}
+        }
+    }
 }
 
 
@@ -130,6 +140,19 @@
             }
         }
         .star1{display:none;}
+        .right-box{max-width:300px; margin:auto;
+            .status-bar{margin:1rem 15px 2rem;
+                .progress {height:25px;}
+                .soft-cap{bottom:-3px;
+                    &::before{height:32px; bottom:100%; }
+                }
+            }
+
+        }
+    }
+    .count-down-block .time{margin:0 10px;
+        .val::after{right:-15px;}
+        
     }
     h2{font-size:2rem;}
     .what-opticash{background:url(../images/bg4.jpg) top center; background-size: cover;
@@ -300,6 +323,17 @@
         .btn {font-size: 1.5rem;padding: 0.8rem 3rem; }
         .image{max-width:200px;}
     }
+    .how-buy .steps { max-width:300px; margin:0 auto 4rem; 
+        &:last-child{margin-top:-2rem;}
+        .image img{ display:block;}
+        .step-box::after{bottom:-60%; height:60%; top: inherit; width:100%; left:0!important; right:0;}
+        .step-box1{ margin-bottom:2rem;
+             .content p{font-size:15px; height:auto; min-height:auto;}
+        }
+        .step-box p{font-size:15px;}
+        
+    }
+    
 }
 
 @media (max-width: $screen-xs-max) {
