@@ -26,7 +26,6 @@
 </head>
 
 <body>
-<div id="snow"></div>
 <div class="site-loader" style="display:none">
 	<div><img class="loader-logo" src="./images/opticash-icon.svg" alt=""></div>
 </div>
@@ -101,7 +100,7 @@
 						<a href="#" class="btn btn-link btn-lg">Whitepaper</a>
 					</div>
 				</div>
-				<div class="col-md-5 image">
+				<div class="col-md-5">
 					<div class="right-box">
 						<h2>Presale End in</h2>
 						<h3>1 Opticash = 0.10USDT</h3>
@@ -208,7 +207,7 @@
 								<h4>Buy with ETH <img src="./images/icon-ethereum.svg" alt=""></h4>
 								<div class="content">
 									<p>You should have enough ETH available in your wallet. In the case when you don’t have any in your wallet, Choose the other option to buy ETH to your wallet first. After you can exchange your ETH for OPCH. To do this, enter the amount of OPCH you want to buy (Minimum of 1050) and click exchange ETH. You will be prompted with your transaction overview showing you the cost before completing.</p>
-									<a href="#" class="btn btn-primary">BUY WITH USDT</a>
+									<a href="#" class="btn btn-primary">BUY WITH ETH</a>
 								</div>
 							</div>
 						</div>
@@ -217,7 +216,7 @@
 								<h4>Buy ETH <img src="./images/icon-ethereum.svg" alt=""></h4>
 								<div class="content">
 									<p>You can buy ETH directly when you have low balance to carryout a transaction. We have enable our third party partner to enable you buy ETH directly using your card or through bank transfer. Choose your method of purchase and finish up the easy KYC process and you are in to make purchase directly</p>
-									<a href="#" class="btn btn-primary">BUY WITH USDT</a>
+									<a href="#" class="btn btn-primary">BUY ETH</a>
 								</div>
 							</div>
 						</div>
@@ -740,8 +739,8 @@
 
 <div class="modal fade promocional-dialog" id="promocionalDialog" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<img src="/images/holiday.jpeg" alt="" style="width:100%; width:500px; margin:auto;">
-		<!-- <div class="modal-content">
+		<!-- <img src="/images/holiday.jpeg" alt="" style="width:100%; width:500px; margin:auto;"> -->
+		<div class="modal-content">
 		  	<button type="button" class="dialog-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			<div class="row">
 				<div class="col-md-5 text-md-center order-1 order-md-2">
@@ -752,7 +751,7 @@
 					<a href="https://app.opticash.io/auth/sign-up" class="btn btn-primary btn-lg">SIGN UP</a>
 				</div>
 			</div>
-	  </div> -->
+	  </div>
 	</div>
   </div>
 
@@ -803,72 +802,6 @@
 <script src="js/axios.min.js"></script>
 <!-- <script src="js/PureSnow.js"></script> -->
 <script>
-
-	document.addEventListener('DOMContentLoaded', function(){
-	    var script = document.createElement('script');
-	    script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-	    script.onload = function(){
-	        particlesJS("snow", {
-	            "particles": {
-	                "number": {
-	                    "value": 200,
-	                    "density": {
-	                        "enable": true,
-	                        "value_area": 1500
-	                    }
-	                },
-	                "color": {
-	                    "value": "#ffffff"
-	                },
-	                "opacity": {
-	                    "value": 0.7,
-	                    "random": false,
-	                    "anim": {
-	                        "enable": false
-	                    }
-	                },
-	                "size": {
-	                    "value": 5,
-	                    "random": true,
-	                    "anim": {
-	                        "enable": false
-	                    }
-	                },
-	                "line_linked": {
-	                    "enable": false
-	                },
-	                "move": {
-	                    "enable": true,
-	                    "speed": 5,
-	                    "direction": "bottom",
-	                    "random": true,
-	                    "straight": false,
-	                    "out_mode": "out",
-	                    "bounce": false,
-	                    "attract": {
-	                        "enable": true,
-	                        "rotateX": 300,
-	                        "rotateY": 1200
-	                    }
-	                }
-	            },
-	            "interactivity": {
-	                "events": {
-	                    "onhover": {
-	                        "enable": false
-	                    },
-	                    "onclick": {
-	                        "enable": false
-	                    },
-	                    "resize": false
-	                }
-	            },
-	            "retina_detect": true
-	        });
-	    }
-	    document.head.append(script);
-	});
-
 	var myModal = new bootstrap.Modal(document.getElementById('promocionalDialog'), {
 		keyboard: false
 	})
