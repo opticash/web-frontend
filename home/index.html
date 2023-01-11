@@ -26,7 +26,7 @@
 </head>
 
 <body>
-<div id="snow"></div>
+
 <div class="site-loader" style="display:none">
 	<div><img class="loader-logo" src="./images/opticash-icon.svg" alt=""></div>
 </div>
@@ -657,8 +657,8 @@
 
 <div class="modal fade promocional-dialog" id="promocionalDialog" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<img src="/images/holiday.jpeg" alt="" style="width:100%; width:500px; margin:auto;">
-		<!-- <div class="modal-content">
+		<!--<img src="/images/holiday.jpeg" alt="" style="width:100%; width:500px; margin:auto;">-->
+		<div class="modal-content">
 		  	<button type="button" class="dialog-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			<div class="row">
 				<div class="col-md-5 text-md-center order-1 order-md-2">
@@ -669,7 +669,7 @@
 					<a href="https://app.opticash.io/auth/sign-up" class="btn btn-primary btn-lg">SIGN UP</a>
 				</div>
 			</div>
-	  </div> -->
+	  </div>
 	</div>
   </div>
 
@@ -720,74 +720,6 @@
 <script src="js/axios.min.js"></script>
 <!-- <script src="js/PureSnow.js"></script> -->
 <script>
-
-document.addEventListener('DOMContentLoaded', function(){
-    var script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-    script.onload = function(){
-        particlesJS("snow", {
-            "particles": {
-                "number": {
-                    "value": 200,
-                    "density": {
-                        "enable": true,
-                        "value_area": 1500
-                    }
-                },
-                "color": {
-                    "value": "#ffffff"
-                },
-                "opacity": {
-                    "value": 0.7,
-                    "random": false,
-                    "anim": {
-                        "enable": false
-                    }
-                },
-                "size": {
-                    "value": 5,
-                    "random": true,
-                    "anim": {
-                        "enable": false
-                    }
-                },
-                "line_linked": {
-                    "enable": false
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 5,
-                    "direction": "bottom",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": true,
-                        "rotateX": 300,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "events": {
-                    "onhover": {
-                        "enable": false
-                    },
-                    "onclick": {
-                        "enable": false
-                    },
-                    "resize": false
-                }
-            },
-            "retina_detect": true
-        });
-    }
-    document.head.append(script);
-});
-
-
-
 
 	var myModal = new bootstrap.Modal(document.getElementById('promocionalDialog'), {
 		keyboard: false
@@ -892,8 +824,6 @@ document.addEventListener('DOMContentLoaded', function(){
 		// setTimeout(() => {
 		// 	$('#snow').fadeIn();
 		// }, 4000);
-
-		
 
 		var chartTop = $('#chart').offset().top;
 		var wscroll = $(window).scrollTop();
