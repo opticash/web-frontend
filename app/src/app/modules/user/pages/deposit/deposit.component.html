@@ -30,7 +30,7 @@
                     <label>Enter amount</label>
                     <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f['amount'].errors }">
                         <input type="text" class="form-control" formControlName="amount">
-                        <span class="input-group-text" id="basic-addon2">{{form.value.currency === 'CARD' ? 'Pay with card' : form.value.currency}}</span>
+                        <span class="input-group-text" id="basic-addon2">{{form.value.currency === 'CARD' ? 'USD' : form.value.currency}}</span>
                     </div>
                     <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
                         <div *ngIf="f['amount'].errors['required']">Amount is required</div>
@@ -93,10 +93,10 @@
                     <img width="100" src="/assets/images/post-office.svg" alt="">
                 </div>
                 <p class="p1">Please Kindly check your email to complete your transaction </p>
-                <div class="value">{{form.value.amount}} ETH <span>= ${{(usdValue*form.value.amount)  | number : '1.2-2'}}</span></div>
+                <div class="value">{{form.value.amount}} USD <span>= {{(10*form.value.amount)}} $OPCH</span></div>
                 <br><br>
                 <div class="button d-grid site-form2">
-                    <button class="btn btn-primary">PROCEED</button>
+                    <button class="btn btn-primary" routerLink="/transactions">PROCEED</button>
                 </div>
             </div>
         </div>
