@@ -111,6 +111,7 @@ export class MyTokenComponent implements OnInit {
                 try {
                     this.spinner.hide();
                     this.toastrService.success("Claimed Successfully");
+                    this.tokenBalance();
                     this.bucketAllocationProcess(configToken[this.activeToken]);
                 } catch (error) {
                     this.spinner.hide();

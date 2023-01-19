@@ -1,2 +1,19 @@
 .balance-box .btn{font-weight:bold;}
 .invalid-feedback{display:block; margin-bottom:1rem; margin-top:-1rem;}
+.box-top{
+    h2{font-size:1.125rem; font-weight:600;}
+    .right{font-size:1rem; font-weight:600; color:#B3FF12;}
+}
+
+
+.thank-you{background:#0D0F00 url('/assets/images/thank-you-bg.svg') no-repeat center right; border-radius:20px; padding:0 0px 10px 15px;
+    h3{font-size:1.275rem; margin:0 0 10px; font-weight:700;}
+    p{margin:0 0 10px; font-size:0.875rem; font-weight:600;}
+    a{text-transform:uppercase; text-decoration:underline; font-size:0.937rem;  font-weight:500;}
+}
+
+@media (max-width: 767px) {
+    .thank-you { margin-bottom:2rem;
+        .flex-shrink-0 img{ width:100px;}
+    }
+}

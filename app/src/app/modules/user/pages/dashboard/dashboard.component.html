@@ -1,13 +1,16 @@
-<h2>Your Wallet</h2>
 <div class="row">
-    <div class="col-lg-7" *ngIf="pageData">
+    <div class="col-lg-8" *ngIf="pageData">
+        <div class="d-flex justify-content-between box-top">
+            <h2>Your Wallet</h2>
+            <div class="right">1 OPCH = 0.10 USD</div>
+        </div>
         <div class="balance-box">
             <div class="row">
                 <div class="col-md-4 order-2 order-md-1">
                     <div class="balance-left">
                         <h3>Your Balance</h3>
                         <div class="balance">
-                            {{pageData.user_tokenBal}} OPCH
+                            {{pageData.user_tokenBal}} OPCH 
                             <span>Available Balance</span>
                         </div>
                         <button type="button" [disabled]="!isWalletCreated" routerLink="/deposit" class="btn btn-primary" disabled>Deposit</button>
@@ -29,35 +32,44 @@
             </div>
         </div>
         <br><br class="d-none d-sm-block">
-    </div>
-    <div class="col-lg-5">
-        <div class="box1">
-            <div class="top">
-                <h3>FIRST STEP</h3>
-                <p>Enter your ETH Wallet address (ERC 20)</p>
+        <div class="thank-you d-flex align-items-center">
+            <div class="flex-shrink-0"><img src="/assets/images/thank-you.jpg" alt="Thank You"></div>
+            <div class="flex-grow-1 m-3">
+                <h3>Thank you for your interest in Opticash</h3>
+                <p>You can purchase OPCH tokens now on the Buy and home page. You can get a quick response to any questions and chat with the project in our Telegram: https://t.me/opticash_io or email Info@opticash.io </p>
+                <a href="#">INVITE YOUR FRIENDS</a>
             </div>
-            <div *ngIf="isWalletCreated;else saveAddress">
-                <div class="address-box">
-                    <div class="address">
-                        <span *ngIf="walletAddress">{{walletAddress}}</span>
-                        <a (click)="isWalletCreated = false">edit</a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="d-flex justify-content-between box-top">
+            <h2>Buy Token</h2>
+        </div>
+        <div class="deposit-box">
+            <div class="box-tab">
+                <div class="tab active">Buy</div>
+                <div class="tab"></div>
+            </div>
+            <form class="site-form2">
+                <div class="form-box ">
+                    <label>Choose cryptocurrency</label>
+                    <div class="form-icon">
+                        <img src="/assets/images/image.png" alt="">
+                        <select class="form-control">
+                            <!-- <option value="">Select Payment method</option> -->
+                            <option value="ETH">ETH</option>
+                            <option value="USDT">USDT</option>
+                        </select>
                     </div>
                 </div>
-                <button class="btn btn-primary" routerLink="/deposit">MAKE DEPOSIT</button>
-            </div>
-            <ng-template #saveAddress>
-                <div class="address-box">
-                    <input type="text" [(ngModel)]="walletAddress" class="form-control" placeholder="Wallet Address"
-                    [ngClass]="{ 'is-invalid': submitted && (walletAddress == '' || invalidAddress) }" />
+                <div class="form-box">
+                    <label>Amount in OPCH <span>1 OPCH = 0.10 USD</span></label>
+                    <input type="text" class="form-control" >
                 </div>
-                <!-- <div *ngIf="walletAddress===''">Address is required</div>
-                <div *ngIf="invalidAddress">Address is invalid</div> -->
-                <div *ngIf="submitted && (walletAddress==='' || invalidAddress)" class="invalid-feedback">
-                    <div *ngIf="walletAddress===''">Address is required</div>
-                    <div *ngIf="invalidAddress">Address is invalid</div>
+                <div class="button d-grid">
+                    <button type="submit" class="btn btn-primary">Send</button>
                 </div>
-                <button class="btn btn-primary" (click)="updateWalletAddress()">Save Address</button>
-            </ng-template>
+            </form>
         </div>
     </div>
 </div>
