@@ -102,10 +102,12 @@
 				</div>
 				<div class="col-md-5">
 					<div class="right-box">
-						<h2>Presale End in</h2>
+						<h2>Presale Start in</h2>
 						<h3>1 Opticash = 0.10 USDT</h3>
+						<br>
 						<div id="countDownBlock" class="count-down-block"></div>
-						<div class="status-bar">
+						<br>
+						<!-- <div class="status-bar">
 							<div class="d-flex justify-content-between">
 								<div class="cap-data">Raised - <span>$23,000</span></div>
 								<div class="cap-data">Target - <span>$15,000,000</span></div>
@@ -115,7 +117,7 @@
 							<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
 								<div class="progress-bar" style="width: 50%">60,490</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- <img src="images/img1.png" alt=""> -->
 						<div class="bottom"><a href="#">Connect Wallet</a></div>
 					</div>
@@ -198,7 +200,7 @@
 								<h4>Buy with USDT <img src="./images/icon-usdt.svg" alt=""></h4>
 								<div class="content">
 									<p>A minimum of $25 is required in your wallet before you trade. Enter the amount of OPCH you want to buy (minimum of 1050). Then click on Exchange USDT. Your approval will be required twice when carrying out this transaction. The first is for USDT contract while the second is for transaction amount. Your transaction will only be completed when you go through the two approval steps.</p>
-									<a href="#" class="btn btn-primary">BUY WITH USDT</a>
+									<a href="http://localhost:4200/deposit/USDT" target="_blank" class="btn btn-primary">BUY WITH USDT</a>
 								</div>
 							</div>
 						</div>
@@ -207,16 +209,16 @@
 								<h4>Buy with ETH <img src="./images/icon-ethereum.svg" alt=""></h4>
 								<div class="content">
 									<p>You should have enough ETH available in your wallet. In the case when you don’t have any in your wallet, Choose the other option to buy ETH to your wallet first. After you can exchange your ETH for OPCH. To do this, enter the amount of OPCH you want to buy (Minimum of 1050) and click exchange ETH. You will be prompted with your transaction overview showing you the cost before completing.</p>
-									<a href="#" class="btn btn-primary">BUY WITH ETH</a>
+									<a href="http://localhost:4200/deposit/ETH" class="btn btn-primary">BUY WITH ETH</a>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="step-box1">
-								<h4>Buy ETH <img src="./images/icon-ethereum.svg" alt=""></h4>
+								<h4>Buy With Card <img src="./images/icon-ethereum.svg" alt=""></h4>
 								<div class="content">
 									<p>You can buy ETH directly when you have low balance to carryout a transaction. We have enable our third party partner to enable you buy ETH directly using your card or through bank transfer. Choose your method of purchase and finish up the easy KYC process and you are in to make purchase directly</p>
-									<a href="#" class="btn btn-primary">BUY ETH</a>
+									<a href="http://localhost:4200/deposit/CARD" class="btn btn-primary">BUY WITH CARD</a>
 								</div>
 							</div>
 						</div>
@@ -1058,7 +1060,7 @@
 		return tspan;
 	}
 	// Set the date we're counting down to
-	var countDownDate = new Date("Jan 5, 2023 15:37:25").getTime();
+	var countDownDate = new Date("Mar 20, 2023 00:00:00").getTime();
 
 	// Update the count down every 1 second
 	var x = setInterval(function() {

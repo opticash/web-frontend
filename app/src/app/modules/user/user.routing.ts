@@ -24,6 +24,10 @@ const routes: Routes = [
         component: DepositComponent
       },
       {
+        path: 'deposit/:type',
+        component: DepositComponent
+      },
+      {
         path: 'transactions',
         component: TransactionsComponent
       },

@@ -1,86 +1,108 @@
-<h2>Deposit</h2>
-<div class="row">
-    <div class="col-md-4">
-        <div *ngIf="!isSendEth" class="deposit-box">
-            <div class="top d-flex justify-content-between">
-                <h3>Enter details</h3>
-            </div>
-            <form class="site-form2" [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="form-box">
-                    <label>Your ETH Wallet address (ERC 20)</label>
-                    <div class="readonly">
-                        <img src="/assets/images/image.png" alt="">
-                        <span>{{userData.wallet_addr}}</span>
+<div *ngIf="isWebConnected && !wrongNetwork">
+    <h2>Deposit</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="deposit-box">
+                <div class="top d-flex justify-content-between">
+                    <h3>Enter details</h3>
+                </div>
+                <form class="site-form2" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-box">
+                        <label>Payment method</label>
+                        <select class="form-control" formControlName="currency" 
+                            [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
+                            <option value="ETH">ETH</option>
+                            <option value="USDT">USDT</option>
+                            <option value="CARD">Pay with card</option>
+                        </select>
+                        <div *ngIf="submitted && f['currency'].errors" class="invalid-feedback">
+                            <div *ngIf="f['currency'].errors['required']">Payment method is required</div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-box">
-                    <label>Payment method</label>
-                    <select class="form-control" formControlName="currency" 
-                        [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
-                        <!-- <option value="">Select Payment method</option> -->
-                        <option value="ETH">ETH</option>
-                        <option value="USDT">USDT</option>
-                    </select>
-                    <div *ngIf="submitted && f['currency'].errors" class="invalid-feedback">
-                        <div *ngIf="f['currency'].errors['required']">Payment method is required</div>
+                    <div class="form-box">
+                        <label>Enter amount</label>
+                        <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f['amount'].errors }">
+                            <input type="text" class="form-control" formControlName="amount" (input)="amountUpdate.next($event)">
+                            <span class="input-group-text" id="basic-addon2">{{form.value.currency === 'CARD' ? 'USD' : form.value.currency}}</span>
+                        </div>
+                        <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
+                            <div *ngIf="f['amount'].errors['required']">Amount is required</div>
+                            <div *ngIf="f['amount'].errors['pattern']">Amount must be number only</div>
+                            <div *ngIf="f['amount'].errors['maxlength']">Amount must not exceed 20 characters</div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-box">
-                    <label>Enter amount</label>
-                    <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f['amount'].errors }">
-                        <input type="text" class="form-control" formControlName="amount">
-                        <span class="input-group-text" id="basic-addon2">{{form.value.currency}}</span>
+                    <div class="form-box">
+                        <label>Amount to receive in OPCH</label>
+                        <div class="readonly">
+                            <img src="./assets/images/3d-coin.svg" alt="">
+                            {{opchValue}} OPCH
+                        </div>
                     </div>
-                    <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
-                        <div *ngIf="f['amount'].errors['required']">Amount is required</div>
-                        <div *ngIf="f['amount'].errors['pattern']">Amount must be number only</div>
-                        <div *ngIf="f['amount'].errors['maxlength']">Amount must not exceed 20 characters</div>
+
+                    <div class="button d-grid">
+                        <button type="submit" [disabled]="isButtonClicked" class="btn btn-primary">Purchase</button>
                     </div>
-                </div>
-                <div class="button d-grid">
-                    <button type="submit" [disabled]="isButtonClicked" class="btn btn-primary">Send</button>
-                </div>
-            </form>
-        </div>
-        <div *ngIf="isSendEth" class="deposit-box">
-            <div class="top d-flex justify-content-between align-items-center">
-                <h3 (click)="showForm()"><img src="/assets/images/icon-arrow.svg" alt=""> Back</h3>
-                <div>SEND ETH</div>
-            </div>
-            <div class="payment-detail">
-                <p>Send only on Ethereum blockchain (ERC20) to this address.
-                Sending any other coins may result in permanent loss.</p>
-                <div class="qr-code">
-                    <img src="/assets/images/qr-code.png" alt="">
-                    <!-- <qrcode
-                        [qrdata]="userData.wallet_addr"
-                        [allowEmptyString]="true"
-                        [ariaLabel]="'Ethereum (ETH) address'"
-                        [cssClass]="'center'"
-                        [colorDark]="'#000000ff'"
-                        [colorLight]="'#ffffffff'"
-                        [elementType]="'canvas'"
-                        [errorCorrectionLevel]="'M'"
-                        [imageSrc]="'./assets/images/qr-code-icon.png'"
-                        [imageHeight]="45"
-                        [imageWidth]="45"
-                        [margin]="4"
-                        [scale]="1"
-                        [title]="'Ethereum (ETH) address'"
-                        [width]="284"
-                    ></qrcode> -->
-                </div>
-                <div *ngIf="form.value.currency==='ETH';else otherValue" class="value">{{form.value.amount}} ETH <span>= ${{(usdValue*form.value.amount)  | number : '1.2-2'}}</span></div>
-                <ng-template #otherValue>
-                    <div class="value">$ {{form.value.amount}} USD </div>
-                </ng-template>
-                <p>{{ethAddress}}</p>
-                <div class="green-box">
-                    <div (click)="copyMessage(ethAddress)">Copy <img src="./assets/images/icon-copy.svg" alt=""></div>
-                    <div (click)="showForm()">Edit Amount <img src="./assets/images/icon-note-edit.svg" alt=""></div>
-                    <!-- <div>Share <img src="./assets/images/icon-share.svg" alt=""></div> -->
-                </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
+<div class="modal fade {{confirmModal}}" id="confirmModalBox" [ngStyle]="{'display': confirmModal == 'show' ? 'block' : 'none' }">
+    <div class="modal-dialog modal-dialog-centered modal-confirm">
+        <div class="modal-content">
+            <div class="modal-top">
+                <img (click)="hideConfirmModal()" src="./assets/images/icon-close.svg" alt="" style="cursor:pointer;">
+                <h2>Confirm Purchase</h2>
+            </div>
+            <div class="box">
+                <img src="./assets/images/eth.svg" alt="">
+                {{form.value.amount}} {{form.value.currency}}
+                <span>You will pay</span>
+            </div>
+            <br>
+            <!-- <div class="box-sep"><img src="./assets/images/icon-switch.svg" alt=""></div> -->
+            <div class="box">
+                <img src="./assets/images/3d-coin.svg" alt="">
+                {{opchValue}} OPCH
+                <span>You will Receive</span>
+            </div>
+            <p>Transaction will be completed on your wallet</p>
+            <div class="buttons" *ngIf="this.form.value.currency === 'USDT'">
+                <button [disabled]="!isUSDTApprove" (click)="getApprovalUSDT()" class="btn btn-primary">Approve</button>
+                <button [disabled]="!isUSDTConfirm" (click)="sendUSDT()" class="btn btn-primary">CONFIRM</button>
+            </div>
+            <div class="tx-process" *ngIf="this.form.value.currency === 'USDT'">
+                <span [ngClass]="{'disable' : !isUSDTApprove}">1</span>
+                <span [ngClass]="{'disable' : !isUSDTConfirm}">2</span>
+            </div>
+            <div class="buttons" *ngIf="this.form.value.currency === 'ETH'">
+                <button (click)="sendETH()" class="btn btn-primary">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade {{confirmModal}}" [ngStyle]="{'display': confirmModal == 'show' ? 'block' : 'none' }"></div>
+
+<div *ngIf="!isWebConnected" class="placeholder-box">
+    <div class="text-center">
+        <h3>{{overlayMsg}}</h3>
+        <br>
+        <button (click)="connectWalletAction()" class="btn btn-primary btn-lg">Connect Wallet</button>
+    </div>
+</div>
+<div *ngIf="isWebConnected && wrongNetwork" class="placeholder-box">
+    <div class="text-center">
+        <h3>{{overlayMsg}}</h3>
+        <br>
+        <button (click)="changeNetwork()" class="btn btn-danger btn-lg">Change Network</button>
+    </div>
+</div>
+<div class="page-overlay {{waitingTxShow}}">
+    <div class="box">
+        <br><br>
+        <div><img src="./assets/images/iphone-spinner-2.gif" alt=""></div>
+        <br>
+        Waiting for Transaction
+        <br><br>
     </div>
 </div>

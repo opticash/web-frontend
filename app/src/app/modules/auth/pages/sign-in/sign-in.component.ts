@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { AuthService } from '../../services/auth.service';
 import { Md5 } from 'ts-md5';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'app/core/service/authentication.service';
 
 @Component({
@@ -20,9 +20,11 @@ export class SignInComponent implements OnInit {
         private authenticationService:AuthenticationService,
         private toastrService:ToastrService,
         private router: Router,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
+        this.authService.setRedirectURL(this.route.snapshot.queryParams['redirectURL']);
         this.authenticationService.logout();
         this.form = new FormGroup({
             email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(100),]),
@@ -45,7 +47,7 @@ export class SignInComponent implements OnInit {
                     this.authenticationService.setUserAuth(data.auth);
                     this.authenticationService.setUserData(data.data);
                     if(data.data.is_verified === 'TRUE'){
-                        this.router.navigate(['/dashboard']);
+                        this.authService.redirectUserPage();
                     } else {
                         this.router.navigate(['/auth/verify-email']);
                     }

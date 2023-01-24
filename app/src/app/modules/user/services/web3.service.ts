@@ -59,7 +59,7 @@ export class Web3Service {
                 description: " "
             },
             options: {
-                infuraId: config.onboard.infura_id,
+                infuraId: config.Web3Modal.infura_id,
                 rpc: {
                 5: 'https://goerli.infura.io/v3/',
                 }
@@ -102,8 +102,9 @@ export class Web3Service {
         //     });
         // }
         this.showModelConnetions();
-        this.installMetamask()
+        this.installMetamask();
     }
+
 
     installMetamask() {
         if (!(window.web3 || window.ethereum)) {
@@ -125,7 +126,7 @@ export class Web3Service {
     }
 
     isWrongNetwork(network:any){
-        if (network !== undefined && network != config.onboard.network ) {
+        if (network !== undefined && network != config.Web3Modal.network ) {
             this.toastrService.info("Please choose proper blockchain",'',{positionClass:'toast-bottom-right'});
             this.wrongNetwork = true;
         } else {
@@ -171,7 +172,7 @@ export class Web3Service {
     switchToBinance = async () => {
         await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: this.web3js.utils.toHex(config.onboard.network) }]
+            params: [{ chainId: this.web3js.utils.toHex(config.Web3Modal.network) }]
         });
     }
 

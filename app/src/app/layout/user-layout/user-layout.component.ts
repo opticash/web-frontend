@@ -13,7 +13,6 @@ export class UserLayoutComponent implements OnInit {
     userData:any;
     isCollapsed:boolean = true;
     wallet: any = null;
-    onboard: any = null;
     walletAddress: string = ''
     wrongNetwork: boolean = false;
     disconnect: boolean = false;

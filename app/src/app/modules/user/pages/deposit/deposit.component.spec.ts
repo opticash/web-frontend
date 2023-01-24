@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DepositComponent } from './deposit.component';
 
-describe('SignInComponent', () => {
+
+describe('DepositComponent', () => {
   let component: DepositComponent;
   let fixture: ComponentFixture<DepositComponent>;
 

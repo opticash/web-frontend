@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import Web3 from "web3";
 import { Web3Service } from 'app/modules/user/services/web3.service';
@@ -11,7 +11,7 @@ import { Abi, AbiTB } from 'app/constants/abi';
     templateUrl: './my-token.component.html',
     styleUrls: ['./my-token.component.scss']
 })
-export class MyTokenComponent implements OnInit {
+export class MyTokenComponent implements AfterViewInit {
     web3js: any;
     public wallet: any = null;
     currentBalance: string;
@@ -32,19 +32,17 @@ export class MyTokenComponent implements OnInit {
 
     }
 
-    ngOnInit(): void {
+    ngAfterViewInit(): void {
         this.wrongNetwork = this.web3Service.wrongNetwork;
         this.walletAddress = this.web3Service.walletAddress;
         this.activeToken = 'Community';
         if(this.walletAddress ){
             this.isWebConnected = true;
             this.web3js = new Web3(this.web3Service.web3Provider);
-            console.log('web3Provider',this.web3Service.web3Provider);
-            console.log('walletAddress',this.walletAddress);
             if(!this.wrongNetwork){
                 console.log(1);
-                this.tokenBalance();
-                this.getTokenData(this.activeToken);
+                // this.tokenBalance();
+                // this.getTokenData(this.activeToken);
             }
         } else {
             this.isWebConnected = false;
@@ -54,8 +52,6 @@ export class MyTokenComponent implements OnInit {
             this.isWebConnected = true;
             this.overlayMsg = 'Please choose proper blockchain'
         }
-        console.log('isWebConnected', this.isWebConnected);
-        console.log('wrongNetwork', this.wrongNetwork);
         
         this.web3Service.walletAddress$.subscribe(x => {
             this.walletAddress = x;
@@ -128,7 +124,7 @@ export class MyTokenComponent implements OnInit {
     }
 
     bucketAllocationProcess = async(contractAddr?:any) => {
-        let addrr =  this.walletAddress //"0x46ed2A88D9F786EA233d0D783847e0a2502dA101"    
+        const addrr =  this.walletAddress //"0x46ed2A88D9F786EA233d0D783847e0a2502dA101"    
         const myContractInstance = new this.web3js.eth.Contract(Abi, contractAddr);
         await myContractInstance.methods.users(addrr).call((error: any, data: any) => {
             this.spinner.hide();

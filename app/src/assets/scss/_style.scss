@@ -121,3 +121,15 @@ body .web3modal-modal-card{display:block; max-width:440px;
         .web3modal-provider-description{color:#2D2D2D; font-weight:600;}
     }
 }
+
+.page-overlay{position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0, 0, 0, 0.60); z-index:1100; display:none;
+    &.show{display:flex;}
+    flex:1; align-items:center;  justify-content: center;
+    .box{width:300px; font-size:1.125rem; color:#FFF;  text-align:center; font-weight:600;
+        background-color:#0A0A0A; border:solid 2px #5c5a5a; border-radius:20px;}
+}
+
+.placeholder-box{ flex:1; display:flex; align-items:center;  justify-content: center; height:60vh; 
+    .box{max-width:300px; font-size:1.125rem; color:#FFF; text-align:center;}
+    .btn{font-weight:700; padding:.75rem 3rem;}
+}

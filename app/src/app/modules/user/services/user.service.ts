@@ -37,6 +37,14 @@ export class UserService {
         const EthToUsdApiURL:string = 'https://min-api.cryptocompare.com/data/price?api_key=a46081438f9c55f1b22305d56c9653fc809f0dff128bee4c1c78ea5f8c021f5f&fsym=ETH&tsyms=USD'
         return this.baseService.getRequest(EthToUsdApiURL);
     }
+
+    updateTx(data:any) {
+        return this.baseService.postRequest(ApiConstants.UPDATE_TX,data);
+    }
+
+    confirmTx(data:any) {
+        return this.baseService.postRequest(ApiConstants.CONFIRM_TX,data);
+    }
     
     
 }

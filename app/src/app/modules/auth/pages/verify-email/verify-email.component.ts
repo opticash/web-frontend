@@ -56,8 +56,8 @@ import { AuthService } from '../../services/auth.service';
                         let userData = this.authenticationService.getUserData();
                         userData.is_verified = 'TRUE';
                         this.authenticationService.setUserData(userData);
-                        this.router.navigate(['/dashboard']);
-                    }else {
+                        this.authService.redirectUserPage();
+                    } else {
                         this.isSignUpCompleted = true;
                     }
                     this.toastrService.success(data.message);
