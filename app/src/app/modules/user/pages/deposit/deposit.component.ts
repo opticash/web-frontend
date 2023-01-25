@@ -46,6 +46,7 @@ export class DepositComponent implements OnInit {
     isUSDTConfirm: boolean = false;
     transactionHash: string;
     paymentId:string;
+    isSendEth: boolean = false;
     constructor(
         private toastrService:ToastrService,
         private web3Service:Web3Service,
@@ -318,7 +319,6 @@ export class DepositComponent implements OnInit {
         }
     }
 
-
     getEthValue(){
         this.userServce.getEthValue().subscribe(data => {
             this.usdValue = Number(data.USD);
@@ -343,6 +343,8 @@ export class DepositComponent implements OnInit {
                     this.paymentId = data.id; 
                     if(this.form.value.currency === 'ETH' || this.form.value.currency === 'USDT'){
                         this.isApprovedUSDT();
+                    } else {
+                        this.isSendEth = true;
                     }
                     // this.toastrService.success(data.message);
                     // if(this.form.value.currency === 'ETH'){
@@ -364,13 +366,14 @@ export class DepositComponent implements OnInit {
         };
         this.userServce.updateTx(obj).subscribe({
             next: (data) => {
-                console.error('updateTx => ',data);
+                console.log('updateTx => ',data);
             },
             error: (error) => {
                 console.error(error);
             }
         });
     }
+
     confirmTx(){
         var obj = {
             id:this.paymentId,
@@ -378,7 +381,7 @@ export class DepositComponent implements OnInit {
         };
         this.userServce.confirmTx(obj).subscribe({
             next: (data) => {
-                console.error('confirm Tx =>',data);
+                console.log('confirm Tx =>',data);
                 this.router.navigate(['transactions']);
             },
             error: (error) => {
@@ -387,5 +390,9 @@ export class DepositComponent implements OnInit {
         });
     }
 
+    showForm(){
+        this.submitted = false;
+        this.isSendEth = false;
+    }
 
 }

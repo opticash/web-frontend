@@ -13,7 +13,7 @@
                             {{pageData.user_tokenBal}} OPCH 
                             <span>Available Balance</span>
                         </div>
-                        <button type="button" [disabled]="!isWalletCreated" routerLink="/deposit" class="btn btn-primary" disabled>Deposit</button>
+                        <button type="button" [disabled]="!isWalletCreated" routerLink="/deposit" class="btn btn-primary" disabled>TOP UP</button>
                     </div>
                 </div>
                 <div class="col-md-8 order-1 order-md-2 align-self-end">
@@ -21,7 +21,7 @@
                         <img src="/assets/images/3d-coin.png" alt="">
                         <div>
                             <h3>Amount raised progress</h3>
-                            <div class="amount"> {{pageData.total_raised}} <span> {{hardcapPercentage | number : '1.2-2'}}%</span></div>
+                            <div class="amount"> ${{pageData.total_raised | number : '1.2-2'}} <span> {{hardcapPercentage | number : '1.2-2'}}%</span></div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" [style.width.%]="hardcapPercentage" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>

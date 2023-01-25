@@ -35,10 +35,10 @@ const routes: Routes = [
         path: 'my-account',
         component: MyAccountComponent
       },
-      {
-        path: 'my-token',
-        component: MyTokenComponent
-      },
+      // {
+      //   path: 'my-token',
+      //   component: MyTokenComponent
+      // },
     ]
   }
 ];

@@ -28,7 +28,7 @@ export const config = {
     Foundation	: "0x32f8718F5DfaE54aef19e6cC1872d438eb5a6f34",
     Adviser		: "0x8753E107c221FDcC02D21126f9B9c18054Dd463b",
 
-    USDTContractAddress: "0xD307E69756c5AdCe00234dBff03681c71e0daF86",
+    USDTContractAddress: "0x51472dc2431541dedc0d7bd4286c9901c01740b5",
     PaymentContractAddress: "0x0F268aA89cF872FfE74d0CD5f7447562e6d2eB46"
 }
 

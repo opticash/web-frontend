@@ -31,3 +31,9 @@
     position: relative; z-index:10;}
     span.disable{background:#4E4E4E;}
 }
+.loader{
+    svg path,
+    svg rect{
+        fill: #FFF;
+    }
+}
