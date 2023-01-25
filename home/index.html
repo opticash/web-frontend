@@ -26,7 +26,6 @@
 </head>
 
 <body>
-
 <div class="site-loader" style="display:none">
 	<div><img class="loader-logo" src="./images/opticash-icon.svg" alt=""></div>
 </div>
@@ -64,8 +63,8 @@
 							<li class="list-inline-item"><a href="#contact">Contact</a></li>
 						</ul>
 						<ul class="list-unstyled list-inline login">
-							<li class="list-inline-item"><a href="https://app.opticash.io/auth/sign-up" target="_blank" class="btn btn-link">Sign Up</a></li>
-							<li class="list-inline-item"><a href="https://app.opticash.io/auth/sign-in" target="_blank" class="btn btn-primary">Sign In</a></li>
+							<li class="list-inline-item"><a href="https://betaapp.opticash.io/auth/sign-up" target="_blank" class="btn btn-link">Sign Up</a></li>
+							<li class="list-inline-item"><a href="https://betaapp.opticash.io/auth/sign-in" target="_blank" class="btn btn-primary">Sign In</a></li>
 						</ul>
 					</div>
 				</div>
@@ -101,14 +100,25 @@
 						<a href="#" class="btn btn-link btn-lg">Whitepaper</a>
 					</div>
 				</div>
-				<div class="col-md-5 image">
-					<img src="images/coming-soon.png" alt="">
-					<!-- <div class="right-box">
+				<div class="col-md-5">
+					<div class="right-box">
 						<h2>Presale End in</h2>
-						<h3>1 Opticash = 0.10USDT</h3>
-						<img src="images/img1.png" alt="">
+						<h3>1 Opticash = 0.10 USDT</h3>
+						<div id="countDownBlock" class="count-down-block"></div>
+						<div class="status-bar">
+							<div class="d-flex justify-content-between">
+								<div class="cap-data">Raised - <span>$23,000</span></div>
+								<div class="cap-data">Target - <span>$15,000,000</span></div>
+							</div>
+							<div class="soft-cap">Soft cap</div>
+							<div class="hard soft-cap">Hard cap</div>
+							<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+								<div class="progress-bar" style="width: 50%">60,490</div>
+							</div>
+						</div>
+						<!-- <img src="images/img1.png" alt=""> -->
 						<div class="bottom"><a href="#">Connect Wallet</a></div>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>
@@ -157,7 +167,79 @@
 			</div>
 		</div>
 	</div>
-	
+	<div class="how-buy page-section">
+		<div class="container">
+			<div class="top">
+				<h2>HOW TO BUY</h2>
+				<p>The use of crypto-currencies has become more widespread, and they are now increasingly accepted as a legitimate for transactions.</p>
+			</div>
+			<div>
+				<div class="steps">
+					<div class="row align-items-center">
+						<div class="col-md-8">
+							<div class="step-box">
+								<h3>Step One <span>(Install Wallet)</span></h3>
+								<p>First, make sure you have the MetaMask wallet installed on your browser, or if you’re on mobile use Wallet Connect to connect one of the supported wallets (we recommend Trust Wallet). Purchasing from a desktop browser will give you a smoother buying experience. For this we recommend Metamask. If you are buying on a mobile phone,</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="image">
+								<img src="images/providers.svg" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="steps">
+					<h3>Step Two <span>(Connect Wallet)</span></h3>
+					<p>First, make sure you have the MetaMask wallet installed on your browser, or if you're on mobile use Wallet Connect to connect one of the supported wallets (we recommend Trust Wallet). Purchasing from a desktop browser will give you a smoother buying experience. For this we recommend Metamask. If you are buying on a mobile phone,</p>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="step-box1">
+								<h4>Buy with USDT <img src="./images/icon-usdt.svg" alt=""></h4>
+								<div class="content">
+									<p>A minimum of $25 is required in your wallet before you trade. Enter the amount of OPCH you want to buy (minimum of 1050). Then click on Exchange USDT. Your approval will be required twice when carrying out this transaction. The first is for USDT contract while the second is for transaction amount. Your transaction will only be completed when you go through the two approval steps.</p>
+									<a href="#" class="btn btn-primary">BUY WITH USDT</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="step-box1">
+								<h4>Buy with ETH <img src="./images/icon-ethereum.svg" alt=""></h4>
+								<div class="content">
+									<p>You should have enough ETH available in your wallet. In the case when you don’t have any in your wallet, Choose the other option to buy ETH to your wallet first. After you can exchange your ETH for OPCH. To do this, enter the amount of OPCH you want to buy (Minimum of 1050) and click exchange ETH. You will be prompted with your transaction overview showing you the cost before completing.</p>
+									<a href="#" class="btn btn-primary">BUY WITH ETH</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="step-box1">
+								<h4>Buy ETH <img src="./images/icon-ethereum.svg" alt=""></h4>
+								<div class="content">
+									<p>You can buy ETH directly when you have low balance to carryout a transaction. We have enable our third party partner to enable you buy ETH directly using your card or through bank transfer. Choose your method of purchase and finish up the easy KYC process and you are in to make purchase directly</p>
+									<a href="#" class="btn btn-primary">BUY ETH</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="steps">
+					<div class="row align-items-center">
+						<div class="col-md-8 order-md-2">
+							<div class="step-box last">
+								<h3>Step Three <span>(Claim Token)</span></h3>
+								<p>You will be able to claim your OPCH token after the pre-sale is over. Further details willl be commuicated when pre-sale is close to ending. You will have to come on the website or visit the token claim page directly https://opticash.io/presale and click the <span>"Claim Buttom"</span></p>
+							</div>
+						</div>
+						<div class="col-md-4 order-md-1">
+							<div class="image">
+								<img src="images/claim-token.png" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="why-opticash page-section">
 		<div class="container">
 			<div class="top">
@@ -657,7 +739,7 @@
 
 <div class="modal fade promocional-dialog" id="promocionalDialog" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<!--<img src="/images/holiday.jpeg" alt="" style="width:100%; width:500px; margin:auto;">-->
+		<!-- <img src="/images/holiday.jpeg" alt="" style="width:100%; width:500px; margin:auto;"> -->
 		<div class="modal-content">
 		  	<button type="button" class="dialog-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			<div class="row">
@@ -666,7 +748,7 @@
 				</div>
 				<div class="col-md-7 order-2 order-md-1">
 					<h3>Don't miss out! <br> Stand a chance to <span>win 50k</span> worth of token!</h3>
-					<a href="https://app.opticash.io/auth/sign-up" class="btn btn-primary btn-lg">SIGN UP</a>
+					<a href="https://betaapp.opticash.io/auth/sign-up" class="btn btn-primary btn-lg">SIGN UP</a>
 				</div>
 			</div>
 	  </div>
@@ -720,7 +802,6 @@
 <script src="js/axios.min.js"></script>
 <!-- <script src="js/PureSnow.js"></script> -->
 <script>
-
 	var myModal = new bootstrap.Modal(document.getElementById('promocionalDialog'), {
 		keyboard: false
 	})
@@ -848,12 +929,10 @@
 			bsCollapse.hide();
 		})
 		$("body").click(function() {
-			
 			var clickover = $(event.target);
 			var $navbar = $(".navbar-collapse");               
 			var _opened = $navbar.hasClass("show");
 			if (_opened === true && !clickover.hasClass("navbar-toggler")) {      
-				console.log("here");
 				$navbar.collapse('hide');
 			}
 		});
@@ -976,6 +1055,36 @@
 		});
 		return tspan;
 	}
+	// Set the date we're counting down to
+	var countDownDate = new Date("Jan 5, 2023 15:37:25").getTime();
+
+	// Update the count down every 1 second
+	var x = setInterval(function() {
+
+	// Get today's date and time
+	var now = new Date().getTime();
+
+	// Find the distance between now and the count down date
+	var distance = countDownDate - now;
+
+	// Time calculations for days, hours, minutes and seconds
+	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	
+	// Display the result in the element with id="demo"
+	document.getElementById("countDownBlock").innerHTML = `<span class="time"><span class="val"> ${days} </span><span class="type">Days</span></span>
+	<span class="time"><span class="val"> ${hours} </span><span class="type">Hours</span></span>
+	<span class="time"><span class="val"> ${minutes} </span><span class="type">Mins</span></span>
+	<span class="time"><span class="val"> ${seconds} </span><span class="type">Secs</span></span>`;
+
+	// If the count down is finished, write some text
+	if (distance < 0) {
+		clearInterval(x);
+		document.getElementById("countDownBlock").innerHTML = "EXPIRED";
+	}
+	}, 1000);
 </script>
 </body>
 </html>

@@ -7,9 +7,20 @@
                 <h1>Welcome, {{userData.name}}!</h1>
                 <!-- <p>Monday, 07 November 2022</p> -->
             </div>
-            <div class="notification ms-auto">
-                <img src="/assets/images/notification.svg" alt="">
-                <!-- <span class="dot"></span> -->
+            <div class="ms-auto d-flex align-items-center">
+                <div class="wallat">
+                    <button *ngIf="!walletAddress" (click)="connectWalletAction()" class="btn btn-primary">Connect Wallet</button>
+                    <span *ngIf="walletAddress">
+                        <span *ngIf="!wrongNetwork" (click)="disconnect = !disconnect" class="address"><img src="/assets/images/eth.svg" alt=""> {{walletAddress}}</span>
+                        <button  *ngIf="disconnect"  class="disconnect" (click)="logoutWallet()">Disconnect</button>
+                        <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger">Change Network</button>
+                    </span>
+                </div>
+                
+                <div class="notification ">
+                    <img src="/assets/images/notification.svg" alt="">
+                    <!-- <span class="dot"></span> -->
+                </div>
             </div>
             <button #eref class="navbar-toggler lines-button" [ngClass]="{'collapsed' : isCollapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" (click)="isCollapsed = !isCollapsed;">
                 <span></span>
