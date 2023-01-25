@@ -132,7 +132,6 @@ export class DepositComponent implements OnInit {
                         console.log(res);
                         const allowanceUSDT = this.web3Service.getValidValue(res);
                         if (allowanceUSDT < this.form.value.amount) {
-                            console.log(1);
                             this.isUSDTApprove = true;
                             this.isUSDTConfirm = false;
                             // enable approve button and disable confirm button
@@ -160,8 +159,6 @@ export class DepositComponent implements OnInit {
         const myContractInstance = new this.web3js.eth.Contract(AbiTB, config.USDTContractAddress);
         await myContractInstance.methods.approve(config.PaymentContractAddress,"10000000000000000000000000").send({ from: addr }, (err:any, res:any ) => {
             if (res) {
-                this.isUSDTApprove = false;
-                this.isUSDTConfirm = true;
                 console.log('get Approval USDT', res);
                 this.listenApprovedEvent();
             } else {
@@ -174,12 +171,14 @@ export class DepositComponent implements OnInit {
         return new Promise(resolve => {
         const myContractInstance = new this.web3js.eth.Contract(AbiTB, config.USDTContractAddress);
         myContractInstance.events.Approval({}, (error:any, result:any) => {
-            console.log("Hello world, ", result);
             if (!error) {
                 try {
                     // disable approve button and enable confirm button
+                    this.isUSDTApprove = false;
+                    this.isUSDTConfirm = true;
+                    console.log("listen Approved Event =>", result);
+                    this.toastrService.success("Approval Successfull");
                     this.spinner.hide();
-                    this.toastrService.success("Approval Successfully");
                 } catch (error) {
                     this.spinner.hide();
                     this.toastrService.error("Request Failed!");
@@ -225,15 +224,21 @@ export class DepositComponent implements OnInit {
         await myContractInstance.methods.depositUSDT(this.web3js.utils.toWei(this.form.value.amount, "ether")).send({ from: addr}, (err:any, res:any ) => {
             this.spinner.hide();
             this.hideConfirmModal();
-            if (res) {
-                this.waitingTxShow = 'show';
-                this.listenUSDTTransferEvent();
-                console.log('depositUSDT', res);
-                this.transactionHash = res;
-                this.updateTx();
-            } else {
-                this.toastrService.error(err.message)
+            try {
+                if (res) {
+                    this.waitingTxShow = 'show';
+                    this.listenUSDTTransferEvent();
+                    console.log('depositUSDT', res);
+                    this.transactionHash = res;
+                    this.updateTx();
+                } else {
+                    this.toastrService.error(err.message)
+                }
+            } catch (error) {
+                this.toastrService.error("Request Failed!");
+                console.log("Error Coming ", error)
             }
+            
         });
     }
 

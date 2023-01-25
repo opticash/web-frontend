@@ -109,15 +109,15 @@
 }
 
 
-body .web3modal-modal-card{display:block; max-width:440px;
-    .web3modal-provider-wrapper{display:block; padding:0;
-        .web3modal-provider-container{display:block; position:relative; padding:1rem 2rem; text-align:left; color:#2D2D2D;
+body .web3modal-modal-card{display:block; max-width:360px; background-color: #0A0A0A; border:solid 2px #5c5a5a;
+    .web3modal-provider-wrapper{display:block; padding:0; border:none; border-bottom:solid 1px #1E1E1E;;
+        .web3modal-provider-container{display:block; position:relative; padding:1.5rem 2rem; text-align:left; background-color:#0A0A0A; color:#2D2D2D;
             &:hover{background-color: rgba(195, 195, 195, 0.14);}
             .web3modal-provider-icon{position:absolute; right:2rem; top:50%; transform:translateY(-50%); width:40px;}
-            .web3modal-provider-name{margin:0; font-size:$ft22; color:#2D2D2D; line-height:1.3em;}
+            .web3modal-provider-name{margin:0; font-size:$ft22; color:#FFFFFF;; line-height:1.3em;}
             .web3modal-provider-description{margin:0; font-size:12px;}
         }
-        .sc-web3modal-provider-name{margin:0; font-size:$ft22; color:#2D2D2D; line-height:1.3em; font-weight:700;}
+        .sc-web3modal-provider-name{margin:0; font-size:$ft22; color:#FFFFFF;; line-height:1.3em; font-weight:700;}
         .web3modal-provider-description{color:#2D2D2D; font-weight:600;}
     }
 }

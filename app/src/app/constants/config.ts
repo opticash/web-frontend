@@ -29,6 +29,6 @@ export const config = {
     Adviser		: "0x8753E107c221FDcC02D21126f9B9c18054Dd463b",
 
     USDTContractAddress: "0x51472dc2431541dedc0d7bd4286c9901c01740b5",
-    PaymentContractAddress: "0x0F268aA89cF872FfE74d0CD5f7447562e6d2eB46"
+    PaymentContractAddress: "0xAB25bdca417D52c6fAdbb7D6e4CA24c5b7b4a6eF"
 }
 
