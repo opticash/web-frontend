@@ -24,6 +24,10 @@ const routes: Routes = [
         component: DepositComponent
       },
       {
+        path: 'deposit/:type',
+        component: DepositComponent
+      },
+      {
         path: 'transactions',
         component: TransactionsComponent
       },
@@ -31,10 +35,10 @@ const routes: Routes = [
         path: 'my-account',
         component: MyAccountComponent
       },
-      {
-        path: 'my-token',
-        component: MyTokenComponent
-      },
+      // {
+      //   path: 'my-token',
+      //   component: MyTokenComponent
+      // },
     ]
   }
 ];

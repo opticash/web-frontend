@@ -10,14 +10,13 @@ export const config = {
     base_url: "http://localhost:4200",
     blockchain: "Rinkbey",
     blockchain_url: "https://goerli.etherscan.io/",
-    onboard: {
+
+    Web3Modal: {
         key: 'b9c4f15a-de2e-440b-97a0-7925abab9353',
         network: 5,
         infura_id: 'defa9004b56046e1a9ba73bc5d9e5776',
         rpcUrl:'https://goerli.infura.io/v3/'
     },
-    main_address: "0xaCeEF0453dE61B48CF0159749f192F5fc6a77298",
-    multi_contract_address: "0xc09e5d75d6bdc948286C26d4D0eE428bD613E2eE",
     
     Token		: "0x1c158ed21554507893fce5fecd6ddb48c2fa3f1b",
     Marketing	: "0xC1AE22aa796565cD6b572a07cb55e5E51504F5Cb",
@@ -29,5 +28,7 @@ export const config = {
     Foundation	: "0x32f8718F5DfaE54aef19e6cC1872d438eb5a6f34",
     Adviser		: "0x8753E107c221FDcC02D21126f9B9c18054Dd463b",
 
+    USDTContractAddress: "0x51472dc2431541dedc0d7bd4286c9901c01740b5",
+    PaymentContractAddress: "0x0F268aA89cF872FfE74d0CD5f7447562e6d2eB46"
 }
 

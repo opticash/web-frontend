@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiConstants } from 'app/constants/api.constants';
 import { BaseService } from 'app/core/service/base.service';
 
@@ -7,8 +8,10 @@ import { BaseService } from 'app/core/service/base.service';
 export class AuthService {
     authToken: string
     ForgotEmailId: string
+    redirectURL: string
     constructor(
         private baseService: BaseService,
+        private router: Router,
     ) {
         
     }
@@ -50,6 +53,18 @@ export class AuthService {
     }
     getForgotEmail(){
         return this.ForgotEmailId;
+    }
+
+    setRedirectURL(url:string) : void{
+        this.redirectURL = url;
+    }
+
+    redirectUserPage(){
+        if(this.redirectURL){
+            this.router.navigate([this.redirectURL]);
+        } else {
+            this.router.navigate(['/dashboard']);
+        }
     }
 
 }

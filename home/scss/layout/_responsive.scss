@@ -140,7 +140,7 @@
             }
         }
         .star1{display:none;}
-        .right-box{max-width:300px; margin:auto;
+        .right-box{max-width:400px; margin:4rem auto 0;
             .status-bar{margin:1rem 15px 2rem;
                 .progress {height:25px;}
                 .soft-cap{bottom:-3px;
@@ -323,15 +323,18 @@
         .btn {font-size: 1.5rem;padding: 0.8rem 3rem; }
         .image{max-width:200px;}
     }
+    .how-buy h3{font-size:1.750rem;}
     .how-buy .steps { max-width:300px; margin:0 auto 4rem; 
         &:last-child{margin-top:-2rem;}
         .image img{ display:block;}
         .step-box::after{bottom:-60%; height:60%; top: inherit; width:100%; left:0!important; right:0;}
         .step-box1{ margin-bottom:2rem;
-             .content p{font-size:15px; height:auto; min-height:auto;}
+            h4{text-align:left; padding:8px 15px;
+                img{height:26px;}
+            }
+            .content p{font-size:14px; height:auto; min-height:auto; margin-bottom:3rem;}
         }
-        .step-box p{font-size:15px;}
-        
+        .step-box p{font-size:14px;}
     }
     
 }
