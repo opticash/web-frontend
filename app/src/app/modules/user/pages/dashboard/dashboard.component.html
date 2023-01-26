@@ -1,8 +1,12 @@
 <div class="row">
     <div class="col-lg-8" *ngIf="pageData">
-        <div class="d-flex justify-content-between box-top">
+        <div class="d-none d-sm-flex justify-content-between box-top">
             <h2>Your Wallet</h2>
             <div class="right">1 OPCH = 0.10 USD</div>
+        </div>
+        <div class="top-info d-block d-sm-none">
+            <h1>Welcome, {{userData.name}}!</h1>
+            <p>{{date | date:'EEEE, dd MMMM  yyyy'}}</p>
         </div>
         <div class="balance-box">
             <div class="row">
@@ -13,14 +17,21 @@
                             {{pageData.user_tokenBal}} OPCH 
                             <span>Available Balance</span>
                         </div>
-                        <button type="button" [disabled]="!isWalletCreated" routerLink="/deposit" class="btn btn-primary" disabled>TOP UP</button>
+                        <div class="d-none d-sm-block">
+                            <button type="button" [disabled]="!isWalletCreated" routerLink="/deposit" class="btn btn-primary">TOP UP</button>
+                        </div>
+                        <div class="wallat" class="d-block d-sm-none">
+                            <button *ngIf="!isWalletCreated" (click)="connectWalletAction()" class="btn btn-primary">Connect Wallet</button>
+                            <button *ngIf="isWalletCreated && wrongNetwork" (click)="changeNetwork()" class="btn btn-danger">Change Network</button>
+                            <button *ngIf="isWalletCreated && !wrongNetwork" type="button" routerLink="/deposit" class="btn btn-primary">TOP UP</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-8 order-1 order-md-2 align-self-end">
                     <div class="raise-box d-flex">
                         <img src="/assets/images/3d-coin.png" alt="">
                         <div>
-                            <h3>Amount raised progress</h3>
+                            <h3>Token sales progress</h3>
                             <div class="amount"> ${{pageData.total_raised | number : '1.2-2'}} <span> {{hardcapPercentage | number : '1.2-2'}}%</span></div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" [style.width.%]="hardcapPercentage" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -40,9 +51,12 @@
                 <a href="#">INVITE YOUR FRIENDS</a>
             </div>
         </div>
-        <br><br>
+        <br>
     </div>
     <div class="col-lg-4">
+        <div class="d-none d-sm-flex justify-content-between box-top">
+            <h2>Buy Token</h2>
+        </div>
         <app-deposit [isSelector]="true"></app-deposit>
     </div>
 </div>

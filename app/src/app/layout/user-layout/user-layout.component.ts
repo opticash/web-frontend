@@ -16,6 +16,7 @@ export class UserLayoutComponent implements OnInit {
     walletAddress: string = ''
     wrongNetwork: boolean = false;
     disconnect: boolean = false;
+    date:Date;
     
     constructor(
         private authenticationService:AuthenticationService,
@@ -26,6 +27,7 @@ export class UserLayoutComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.date = new Date();
         this.userData = this.authenticationService.getUserData();
         this.web3Service.walletAddress$.subscribe(x => {
             console.log(x);

@@ -66,10 +66,9 @@ export class DepositComponent implements OnInit {
         if(this.walletAddress ){
             this.isWebConnected = true;
             if(!this.wrongNetwork){
-                console.log('web3Provider =>', this.web3Service.web3Provider);
-                
-                // this.web3js = new Web3(this.web3Service.web3Provider);
                 console.log(1);
+                console.log('web3Provider =>', this.web3Service.web3Provider);
+                this.web3js = new Web3(this.web3Service.web3Provider);
                 // this.tokenBalance();
             }
         } else {

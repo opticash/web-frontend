@@ -12,6 +12,11 @@
     a{text-transform:uppercase; text-decoration:underline; font-size:0.937rem;  font-weight:500;}
 }
 
+.top-info{  margin-bottom:2rem;
+    h1{font-family:'Source Sans Pro', sans-serif; color:#FFF; font-weight:600; font-size:1.500rem; margin:0; text-transform:capitalize;}
+    p{margin:0;}
+}
+
 @media (max-width: 767px) {
     .thank-you { margin-bottom:2rem;
         .flex-shrink-0 img{ width:100px;}

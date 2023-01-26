@@ -1,27 +1,34 @@
 <!-- *ngIf="isWebConnected && !wrongNetwork" -->
-<div >
+<div>
     <h2 *ngIf="!isSelector">Deposit</h2>
     <div  [ngClass]="{'row': !isSelector}">
         <div [ngClass]="{'col-md-4': !isSelector}">
             <div *ngIf="!isSendEth" class="deposit-box">
-                <div class="top d-flex justify-content-between">
-                    <h3>Enter details</h3>
+                <div class="d-none d-sm-flex box-tab">
+                    <div class="tab active">Buy</div>
+                    <div class="tab"></div>
+                </div>
+                <div *ngIf="isSelector" class="top">
+                    <h3 class="d-block d-sm-none">Buy Token</h3>
                 </div>
                 <form class="site-form2" [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="form-box">
-                        <label>Payment method</label>
-                        <select class="form-control" formControlName="currency" 
-                            [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
-                            <option value="ETH">ETH</option>
-                            <option value="USDT">USDT</option>
-                            <option value="CARD">Pay with card</option>
-                        </select>
+                        <label>Select Payment Method</label>
+                        <div class="form-icon">
+                            <img src="/assets/images/image.png" alt="">
+                            <select class="form-control" formControlName="currency" 
+                                [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
+                                <option value="ETH">ETH</option>
+                                <option value="USDT">USDT</option>
+                                <option value="CARD">Pay with card</option>
+                            </select>
+                        </div>
                         <div *ngIf="submitted && f['currency'].errors" class="invalid-feedback">
                             <div *ngIf="f['currency'].errors['required']">Payment method is required</div>
                         </div>
                     </div>
                     <div class="form-box">
-                        <label>Enter amount</label>
+                        <label>Enter Amount <span>1 OPCH = 0.10 USD</span></label>
                         <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f['amount'].errors }">
                             <input type="text" class="form-control" formControlName="amount" (input)="amountUpdate.next($event)">
                             <span class="input-group-text" id="basic-addon2">{{form.value.currency === 'CARD' ? 'USD' : form.value.currency}}</span>
@@ -34,7 +41,7 @@
                     </div>
                     <div class="form-box">
                         <label>Amount to receive in OPCH</label>
-                        <div class="readonly">
+                        <div class="readonly1">
                             <img src="./assets/images/3d-coin.svg" alt="">
                             {{opchValue}} OPCH
                         </div>
