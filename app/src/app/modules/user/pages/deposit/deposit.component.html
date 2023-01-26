@@ -1,7 +1,8 @@
-<div *ngIf="isWebConnected && !wrongNetwork">
-    <h2>Deposit</h2>
-    <div class="row">
-        <div class="col-md-4">
+<!-- *ngIf="isWebConnected && !wrongNetwork" -->
+<div >
+    <h2 *ngIf="!isSelector">Deposit</h2>
+    <div  [ngClass]="{'row': !isSelector}">
+        <div [ngClass]="{'col-md-4': !isSelector}">
             <div *ngIf="!isSendEth" class="deposit-box">
                 <div class="top d-flex justify-content-between">
                     <h3>Enter details</h3>
@@ -40,7 +41,7 @@
                     </div>
 
                     <div class="button d-grid">
-                        <button type="submit" [disabled]="isButtonClicked" class="btn btn-primary">Purchase</button>
+                        <button type="submit" [disabled]="isButtonClicked || !isWebConnected || wrongNetwork" class="btn btn-primary">Purchase Opch</button>
                     </div>
                 </form>
             </div>
@@ -117,7 +118,7 @@
 </div>
 <div class="modal-backdrop fade {{confirmModal}}" [ngStyle]="{'display': confirmModal == 'show' ? 'block' : 'none' }"></div>
 
-<div *ngIf="!isWebConnected" class="placeholder-box">
+<!-- <div *ngIf="!isWebConnected" class="placeholder-box">
     <div class="text-center">
         <h3>{{overlayMsg}}</h3>
         <br>
@@ -130,7 +131,7 @@
         <br>
         <button (click)="changeNetwork()" class="btn btn-danger btn-lg">Change Network</button>
     </div>
-</div>
+</div> -->
 <div class="page-overlay {{waitingTxShow}}">
     <div class="box">
         <br><br>

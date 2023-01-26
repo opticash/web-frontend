@@ -77,9 +77,10 @@
             .wallat{ margin-right:5px!important;
                 .btn{font-size:1rem!important; padding:.35rem .75rem!important;}
                 .address{font-size:11px!important;  max-width:100px!important;
+                    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
                     img{width:16px!important; margin-left:5px; display:inline-block;}
                 }
-                .disconnect{width:100px!important;}
+                .disconnect{left:0; font-size:10px!important; left:30px!important; bottom:-12px!important;}
             }
         }
         .container-page{display:block!important;}

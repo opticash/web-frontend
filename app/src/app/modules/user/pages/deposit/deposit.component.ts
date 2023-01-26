@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Web3Service } from 'app/modules/user/services/web3.service';
 import { config} from 'app/constants/config';
@@ -47,6 +47,8 @@ export class DepositComponent implements OnInit {
     transactionHash: string;
     paymentId:string;
     isSendEth: boolean = false;
+
+    @Input() isSelector: boolean;
     constructor(
         private toastrService:ToastrService,
         private web3Service:Web3Service,
@@ -339,6 +341,7 @@ export class DepositComponent implements OnInit {
             currency:this.form.value.currency,
             usdValue: this.form.value.currency === 'ETH' ? (this.usdValue * this.form.value.amount) : this.form.value.amount,
         }
+        this.isButtonClicked = true;
 
         this.userServce.savePayment(obj).subscribe({
             next: (data:any) => {

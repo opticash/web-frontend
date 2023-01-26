@@ -31,8 +31,8 @@
                 </div>
             </div>
         </div>
-        <br><br class="d-none d-sm-block">
-        <div class="thank-you d-flex align-items-center">
+        <br class="d-none d-sm-block">
+        <div class="thank-you d-none d-md-flex align-items-center">
             <div class="flex-shrink-0"><img src="/assets/images/thank-you.jpg" alt="Thank You"></div>
             <div class="flex-grow-1 m-3">
                 <h3>Thank you for your interest in Opticash</h3>
@@ -40,35 +40,9 @@
                 <a href="#">INVITE YOUR FRIENDS</a>
             </div>
         </div>
+        <br><br>
     </div>
     <div class="col-lg-4">
-        <!-- <div class="d-flex justify-content-between box-top">
-            <h2>Buy Token</h2>
-        </div>
-        <div class="deposit-box">
-            <div class="box-tab">
-                <div class="tab active">Buy</div>
-                <div class="tab"></div>
-            </div>
-            <form class="site-form2">
-                <div class="form-box ">
-                    <label>Choose cryptocurrency</label>
-                    <div class="form-icon">
-                        <img src="/assets/images/image.png" alt="">
-                        <select class="form-control">
-                            <option value="ETH">ETH</option>
-                            <option value="USDT">USDT</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-box">
-                    <label>Amount in OPCH <span>1 OPCH = 0.10 USD</span></label>
-                    <input type="text" class="form-control" >
-                </div>
-                <div class="button d-grid">
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </div>
-            </form>
-        </div> -->
+        <app-deposit [isSelector]="true"></app-deposit>
     </div>
 </div>
