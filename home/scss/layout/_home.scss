@@ -4,7 +4,7 @@
     }
     .container{position: relative;}
     .btn-link{color:$clWhite; text-decoration: underline;}
-    .btn{font-size:$ft20; font-weight:600; padding:.95rem 2rem;}
+    .btn{font-size:$ft20; font-weight:800; padding:.95rem 2rem;}
     p{font-size:$ft16;}
     .image{margin-top:3rem; position:relative;
         .star2{position:absolute; top:-4rem; right:4rem; width:35px;}
@@ -206,9 +206,7 @@
 
 .logo-box{ 
     h3{text-align: center; margin-bottom:2rem;}
-    .item{display:flex; flex-wrap:wrap; align-items:center;
-        .image{flex: 1 0 0%; margin:0 2rem;}
-    }
+    .slide-logo{display:flex; align-items:center; max-width:200px; margin:0 15px; height:100px;}
 }
 
 .featured-box{background: url(../images/bg3.jpg) no-repeat center 10%; background-size: cover; margin-bottom:2rem;}
