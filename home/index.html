@@ -928,11 +928,11 @@
 		document.getElementById('site-content').classList.remove('show-loader');
 		document.getElementsByClassName('site-loader')[0].style.display = 'none';
 	} else {
-		// document.getElementById('site-content').classList.add('show-loader');
-		// document.getElementsByClassName('site-loader')[0].style.display = 'flex';
-		// setTimeout(() => {
-		// 	myModal.show();
-		// }, 8000);
+		document.getElementById('site-content').classList.add('show-loader');
+		document.getElementsByClassName('site-loader')[0].style.display = 'flex';
+		setTimeout(() => {
+			myModal.show();
+		}, 8000);
 	}
 
 	$(function() {
