@@ -8,14 +8,14 @@ Purpose : This is the file which contain all global constants used in the applic
 */
 export const config = {
     base_url: "http://localhost:4200",
-    blockchain: "Rinkbey",
-    blockchain_url: "https://goerli.etherscan.io/",
+    blockchain: "Ethereum Mainnet",
+    blockchain_url: "https://etherscan.io/",
 
     Web3Modal: {
         key: 'b9c4f15a-de2e-440b-97a0-7925abab9353',
-        network: 5,
+        network: 1,
         infura_id: 'defa9004b56046e1a9ba73bc5d9e5776',
-        rpcUrl:'https://goerli.infura.io/v3/'
+        rpcUrl:'https://mainnet.infura.io/v3'
     },
     
     Token		: "0x1c158ed21554507893fce5fecd6ddb48c2fa3f1b",
@@ -28,7 +28,7 @@ export const config = {
     Foundation	: "0x32f8718F5DfaE54aef19e6cC1872d438eb5a6f34",
     Adviser		: "0x8753E107c221FDcC02D21126f9B9c18054Dd463b",
 
-    USDTContractAddress: "0x51472dc2431541dedc0d7bd4286c9901c01740b5",
-    PaymentContractAddress: "0xAB25bdca417D52c6fAdbb7D6e4CA24c5b7b4a6eF"
+    USDTContractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    PaymentContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86"
 }
 

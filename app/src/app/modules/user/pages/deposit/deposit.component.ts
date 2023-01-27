@@ -103,6 +103,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                 console.log('get Approval USDT', res);
                 this.listenApprovedEvent();
             } else {
+                this.spinner.hide();
                 this.toastrService.error(err.message)
             }
         });
