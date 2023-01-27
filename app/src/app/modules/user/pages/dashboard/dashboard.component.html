@@ -18,12 +18,15 @@
                             <span>Available Balance</span>
                         </div>
                         <div class="d-none d-sm-block">
-                            <button type="button" [disabled]="!isWalletCreated" routerLink="/deposit" class="btn btn-primary">TOP UP</button>
+                            <button type="button" [disabled]="!isWalletConnected" routerLink="/deposit" class="btn btn-primary">TOP UP</button>
                         </div>
-                        <div class="wallat" class="d-block d-sm-none">
-                            <button *ngIf="!isWalletCreated" (click)="connectWalletAction()" class="btn btn-primary">Connect Wallet</button>
-                            <button *ngIf="isWalletCreated && wrongNetwork" (click)="changeNetwork()" class="btn btn-danger">Change Network</button>
-                            <button *ngIf="isWalletCreated && !wrongNetwork" type="button" routerLink="/deposit" class="btn btn-primary">TOP UP</button>
+                        <div class="wallat d-block d-sm-none">
+                            <button *ngIf="!isWalletConnected" (click)="connectWalletAction()" class="btn btn-primary">Connect Wallet</button>
+                            <ng-container *ngIf="isWalletConnected">
+                                <span *ngIf="!wrongNetwork" class="address"><img src="/assets/images/eth.svg" alt=""> {{walletAddress}}</span>
+                                <button *ngIf="!wrongNetwork" class="btn btn-dark" (click)="logoutWallet()">Disconnect Wallet</button>
+                                <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger">Change Network</button>
+                            </ng-container>
                         </div>
                     </div>
                 </div>

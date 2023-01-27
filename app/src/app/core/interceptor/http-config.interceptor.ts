@@ -37,7 +37,9 @@ export class HttpConfigInterceptor implements HttpInterceptor {
             authorization = this.authService.getAuthToken();
         }
         request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + authorization) });
-        this.spinner.show();
+        if(request.reportProgress){
+            this.spinner.show();
+        }
         request = request.clone({ reportProgress: true });
         return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {

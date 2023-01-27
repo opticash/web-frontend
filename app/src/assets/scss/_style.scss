@@ -18,6 +18,7 @@
 
 .main-page{ position: relative;
     h2{font-size:$ft24; font-weight:bold; margin: 0 0 1rem;}
+    h3{font-size:$ft18; font-weight:600; margin: 0 0 1rem;}
     .balance-box{background: linear-gradient(138.21deg, rgba(255, 255, 255, 0.149) -23.04%, rgba(255, 255, 255, 0.012) 118.95%); padding:1.5rem; border-radius:12px;
         h3{font-family:$ftDefault; font-size:$ft16; margin:0 0 1.5rem;}
         .balance{ font-size:$ft24; font-weight:600; text-transform:uppercase; color:#FFF; margin-bottom:1rem;
@@ -112,8 +113,8 @@
     .btn{padding:.75rem 1rem; font-size:$ft16; font-weight:600;}
 }
 
-
-body .web3modal-modal-card{display:block; max-width:360px; background-color: #0A0A0A; border:solid 2px #5c5a5a;
+body .web3modal-modal-lightbox{background-color:rgba(18, 18, 18, 0.85);}
+body .web3modal-modal-card{display:block; max-width:360px; background-color: #0A0A0A; border:solid 2px #343434;
     .web3modal-provider-wrapper{display:block; padding:0; border:none; border-bottom:solid 1px #1E1E1E;;
         .web3modal-provider-container{display:block; position:relative; padding:1.5rem 2rem; text-align:left; background-color:#0A0A0A; color:#2D2D2D;
             &:hover{background-color: rgba(195, 195, 195, 0.14);}
@@ -126,14 +127,45 @@ body .web3modal-modal-card{display:block; max-width:360px; background-color: #0A
     }
 }
 
-.page-overlay{position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0, 0, 0, 0.60); z-index:1100; display:none;
+.page-overlay{position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(18, 18, 18, 0.85); z-index:1100; display:none;
     &.show{display:flex;}
     flex:1; align-items:center;  justify-content: center;
     .box{width:300px; font-size:1.125rem; color:#FFF;  text-align:center; font-weight:600;
-        background-color:#0A0A0A; border:solid 2px #5c5a5a; border-radius:20px;}
+        background-color:#0A0A0A; border:solid 2px #343434; border-radius:20px;}
 }
 
 .placeholder-box{ flex:1; display:flex; align-items:center;  justify-content: center; height:60vh; 
     .box{max-width:300px; font-size:1.125rem; color:#FFF; text-align:center;}
     .btn{font-weight:700; padding:.75rem 3rem;}
 }
+
+.modal-backdrop{background-color:#121212;}
+
+.site-modal{ max-width:400px; border-radius:16px;
+    .modal-content{padding:1.5rem 2rem; background-color:#0A0A0A; border:solid 2px #343434; border-radius:20px;}
+    .modal-top{ text-align:center;
+        img{max-width:32px;}
+        h2{font-size:1.625rem; margin:.5rem 0 .75rem; font-weight:600;}
+    }
+    .box{display:flex; align-items:center; background: #151515; border: 1px solid #788F45; border-radius:6px; height:55px; padding:10px; font-weight:600; color:#FFF;
+        img{width:22px; margin-right:15px;}
+        span{ white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display:block; font-size:12px; color:#FFF; font-weight:normal; margin-left:auto;}
+    }
+    .box-sep{text-align:center;
+        img{width:32px;}
+    }
+    p{text-align:center;  margin:.5rem 0 .75rem; font-weight:500;}
+    .buttons{display:flex;}
+    .btn{padding:.75rem 1rem; font-size:1rem; font-weight:bold; text-transform:uppercase; width:100%;}
+    .btn + .btn{margin-left:10px;}
+    .select-icon{position:relative;
+        .form-control{background:#151515; border: 1px solid #788F45; border-radius:6px; color:#FFF; font-size:14px; height:56px; padding:12px 12px 12px 50px;}
+        select.form-control{background-image: url(/assets/images/icon-arrow-bottom.svg); background-repeat: no-repeat; background-position: right 0.75rem center;}
+        & > img{ position:absolute; left:15px; top:50%; transform:translateY(-50%); width:26px;}
+    }
+    .modal-info{font-size:12px; color:#FFF; margin-top:10px;
+        span{color:#C3FF43;}
+    }
+}
+
+.modal-backdrop.show{opacity:.85;}

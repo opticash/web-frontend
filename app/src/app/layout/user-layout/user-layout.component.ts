@@ -14,6 +14,8 @@ export class UserLayoutComponent implements OnInit {
     isCollapsed:boolean = true;
     wallet: any = null;
     walletAddress: string = ''
+    selectNetworkModal: string = ''
+    web3Network: string = 'ETH';
     wrongNetwork: boolean = false;
     disconnect: boolean = false;
     date:Date;
@@ -30,7 +32,6 @@ export class UserLayoutComponent implements OnInit {
         this.date = new Date();
         this.userData = this.authenticationService.getUserData();
         this.web3Service.walletAddress$.subscribe(x => {
-            console.log(x);
             this.walletAddress = x;
             console.log('walletAddress', this.walletAddress);
         });
@@ -48,7 +49,8 @@ export class UserLayoutComponent implements OnInit {
     }
 
     connectWalletAction(){
-      this.web3Service.connectWalletAction();
+        this.hideSelectNetworkModal();
+        this.web3Service.connectWalletAction();
     }
 
     changeNetwork(){
@@ -67,6 +69,13 @@ export class UserLayoutComponent implements OnInit {
 
     hideMenu(){
         this.isCollapsed = true;
+    }
+
+    showSelectNetworkModal(){
+        this.selectNetworkModal = 'show';
+    }
+    hideSelectNetworkModal(){
+        this.selectNetworkModal = '';
     }
 
 }

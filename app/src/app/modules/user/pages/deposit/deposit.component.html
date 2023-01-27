@@ -1,6 +1,6 @@
-<!-- *ngIf="isWebConnected && !wrongNetwork" -->
+<!-- *ngIf="isWalletConnected && !wrongNetwork" -->
 <div>
-    <h2 *ngIf="!isSelector">Deposit</h2>
+    <h3 *ngIf="!isSelector">Buy Token</h3>
     <div  [ngClass]="{'row': !isSelector}">
         <div [ngClass]="{'col-md-4': !isSelector}">
             <div *ngIf="!isSendEth" class="deposit-box">
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="button d-grid">
-                        <button type="submit" [disabled]="isButtonClicked || !isWebConnected || wrongNetwork" class="btn btn-primary">Purchase Opch</button>
+                        <button type="submit" [disabled]="isButtonClicked || !isWalletConnected || wrongNetwork" class="btn btn-primary">Purchase Opch</button>
                     </div>
                 </form>
             </div>
@@ -73,7 +73,7 @@
     </div>
 </div>
 <div class="modal fade {{confirmModal}}" id="confirmModalBox" [ngStyle]="{'display': confirmModal == 'show' ? 'block' : 'none' }">
-    <div class="modal-dialog modal-dialog-centered modal-confirm">
+    <div class="modal-dialog modal-dialog-centered site-modal">
         <div class="modal-content">
             <div class="modal-top">
                 <img (click)="hideConfirmModal()" src="./assets/images/icon-close.svg" alt="" style="cursor:pointer;">
@@ -104,35 +104,18 @@
                 <button (click)="sendETH()" class="btn btn-primary">CONFIRM</button>
             </div>
         </div>
-        <div *ngIf="isSendEth && form.value.currency === 'CARD'" class="deposit-box">
-            <div class="top d-flex justify-content-between align-items-center">
-                <h3 (click)="showForm()"><img src="/assets/images/icon-arrow.svg" alt=""> Back</h3>
-                <div>PAY WITH CARD</div>
-            </div>
-            <div class="payment-detail">
-                <div class="qr-code">
-                    <img width="100" src="/assets/images/post-office.svg" alt="">
-                </div>
-                <p class="p1">Please Kindly check your email to complete your transaction </p>
-                <div class="value">{{form.value.amount}} USD <span>= {{(10*form.value.amount)}} $OPCH</span></div>
-                <br><br>
-                <div class="button d-grid site-form2">
-                    <button class="btn btn-primary" routerLink="/transactions">PROCEED</button>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <div class="modal-backdrop fade {{confirmModal}}" [ngStyle]="{'display': confirmModal == 'show' ? 'block' : 'none' }"></div>
 
-<!-- <div *ngIf="!isWebConnected" class="placeholder-box">
+<!-- <div *ngIf="!isWalletConnected" class="placeholder-box">
     <div class="text-center">
         <h3>{{overlayMsg}}</h3>
         <br>
         <button (click)="connectWalletAction()" class="btn btn-primary btn-lg">Connect Wallet</button>
     </div>
 </div>
-<div *ngIf="isWebConnected && wrongNetwork" class="placeholder-box">
+<div *ngIf="isWalletConnected && wrongNetwork" class="placeholder-box">
     <div class="text-center">
         <h3>{{overlayMsg}}</h3>
         <br>

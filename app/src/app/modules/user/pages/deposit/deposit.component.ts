@@ -1,41 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Web3Service } from 'app/modules/user/services/web3.service';
 import { config} from 'app/constants/config';
 import { SpinnerService } from 'app/shared/services/spinner.service';
-import { Abi, AbiPC, AbiTB } from 'app/constants/abi';
+import { AbiPC, AbiTB } from 'app/constants/abi';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import Web3 from "web3";
-import Web3Modal from "web3modal";
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { BaseWeb3Class } from '../../base-web3.component';
+import { Web3Service } from '../../services/web3.service';
 
 @Component({
     selector: 'app-deposit',
     templateUrl: './deposit.component.html',
     styleUrls: ['./deposit.component.scss']
 })
-export class DepositComponent implements OnInit {
-    private web3js: any;
-    private provider: any;
-    private web3Modal:any;
-    public wallet: any = null;
-    currentBalance: string;
-    allocation: string;
-    unlocked: any;
-    claimed: string;
-    activeToken:string;
-    walletAddress: string = ''
-    configToken:any = config;
-    isWebConnected:boolean = false;
-    overlayMsg:string = '';
-    wrongNetwork: boolean = false;
-
+export class DepositComponent extends BaseWeb3Class implements OnInit {
+    
     form: FormGroup;
     submitted: boolean = false;
     isButtonClicked: boolean = false;
-    confirmModal: string = '';
     waitingTxShow: string = '';
     currencyType:string = 'ETH';
     timeValueReconnect: any = 0;
@@ -51,69 +35,25 @@ export class DepositComponent implements OnInit {
     @Input() isSelector: boolean;
     constructor(
         private toastrService:ToastrService,
-        private web3Service:Web3Service,
         private spinner: SpinnerService,
         private userServce: UserService,
         private router: Router,
+        web3Service: Web3Service,
     ) { 
-
+        super(web3Service)
     }
 
     ngOnInit(): void {
-        this.wrongNetwork = this.web3Service.wrongNetwork;
-        this.walletAddress = this.web3Service.walletAddress;
-        this.activeToken = 'Community';
-        if(this.walletAddress ){
-            this.isWebConnected = true;
-            if(!this.wrongNetwork){
-                console.log(1);
-                console.log('web3Provider =>', this.web3Service.web3Provider);
-                this.web3js = new Web3(this.web3Service.web3Provider);
-                // this.tokenBalance();
-            }
-        } else {
-            this.isWebConnected = false;
-            this.overlayMsg = 'Please connect your wallet.'
-        }
-        if(this.wrongNetwork){
-            this.isWebConnected = true;
-            this.overlayMsg = 'Please choose proper blockchain'
-        }
-        
-        this.web3Service.walletAddress$.subscribe(x => {
-            this.walletAddress = x;
-            this.isWebConnected = true;
-            if(!this.wrongNetwork){
-                console.log(2);
-                console.log('web3Provider =>', this.web3Service.web3Provider);
-                this.web3js = new Web3(this.web3Service.web3Provider);
-            }
-        });
-        this.web3Service.accountStatus$.subscribe(x => {
-            this.wrongNetwork = x;
-            if(this.wrongNetwork){
-                this.overlayMsg = 'Please choose proper blockchain'
-            } else {
-                if(this.walletAddress){
-                    console.log(3);
-                    // this.tokenBalance();
-                }
-            }
-        });
-    
-        
+        this.bindWeb3Service();
         this.form = new FormGroup({
             currency: new FormControl(this.currencyType, [Validators.required]),
             amount: new FormControl('',[Validators.required, Validators.pattern(/^\d*(?:[.,]\d{1,6})?$/), Validators.maxLength(20)]),
         });
         this.submitted = false;
 
-        this.amountUpdate.pipe(
-            debounceTime(400),
-            distinctUntilChanged())
-            .subscribe(value => {
-              this.updateOpchValue()
-            });
+        this.amountUpdate.pipe(debounceTime(400), distinctUntilChanged()).subscribe(value => {
+            this.updateOpchValue()
+        });
     }
 
     isApprovedUSDT = async() => {
@@ -172,23 +112,22 @@ export class DepositComponent implements OnInit {
         return new Promise(resolve => {
         const myContractInstance = new this.web3js.eth.Contract(AbiTB, config.USDTContractAddress);
         myContractInstance.events.Approval({}, (error:any, result:any) => {
-            if (!error) {
-                try {
+            try {
+                if (result) {
                     // disable approve button and enable confirm button
                     this.isUSDTApprove = false;
                     this.isUSDTConfirm = true;
                     console.log("listen Approved Event =>", result);
                     this.toastrService.success("Approval Successfull");
                     this.spinner.hide();
-                } catch (error) {
+                } else {
                     this.spinner.hide();
-                    this.toastrService.error("Request Failed!");
-                    console.log("Error Coming ", error)
+                    console.error("listenRegisterEvent error", error)
                 }
-            }
-            else {
+            } catch (error) {
                 this.spinner.hide();
-                console.error("listenRegisterEvent error", error)
+                this.toastrService.error("Request Failed!");
+                console.log("Error Coming ", error)
             }
           });
         });
@@ -200,20 +139,19 @@ export class DepositComponent implements OnInit {
         myContractInstance.events.DepositUSDT({}, (error:any, result:any) => {
             console.log("listen Transfer Event, ", result);
             this.waitingTxShow = '';
-            if (!error) {
-                try {
+            try {
+                if (result) {
                     // disable approve button and enable confirm button
-                    this.toastrService.success("Transfer Successfully");
                     this.confirmTx();
-                } catch (error) {
-                    this.toastrService.error("Request Failed!");
-                    console.log("Error Coming ", error)
+                } else {
+                    this.waitingTxShow = '';
+                    console.error("listenRegisterEvent error", error)
                 }
+            } catch (error) {
+                this.toastrService.error("Request Failed!");
+                console.log("Error Coming ", error)
             }
-            else {
-                this.waitingTxShow = '';
-                console.error("listenRegisterEvent error", error)
-            }
+            
           });
         });
     }
@@ -271,7 +209,6 @@ export class DepositComponent implements OnInit {
             if (!error) {
                 try {
                     // disable approve button and enable confirm button
-                    this.toastrService.success("Transfer Successfully");
                     this.confirmTx();
                 } catch (error) {
                     this.toastrService.error("Request Failed!");
@@ -286,15 +223,6 @@ export class DepositComponent implements OnInit {
         });
     }
 
-    connectWalletAction(){
-        this.web3Service.connectWalletAction();
-    }
-
-    changeNetwork(){
-        this.web3Service.switchToBinance();
-    }
-
-
     get f(): { [key: string]: AbstractControl } {
         return this.form.controls;
     }
@@ -305,14 +233,6 @@ export class DepositComponent implements OnInit {
             return;
         }
         this.savePayment();
-    }
-
-    showConfirmModal(){
-        this.confirmModal = 'show';
-    };
-    
-    hideConfirmModal(){
-        this.confirmModal = '';
     }
 
     updateOpchValue(){
@@ -386,6 +306,7 @@ export class DepositComponent implements OnInit {
             id:this.paymentId,
             txhash:this.transactionHash,
         };
+        this.toastrService.success("Transfer Successfully");
         this.userServce.confirmTx(obj).subscribe({
             next: (data) => {
                 console.log('confirm Tx =>',data);

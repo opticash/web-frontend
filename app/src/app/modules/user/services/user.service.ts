@@ -39,11 +39,11 @@ export class UserService {
     }
 
     updateTx(data:any) {
-        return this.baseService.postRequest(ApiConstants.UPDATE_TX,data);
+        return this.baseService.postRequest(ApiConstants.UPDATE_TX,data,false);
     }
 
     confirmTx(data:any) {
-        return this.baseService.postRequest(ApiConstants.CONFIRM_TX,data);
+        return this.baseService.postRequest(ApiConstants.CONFIRM_TX,data,false);
     }
     
     
