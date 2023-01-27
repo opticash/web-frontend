@@ -267,7 +267,6 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             next: (data:any) => {
                 this.isButtonClicked = false;
                 if(data.type === true){
-                    console.log(data);
                     this.paymentId = data.id; 
                     if(this.form.value.currency === 'ETH' || this.form.value.currency === 'USDT'){
                         this.isApprovedUSDT();
@@ -322,6 +321,11 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     showForm(){
         this.submitted = false;
         this.isSendEth = false;
+    }
+
+    resetValues(){
+        this.form.controls['amount'].setValue('');
+        this.amountUpdate.next(0);
     }
 
 }

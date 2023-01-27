@@ -16,7 +16,7 @@
                         <label>Select Payment Method</label>
                         <div class="form-icon">
                             <img src="/assets/images/image.png" alt="">
-                            <select class="form-control" formControlName="currency" 
+                            <select class="form-control" formControlName="currency" (change)="resetValues()"     
                                 [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
                                 <option value="ETH">ETH</option>
                                 <option value="USDT">USDT</option>
