@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/core/service/authentication.service';
+import { BaseWeb3Class } from 'app/modules/user/base-web3.component';
 import { Web3Service } from 'app/modules/user/services/web3.service';
 
 @Component({
@@ -8,24 +9,18 @@ import { Web3Service } from 'app/modules/user/services/web3.service';
     templateUrl: './user-layout.component.html',
     styleUrls: ['./user-layout.component.scss'],
 })
-export class UserLayoutComponent implements OnInit {
-    web3js: any;
+export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
     userData:any;
     isCollapsed:boolean = true;
-    wallet: any = null;
-    walletAddress: string = ''
-    selectNetworkModal: string = ''
-    web3Network: string = 'ETH';
-    wrongNetwork: boolean = false;
     disconnect: boolean = false;
     date:Date;
     
     constructor(
         private authenticationService:AuthenticationService,
         private router: Router, 
-        private web3Service:Web3Service,
+        web3Service:Web3Service,
     ) {
-      
+        super(web3Service)
     }
 
     ngOnInit(): void {
@@ -48,18 +43,6 @@ export class UserLayoutComponent implements OnInit {
         return valu
     }
 
-    connectWalletAction(){
-        this.hideSelectNetworkModal();
-        this.web3Service.connectWalletAction();
-    }
-
-    changeNetwork(){
-        this.web3Service.switchToBinance();
-    }    
-    logoutWallet(){
-        this.web3Service.logoutWallet();
-        window.location.reload();
-    }
     logout(){
         this.web3Service.logoutWallet();
         this.authenticationService.logout();
@@ -69,13 +52,6 @@ export class UserLayoutComponent implements OnInit {
 
     hideMenu(){
         this.isCollapsed = true;
-    }
-
-    showSelectNetworkModal(){
-        this.selectNetworkModal = 'show';
-    }
-    hideSelectNetworkModal(){
-        this.selectNetworkModal = '';
     }
 
 }

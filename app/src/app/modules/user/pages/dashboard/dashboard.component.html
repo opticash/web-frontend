@@ -21,7 +21,7 @@
                             <button type="button" [disabled]="!isWalletConnected" routerLink="/deposit" class="btn btn-primary">TOP UP</button>
                         </div>
                         <div class="wallat d-block d-sm-none">
-                            <button *ngIf="!isWalletConnected" (click)="connectWalletAction()" class="btn btn-primary">Connect Wallet</button>
+                            <button *ngIf="!isWalletConnected" (click)="showSelectNetworkModal()" class="btn btn-primary">Connect Wallet</button>
                             <ng-container *ngIf="isWalletConnected">
                                 <span *ngIf="!wrongNetwork" class="address"><img src="/assets/images/eth.svg" alt=""> {{walletAddress}}</span>
                                 <button *ngIf="!wrongNetwork" class="btn btn-dark" (click)="logoutWallet()">Disconnect Wallet</button>
@@ -63,3 +63,27 @@
         <app-deposit [isSelector]="true"></app-deposit>
     </div>
 </div>
+
+
+<div class="modal fade {{selectNetworkModal}}" id="confirmModalBox" [ngStyle]="{'display': selectNetworkModal == 'show' ? 'block' : 'none' }">
+    <div class="modal-dialog modal-dialog-centered site-modal">
+        <div class="modal-content">
+            <div class="modal-top">
+                <img (click)="hideSelectNetworkModal()" src="./assets/images/icon-close.svg" alt="" style="cursor:pointer;">
+                <h2>Select Network</h2>
+            </div>
+            <div class="select-icon">
+                <img src="/assets/images/eth.svg" alt="">
+                <select class="form-control" [(ngModel)]="web3Network">
+                    <option value="ETH">Ethereum Mainnet</option>
+                </select>
+            </div>
+            <span class="modal-info">Recommended Network: <span>Ethereum Mainnet</span></span>
+            <br>
+            <div class="buttons">
+                <button class="btn btn-primary" (click)="connectWalletAction()">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade {{selectNetworkModal}}" [ngStyle]="{'display': selectNetworkModal == 'show' ? 'block' : 'none' }"></div>

@@ -146,7 +146,6 @@ export class Web3Service {
     logoutWallet = async () => {
         window.localStorage.removeItem('accountAddress');
         if(this.provider){
-            console.log(123);
             await this.provider.close();
             await this.web3Modal.clearCachedProvider();
             this.provider = null;
@@ -179,8 +178,7 @@ export class Web3Service {
     getAccountData = async() => {
         this.web3js = new Web3(window.ethereum);
         await this.web3js.eth.getAccounts((err:any, accounts:any) =>{
-          console.error(err);
-          console.log(accounts);
+            console.log(accounts);
           if(accounts.length > 0){
             this.walletAddress = accounts[0];
             this.isWalletConnected = true;
@@ -196,7 +194,6 @@ export class Web3Service {
     showModelConnetions = async() => {
         // Subscribe to accounts change
         window.ethereum.on('accountsChanged', (account:any) => {
-            console.log(account);
             if (null !== account && account.length > 0) {
                 this.walletAddress = account[0];
                 this.setWeb3WalletData(this.provider,this.walletAddress);

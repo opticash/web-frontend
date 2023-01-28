@@ -16,6 +16,8 @@ export abstract class BaseWeb3Class {
     isWalletConnected:boolean = false;
     wrongNetwork: boolean = false;
     confirmModal: string = '';
+    selectNetworkModal: string = '';
+    web3Network: string = 'ETH';
 
     constructor(
         public web3Service:Web3Service,
@@ -54,6 +56,7 @@ export abstract class BaseWeb3Class {
     }
 
     connectWalletAction(){
+        this.hideSelectNetworkModal();
         this.web3Service.connectWalletAction();
     }
 
@@ -72,6 +75,13 @@ export abstract class BaseWeb3Class {
     
     hideConfirmModal(){
         this.confirmModal = '';
+    }
+
+    showSelectNetworkModal(){
+        this.selectNetworkModal = 'show';
+    }
+    hideSelectNetworkModal(){
+        this.selectNetworkModal = '';
     }
  
 }
