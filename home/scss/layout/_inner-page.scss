@@ -131,3 +131,11 @@
     .btn{font-size:$ft26; font-weight:700; padding:.65rem 3rem;}
     .dialog-close{background:#FFF url(../images/X.svg) center center no-repeat; background-size:60% 60%; height:3rem; width:3rem; border-radius:50%;}
 }
+
+.static-content{padding-bottom:7rem; padding-top:15rem; color:#FFF;
+    background:#0E0E0E url(../images/bg11.jpg) top center no-repeat; background-size:100% auto; position: relative;
+    h1{margin-bottom:2rem;}
+    h2,h3{font-size:$ft28; font-family:$ftDefault; color:#C3FF43; margin-bottom:1rem;}
+    p,li{font-size:$ft24; line-height:1.8em;}
+    li{padding-bottom:.5rem;}
+}
