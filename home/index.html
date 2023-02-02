@@ -786,7 +786,7 @@ gtag('config', 'G-G1CM0C3M9X');
 
 <div id="siteCookies" class="cookies-box">
 	<div class="container d-block d-md-flex align-items-center">
-		<div class="text">We use cookies to offer you a better browsing experience, analyse site traffic, personalise content, and serve targeted advertisements. Read about how we use cookies and how you can control them on our Privacy Policy. If you continue to use this site, you consent to our use of cookies.</div>
+		<div class="text">Opticash use cookies and other identifiers during your navigation on this site to ensure proper functioning of the website, measure its audience and performance, enable the use of third-party functionalities and for advertising purpose. By remaining on this website, you consent to our use of cookies and the <a href="https://opticash.io/privacy-policy.html" target="_blank">Privacy Policy.</a></div>
 		<div>
 			<button type="button" onClick="hideSiteCookies()" class="btn btn-primary">ACCEPT</button>
 			<button type="button" onClick="hideSiteCookies()" class="btn btn-outline">REJECT</button>
@@ -1077,7 +1077,8 @@ gtag('config', 'G-G1CM0C3M9X');
 				tweets.forEach(element => {
 					let content = linkURL(element.text);
 					content = linkHashtags(content);
-					let html = `<div class="tweet-box"><div class="box">
+					let html = `<div class="tweet-box">
+						<div class="box" onclick="openTweet('${element.id}');" style="cursor: pointer;">
 								<div class="tweet-top">
 									<div class="info">
 										<img src="./images/site-logo2.svg" alt="">
@@ -1099,6 +1100,11 @@ gtag('config', 'G-G1CM0C3M9X');
 		.catch(function (error) {
 			console.log(error);
 		});
+	}
+
+	function openTweet(tweetId) {
+		//alert(tweetId);
+		window.open("https://twitter.com/opticash_io/status/" + tweetId, "_blank");
 	}
 
 	function linkHashtags(text) {
