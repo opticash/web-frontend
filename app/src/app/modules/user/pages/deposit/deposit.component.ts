@@ -249,7 +249,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     getEthValue(){
         this.userServce.getEthValue().subscribe(data => {
             this.usdValue = Number(data.USD);
-            const value = Number(data.USD) * Number(this.form.value.amount);
+            const value = Number(data.USD) * Number(this.form.value.amount) * 10;
             this.opchValue = Number(parseFloat(value.toString()).toFixed(2));
         });
     }
