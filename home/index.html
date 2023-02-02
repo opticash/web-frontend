@@ -24,6 +24,15 @@
 <link href="css/slick.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1CM0C3M9X"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-G1CM0C3M9X');
+</script>
 </head>
 
 <body>
@@ -709,6 +718,14 @@
 		</div>
 	</div>
 
+	<div class="twitter-feeds page-section">
+		<div class="container">
+			<h2>Our Twitter Feeds <img src="./images/icon-twitter.png" alt=""></h2>
+			<div class="site-logo"><img src="./images/site-logo1.png" alt=""></div>
+			<div id="tweetCarousel"></div>
+		</div>
+	</div>
+
 	<div class="join-community page-section">
 		<div class="container">
 			<div class="box">
@@ -765,6 +782,16 @@
 </footer>
 <!---END: Footer-->
 
+</div>
+
+<div id="siteCookies" class="cookies-box">
+	<div class="container d-block d-md-flex align-items-center">
+		<div class="text">We use cookies to offer you a better browsing experience, analyse site traffic, personalise content, and serve targeted advertisements. Read about how we use cookies and how you can control them on our Privacy Policy. If you continue to use this site, you consent to our use of cookies.</div>
+		<div>
+			<button type="button" onClick="hideSiteCookies()" class="btn btn-primary">ACCEPT</button>
+			<button type="button" onClick="hideSiteCookies()" class="btn btn-outline">REJECT</button>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade promocional-dialog" id="promocionalDialog" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -848,7 +875,16 @@
 			arrows: false,
 			buttons: false
 		});
-	})
+
+		if(!localStorage.getItem('siteCookies')){
+			$('#siteCookies').fadeIn();
+		}
+	});
+
+	function hideSiteCookies(){
+		$('#siteCookies').fadeOut();
+		localStorage.setItem('siteCookies',1);
+	}
 	
 	var myModal = new bootstrap.Modal(document.getElementById('promocionalDialog'), {
 		keyboard: false
@@ -937,7 +973,7 @@
 		document.getElementsByClassName('site-loader')[0].style.display = 'flex';
 		setTimeout(() => {
 			myModal.show();
-		}, 2000);
+		}, 8000);
 	}
 
 	$(function() {
@@ -948,7 +984,7 @@
 		setTimeout(() => {
 			$('#site-content').removeClass('show-loader');
 			$('.site-loader').fadeOut();
-		}, 3000);
+		}, 1000);
 
 		// setTimeout(() => {
 		// 	$('#snow').fadeIn();
@@ -989,6 +1025,7 @@
 		// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 		// 	return new bootstrap.Tooltip(tooltipTriggerEl)
 		// })
+		getTweet();
 	});
 
 	function subscribe(element) {
@@ -1021,6 +1058,91 @@
 
 		document.getElementById("subscribeBtn").disabled = true;
 		return false;
+	}
+
+	function getTweet(){
+		var config = {
+			method: 'post',
+			url:  'https://api.opticash.io/user/tweets',
+			headers: { 
+				'Content-Type': 'application/json'
+			},
+		};
+
+		axios(config).then(function (response) {
+			console.log(response.data);
+			if(response.data.type){
+				const tweets = response.data.data;
+				let tweetHtml = '';
+				tweets.forEach(element => {
+					let content = linkURL(element.text);
+					content = linkHashtags(content);
+					let html = `<div class="tweet-box"><div class="box">
+								<div class="tweet-top">
+									<div class="info">
+										<img src="./images/site-logo2.svg" alt="">
+										<span>&#8226; ${element.created_at}</span>
+									</div>
+									<div class="twitter-icon"><img src="./images/icon-twitter.png" alt=""></div>
+								</div>
+								<div class="tweet-content">
+									<p>${content}</p>
+								</div>
+							</div></div>`
+					tweetHtml = tweetHtml + html;
+				});
+				$('#tweetCarousel').html(tweetHtml);
+				bindTweetCarousel();
+			}
+			
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
+	function linkHashtags(text) {
+		// urls = text.match(/#([a-zA-Z0-9]+)/g);
+		// console.log(urls);
+		return text.replace(
+			/#([a-zA-Z0-9]+)/g,
+			'<a class="hashtag" target="_blank" href="https://twitter.com/hashtag/$1?src=hashtag_click">#$1</a>'
+		);
+	}
+
+	function linkURL(text) {
+		return text.replace(
+			/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
+			'<a href="$&" target="_blank">$&</a>'
+		);
+	}
+
+	function bindTweetCarousel(){
+		$('#tweetCarousel').slick({
+			infinite: true,
+			slidesToShow: 3,
+			slidesToScroll: 3,
+			autoplay: true,
+  			autoplaySpeed: 2000,
+			arrows:false,
+			dots:true,
+			responsive: [
+				{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2,
+				}
+				},
+				{
+				breakpoint: 576,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
+				}
+			]
+		});
 	}
 	
 	function copyToClipboard(element) {
@@ -1134,5 +1256,20 @@
 	}
 	}, 1000);
 </script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+	(function(){
+	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+	s1.async=true;
+	s1.src='https://embed.tawk.to/63d95bc1474251287910b4ed/1go4gsrlh';
+	s1.charset='UTF-8';
+	s1.setAttribute('crossorigin','*');
+	s0.parentNode.insertBefore(s1,s0);
+	})();
+</script>
+<!--End of Tawk.to Script-->
+
 </body>
 </html>

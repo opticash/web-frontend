@@ -70,7 +70,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                         console.log("balance error ", error)
                     } else {
                         this.showConfirmModal();
-                        console.log(res);
+                        console.log('isApprovedUSDT=>',res);
                         const allowanceUSDT = this.web3Service.getValidValue(res);
                         if (allowanceUSDT < this.form.value.amount) {
                             this.isUSDTApprove = true;

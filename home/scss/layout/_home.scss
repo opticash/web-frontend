@@ -210,3 +210,39 @@
 }
 
 .featured-box{background: url(../images/bg3.jpg) no-repeat center 10%; background-size: cover; margin-bottom:2rem;}
+
+.twitter-feeds{ border-bottom:1px solid #98C538; border-top:1px solid #98C538; background-color:#050603;
+    .site-logo{margin-top:2rem;  margin-bottom:2rem;
+        img{width:320px;}
+    }
+    .tweet-box{padding:0 .75rem;
+        & > .box{background:#070707; border: 1px solid #1C230D; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding:1rem;}
+        .tweet-top{display:flex; justify-content:space-between; align-items:center;
+            .info{display:flex; align-items:flex-end;
+                img{width:160px;}
+                span{font-size:10px; margin-bottom:6px; margin-left:-30px; }
+            }
+            .twitter-icon img{width:40px;}
+        }
+        .tweet-content{color:#FFF; font-size:12px; margin-top:1rem;
+            p{white-space: pre-line;}
+            a{color:#66BEFF; text-decoration:underline;}
+        }
+    }
+}
+.slick-dots{display:block; width:100%; padding:0; margin:0; list-style:none; text-align:center;
+    li{position:relative; display:inline-block; width:16px; height:16px; margin:0 5px; padding:0; cursor:pointer;
+        background-color:#363636; border-radius:50%;
+        &.slick-active{background-color:#C3FF43;}
+        button{font-size:0; line-height:0; display:block; background:none; border:none; }
+        // button:hover,
+        // button:focus{outline: none;}
+        // button:hover:before,
+        // button:focus:before{opacity: 1;}
+        // button:before{ font-family:'slick'; font-size:6px; line-height:20px; position:absolute; top:0; left:0; width:20px; height:20px; content:'•'; text-align:center; opacity:.25; color:black;
+        //     -webkit-font-smoothing: antialiased;
+        //     -moz-osx-font-smoothing: grayscale;
+        // }
+        // &.slick-active button:before{opacity:.75; color:black;}
+    }
+}

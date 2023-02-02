@@ -14,3 +14,11 @@
         a{margin-left:1.5rem; color:#FFF;}
     }
 }
+
+
+.cookies-box{position:fixed; bottom:0; left:0; width:100%; z-index:3000000000; background:rgba(15, 17, 9, 0.89); box-shadow:0px 4px 53px 27px rgba(64, 81, 36, 0.62); padding:2rem; color:#FFF; display:none;
+    .text{width:100%; margin-right:4rem; font-size:$ft18; line-height:1.7;}
+    .btn{font-size:$ft18; font-weight:800; padding:.65rem 1.75rem; }
+    .btn-primary{margin-bottom:1rem;}
+    .btn-outline{color:#C3FF44; border:solid 2px #C3FF44; background: none; padding:calc(.65rem - 2px) calc(1.75rem - 2px);}
+}
