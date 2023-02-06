@@ -47,7 +47,7 @@ gtag('config', 'G-G1CM0C3M9X');
 			<div class="col-md-2 col-6">
 				<div class="logo">
 					<a href="index.html#win50K"><img src="images/logo.png" alt="OptiCash"/></a>
-					<span id="setLanguage" class="set-language" onClick="setLanguage('en')">en</span>
+					<!-- <span id="setLanguage" class="set-language" onClick="setLanguage('en')">en</span> -->
 					<div id="google_translate_element" title="Select Language"></div>
 				</div>
 			</div>
@@ -814,12 +814,12 @@ gtag('config', 'G-G1CM0C3M9X');
 
 <script type="text/javascript">
 	//|| navigator.userLanguage || navigator.languages;
-	var userLang = navigator.language; 
+	var userLang = navigator.language;
 	if (userLang.substr(0,2) != "en"){
 		setCookie('googtrans', '/en/'+userLang, 1);
-		document.getElementById("google_translate_element").style.display="none";
-	} else {
 		document.getElementById("setLanguage").style.display="none";
+	} else {
+		document.getElementById("google_translate_element").style.display="none";
 	}
 
 	function googleTranslateElementInit() {
