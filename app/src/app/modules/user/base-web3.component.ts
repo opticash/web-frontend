@@ -1,4 +1,3 @@
-import { config } from "rxjs";
 import { Web3Service } from "./services/web3.service";
 import Web3 from "web3";
 
@@ -12,7 +11,6 @@ export abstract class BaseWeb3Class {
     claimed: string;
     activeToken:string;
     walletAddress: string = ''
-    configToken:any = config;
     isWalletConnected:boolean = false;
     wrongNetwork: boolean = false;
     confirmModal: string = '';

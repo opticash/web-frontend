@@ -45,6 +45,14 @@ export class UserService {
     confirmTx(data:any) {
         return this.baseService.postRequest(ApiConstants.CONFIRM_TX,data,false);
     }
+
+    getNotifications() {
+        return this.baseService.postRequest(ApiConstants.GET_NOTIFICATIONS);
+    }
+
+    updateNotifications(data:any) {
+        return this.baseService.postRequest(ApiConstants.UPDATE_NOTIFICATIONS,data);
+    }
     
     
 }

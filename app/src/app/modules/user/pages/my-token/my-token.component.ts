@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import Web3 from "web3";
 import { Web3Service } from 'app/modules/user/services/web3.service';
-import { config} from 'app/constants/config';
 import { SpinnerService } from 'app/shared/services/spinner.service';
 import { Abi, AbiTB } from 'app/constants/abi';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'app-my-token',
@@ -20,7 +20,7 @@ export class MyTokenComponent implements AfterViewInit {
     claimed: string;
     activeToken:string;
     walletAddress: string = ''
-    configToken:any = config;
+    configToken:any = environment.config;
     isWebConnected:boolean = false;
     overlayMsg:string = '';
     wrongNetwork: boolean = false;
@@ -40,7 +40,6 @@ export class MyTokenComponent implements AfterViewInit {
             this.isWebConnected = true;
             this.web3js = new Web3(this.web3Service.web3Provider);
             if(!this.wrongNetwork){
-                console.log(1);
                 // this.tokenBalance();
                 // this.getTokenData(this.activeToken);
             }
@@ -58,7 +57,6 @@ export class MyTokenComponent implements AfterViewInit {
             this.isWebConnected = true;
             this.web3js = new Web3(this.web3Service.web3Provider);
             if(!this.wrongNetwork){
-                console.log(2);
                 this.tokenBalance();
                 this.getTokenData(this.activeToken);
             }
@@ -69,7 +67,6 @@ export class MyTokenComponent implements AfterViewInit {
                 this.overlayMsg = 'Please choose proper blockchain'
             } else {
                 if(this.walletAddress){
-                    console.log(3);
                     this.tokenBalance();
                     this.getTokenData(this.activeToken);
                 }
@@ -99,7 +96,7 @@ export class MyTokenComponent implements AfterViewInit {
 
     listenClaimEvent() {
         return new Promise(resolve => {
-        const configToken:any = config;
+        const configToken:any = environment.config;
         const myContractInstance = new this.web3js.eth.Contract(Abi, configToken[this.activeToken]);
         myContractInstance.events.ClaimAllocationEvent({}, (error:any, result:any) => {
             console.log("Hello world, ", result);
@@ -156,7 +153,7 @@ export class MyTokenComponent implements AfterViewInit {
 
     tokenBalance = async () => {
         let addrr = this.walletAddress //"0x46ed2A88D9F786EA233d0D783847e0a2502dA101"
-        const myContractInstance = new this.web3js.eth.Contract(AbiTB, config.Token);
+        const myContractInstance = new this.web3js.eth.Contract(AbiTB, environment.config.Token);
         await myContractInstance.methods.balanceOf(addrr).call().then((data: any,error: any) => {
           if (error) {
             console.log(error)

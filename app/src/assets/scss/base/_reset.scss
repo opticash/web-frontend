@@ -31,3 +31,27 @@ caption{ padding:0;}
 }
 .btn-link{text-decoration:none;}
 .btn.disabled, .btn:disabled{background:#4E4E4E; color:#000; opacity:1;}
+
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  *{
+    scrollbar-width: auto;
+    scrollbar-color: #141414 #2D2D2D;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #141414;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #2D2D2D;
+    border-radius: 10px;
+    border: none;
+	border: 3px solid #141414;
+  }

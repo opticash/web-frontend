@@ -25,7 +25,7 @@ export class BaseService {
         return this.http.get<APIResponse>(apiURL, { headers: this.requestHeader() });
     }
 
-    public postRequest(apiURL: string, param: any, isSpinner:boolean = true): Observable<APIResponse> {
+    public postRequest(apiURL: string, param?: any, isSpinner:boolean = true): Observable<APIResponse> {
         const body = JSON.stringify(param);
         return this.http.post<APIResponse>(apiURL, body, { headers: this.requestHeader(), reportProgress:isSpinner});
     }

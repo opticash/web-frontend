@@ -17,9 +17,23 @@
                     </span>
                 </div>
                 
-                <div class="notification ">
-                    <img src="/assets/images/notification.svg" alt="">
-                    <!-- <span class="dot"></span> -->
+                <div class="notification">
+                    <span class="notification-icon" (click)="showNotification()"><img src="/assets/images/notification.svg" alt=""></span>
+                    <span *ngIf="notificationsNewcount > 0" class="dot"></span>
+                    <div *ngIf="notificationPop" class="notification-pop">
+                        <div class="pop-top">
+                            <h3>Whats New? <span class="badge" *ngIf="notificationsNewcount > 0">{{notificationsNewcount}}</span></h3>
+                        </div>
+                        <div class="pop-body">
+                            <ul>
+                                <li *ngFor="let data of notificationsData"><a (click)="updateNotification(data.id)" href="{{data.link}}" target="_blank">
+                                    <h4>{{data.title}}</h4>
+                                    <div class="date">{{data.created | date}}</div>
+                                    <p>{{data.body}}</p>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button #eref class="navbar-toggler lines-button" [ngClass]="{'collapsed' : isCollapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" (click)="isCollapsed = !isCollapsed;">

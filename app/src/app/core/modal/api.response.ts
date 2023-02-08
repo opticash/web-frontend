@@ -4,5 +4,6 @@ export class APIResponse {
     status?: number;
     auth?: any;
     type: any;
-    USD?: number
+    USD?: number;
+    newcount:number;
 }

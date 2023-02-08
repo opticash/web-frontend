@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/core/service/authentication.service';
 import { BaseWeb3Class } from 'app/modules/user/base-web3.component';
+import { UserService } from 'app/modules/user/services/user.service';
 import { Web3Service } from 'app/modules/user/services/web3.service';
 
 @Component({
@@ -13,12 +14,16 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
     userData:any;
     isCollapsed:boolean = true;
     disconnect: boolean = false;
+    notificationPop: boolean = false;
     date:Date;
+    notificationsData:any;
+    notificationsNewcount:number;
     
     constructor(
         private authenticationService:AuthenticationService,
         private router: Router, 
-        web3Service:Web3Service,
+        private userService: UserService,
+        web3Service: Web3Service,
     ) {
         super(web3Service)
     }
@@ -33,6 +38,7 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
         this.web3Service.accountStatus$.subscribe(x => {
             this.wrongNetwork = x;
         });
+        this.getNotificationData();
     }
 
     getValidValue(valu:any) {
@@ -54,4 +60,28 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
         this.isCollapsed = true;
     }
 
+    getNotificationData(){
+        this.userService.getNotifications().subscribe(resp => {
+            if(resp.type){
+                this.notificationsData = resp.data;
+                this.notificationsNewcount = resp.newcount;
+            }
+        })
+    }
+    updateNotification(id?:number){
+        let data;
+        if(id){
+            data = {not_id:id}
+        }
+        this.userService.updateNotifications(data).subscribe(resp => {
+        })
+    }
+
+    showNotification(){
+        this.notificationPop = !this.notificationPop;
+        if(this.notificationsNewcount > 0 && !this.notificationPop){
+            this.updateNotification();
+            this.notificationsNewcount = 0;
+        }
+    }
 }
