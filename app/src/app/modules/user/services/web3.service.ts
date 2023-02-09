@@ -3,9 +3,9 @@ import { Subject } from 'rxjs';
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from '@walletconnect/web3-provider'
-import { config } from 'app/constants/config';
 import { ToastrService } from 'ngx-toastr';
 import WalletLink from 'walletlink'
+import { environment } from 'environments/environment';
 declare let window: any;
 declare let $: any;
 
@@ -19,9 +19,9 @@ export class Web3Service {
     isWalletConnected:boolean = false; 
     walletAddress: string = ''
     wrongNetwork: boolean = false;
-
     private provider: any;
-    
+    configToken:any = environment.config;
+    web3Network: string;
     providerOptions:any = {
         injected: {
             display: {
@@ -37,16 +37,16 @@ export class Web3Service {
             },
             options: {
                 appName: 'Opticash', // Your app name
-                networkUrl: `https://goerli.infura.io/v3/defa9004b56046e1a9ba73bc5d9e5776`,
-                chainId: 5,
+                networkUrl: this.configToken.ETH_NETWORK.Web3Modal.rpcUrl,
+                chainId: environment.config.ETH_NETWORK.Web3Modal.network,
             },
             package: WalletLink,
             connector: async (_:any, options:any) => {
                 const { appName, networkUrl, chainId } = options
                 const walletLink = new WalletLink({
-                appName: 'Opticash',
-                appLogoUrl: 'assets/images/logo.png',
-                darkMode: true
+                    appName: 'Opticash',
+                    appLogoUrl: 'assets/images/logo.png',
+                    darkMode: true
                 });
                 const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
                 await provider.enable();
@@ -59,9 +59,13 @@ export class Web3Service {
                 description: " "
             },
             options: {
-                infuraId: config.Web3Modal.infura_id,
                 rpc: {
-                5: 'https://goerli.infura.io/v3/',
+                    1: environment.config.ETH_NETWORK.Web3Modal.rpcUrl,
+                    56: environment.config.BSC_NETWORK.Web3Modal.rpcUrl,
+                    137: environment.config.POLY_NETWORK.Web3Modal.rpcUrl,
+                    5: environment.config.ETH_NETWORK.Web3Modal.rpcUrl,
+                    97: environment.config.BSC_NETWORK.Web3Modal.rpcUrl,
+                    80001: environment.config.POLY_NETWORK.Web3Modal.rpcUrl,
                 }
             },
         }
@@ -76,7 +80,7 @@ export class Web3Service {
     walletAddress$ = this.walletAddressSource.asObservable();
     private accountStatusSource = new Subject<any>();
     accountStatus$ = this.accountStatusSource.asObservable();
-
+    
     constructor(
         private toastrService:ToastrService,
     ) {
@@ -101,6 +105,7 @@ export class Web3Service {
         //         this.isWrongNetwork(network);
         //     });
         // }
+        this.web3Network = this.getWeb3Network();
         this.showModelConnetions();
         this.installMetamask();
     }
@@ -126,8 +131,8 @@ export class Web3Service {
     }
 
     isWrongNetwork(network:any){
-        if (network !== undefined && network != config.Web3Modal.network ) {
-            this.toastrService.info("Please choose proper blockchain",'',{positionClass:'toast-bottom-right'});
+        if (network !== undefined && network != this.configToken[this.web3Network].Web3Modal.network ) {
+            this.toastrService.info("Please choose "+this.configToken[this.web3Network].Web3Modal.chainName,'',{positionClass:'toast-bottom-right'});
             this.wrongNetwork = true;
         } else {
             this.wrongNetwork = false;
@@ -168,11 +173,18 @@ export class Web3Service {
         return valu
     }
 
-    switchToBinance = async () => {
+    switchToChain = async () => {
         await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
-            params: [{ chainId: this.web3js.utils.toHex(config.Web3Modal.network) }]
+            method: 'wallet_addEthereumChain',
+            params: [{
+                chainId: this.web3js.utils.toHex(this.configToken[this.web3Network].Web3Modal.network),
+                rpcUrls: [this.configToken[this.web3Network].Web3Modal.rpcUrl],
+                chainName: this.configToken[this.web3Network].Web3Modal.chainName,
+                nativeCurrency: this.configToken[this.web3Network].nativeCurrency,
+                blockExplorerUrls: [this.configToken[this.web3Network].blockExplorerUrls]
+            }]
         });
+        this.getAccountData();
     }
 
     getAccountData = async() => {
@@ -189,6 +201,7 @@ export class Web3Service {
         const network = await this.web3js.eth.net.getId();
         this.isWrongNetwork(network);
         this.walletAddressSource.next(this.walletAddress);
+        window.localStorage.setItem('accountAddress', this.walletAddress)
     }
 
     showModelConnetions = async() => {
@@ -225,4 +238,17 @@ export class Web3Service {
             this.logoutWallet();
         })
     }
+
+    setWeb3Network(data:string){
+        this.web3Network = data;
+    }
+
+    getWeb3Network():any{
+        if(this.web3Network){
+            return this.web3Network;
+        } else {
+            return localStorage.getItem('network');
+        }
+    }
+
 }

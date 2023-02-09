@@ -64,8 +64,8 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                     this.timeValueReconnect = 0
                 }, 1500)
                 let addrr =  this.walletAddress;
-                const myContractInstance = new this.web3js.eth.Contract(AbiTB, environment.config.USDTContractAddress);
-                await myContractInstance.methods.allowance(addrr,environment.config.PaymentContractAddress).call().then((res: any, error: any) => {
+                const myContractInstance = new this.web3js.eth.Contract(AbiTB, this.configToken[this.web3Network].USDTContractAddress);
+                await myContractInstance.methods.allowance(addrr,this.configToken[this.web3Network].PaymentContractAddress).call().then((res: any, error: any) => {
                     if (error) {
                         console.log("balance error ", error)
                     } else {
@@ -97,8 +97,8 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         this.spinner.show();
         console.log(2);
         const addr = this.walletAddress;
-        const myContractInstance = new this.web3js.eth.Contract(AbiTB, environment.config.USDTContractAddress);
-        await myContractInstance.methods.approve(environment.config.PaymentContractAddress,"10000000000000000000000000").send({ from: addr }, (err:any, res:any ) => {
+        const myContractInstance = new this.web3js.eth.Contract(AbiTB, this.configToken[this.web3Network].USDTContractAddress);
+        await myContractInstance.methods.approve(this.configToken[this.web3Network].PaymentContractAddress,"10000000000000000000000000").send({ from: addr }, (err:any, res:any ) => {
             if (res) {
                 console.log('get Approval USDT', res);
                 this.listenApprovedEvent();
@@ -111,7 +111,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
 
     listenApprovedEvent() {
         return new Promise(resolve => {
-        const myContractInstance = new this.web3js.eth.Contract(AbiTB, environment.config.USDTContractAddress);
+        const myContractInstance = new this.web3js.eth.Contract(AbiTB, this.configToken[this.web3Network].USDTContractAddress);
         myContractInstance.events.Approval({}, (error:any, result:any) => {
             try {
                 if (result) {
@@ -136,7 +136,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
 
     listenUSDTTransferEvent() {
         return new Promise(resolve => {
-        const myContractInstance = new this.web3js.eth.Contract(AbiPC, environment.config.PaymentContractAddress);
+        const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
         myContractInstance.events.DepositUSDT({}, (error:any, result:any) => {
             console.log("listen Transfer Event, ", result);
             this.waitingTxShow = '';
@@ -159,7 +159,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
 
     sendUSDT = async() => {
         const addr = this.walletAddress;
-        const myContractInstance = new this.web3js.eth.Contract(AbiPC, environment.config.PaymentContractAddress);
+        const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
         this.spinner.show();
         await myContractInstance.methods.depositUSDT(this.web3js.utils.toWei(this.form.value.amount, "ether")).send({ from: addr}, (err:any, res:any ) => {
             this.spinner.hide();
@@ -184,7 +184,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
 
     sendETH = async() => {
         const addr = this.walletAddress;
-        const myContractInstance = new this.web3js.eth.Contract(AbiPC, environment.config.PaymentContractAddress);
+        const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
         this.spinner.show();
         await myContractInstance.methods.depositETH().send({ from: addr, value: this.web3js.utils.toWei(this.form.value.amount, "ether") }, (err:any, res:any ) => {
             this.spinner.hide();
@@ -203,7 +203,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
 
     listenETHTransferEvent() {
         return new Promise(resolve => {
-        const myContractInstance = new this.web3js.eth.Contract(AbiPC, environment.config.PaymentContractAddress);
+        const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
         myContractInstance.events.DepositETH({}, (error:any, result:any) => {
             console.log("listen Transfer Event, ", result);
             this.waitingTxShow = '';

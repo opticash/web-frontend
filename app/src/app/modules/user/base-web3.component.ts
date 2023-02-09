@@ -1,5 +1,6 @@
 import { Web3Service } from "./services/web3.service";
 import Web3 from "web3";
+import { environment } from "environments/environment";
 
 export abstract class BaseWeb3Class {
     
@@ -15,7 +16,8 @@ export abstract class BaseWeb3Class {
     wrongNetwork: boolean = false;
     confirmModal: string = '';
     selectNetworkModal: string = '';
-    web3Network: string = 'ETH';
+    web3Network: any = 'ETH_NETWORK';
+    configToken:any = environment.config;
 
     constructor(
         public web3Service:Web3Service,
@@ -24,6 +26,7 @@ export abstract class BaseWeb3Class {
     }
 
     bindWeb3Service( ){
+        this.web3Network = this.web3Service.getWeb3Network();
         this.wrongNetwork = this.web3Service.wrongNetwork;
         this.walletAddress = this.web3Service.walletAddress;
         this.activeToken = 'Community';
@@ -43,6 +46,7 @@ export abstract class BaseWeb3Class {
         this.web3Service.walletAddress$.subscribe(x => {
             this.walletAddress = x;
             this.isWalletConnected = true;
+            this.web3Network = this.web3Service.getWeb3Network();
             if(!this.wrongNetwork){
                 this.web3js = new Web3(this.web3Service.web3Provider);
             }
@@ -50,16 +54,17 @@ export abstract class BaseWeb3Class {
         this.web3Service.accountStatus$.subscribe(x => {
             this.wrongNetwork = x;
         });
-    
     }
 
     connectWalletAction(){
         this.hideSelectNetworkModal();
+        localStorage.setItem('network',this.web3Network);
+        this.web3Service.setWeb3Network(this.web3Network);
         this.web3Service.connectWalletAction();
     }
 
     changeNetwork(){
-        this.web3Service.switchToBinance();
+        this.web3Service.switchToChain();
     }
 
     logoutWallet(){

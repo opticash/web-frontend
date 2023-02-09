@@ -169,7 +169,7 @@ export class MyTokenComponent implements AfterViewInit {
     }
 
     changeNetwork(){
-        this.web3Service.switchToBinance();
+        this.web3Service.switchToChain();
     } 
 
 }

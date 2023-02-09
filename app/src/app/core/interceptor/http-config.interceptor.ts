@@ -58,6 +58,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                 if(error.error.message === 'jwt expired'){
                     this.authenticationService.logout();
                     this.router.navigate(['auth/sign-in']);
+                    this.toastrService.error('Session Timeout due to inactivity, Please login again');
                 } else {
                     let msg = '';
                     if(error.error.errors && error.error.errors.length > 0){

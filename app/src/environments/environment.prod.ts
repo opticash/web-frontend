@@ -1,17 +1,14 @@
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: 'https://api.opticash.io/',
   config: {
     base_url: "http://localhost:4200",
     blockchain: "Ethereum Mainnet",
     blockchain_url: "https://etherscan.io/",
-
-    Web3Modal: {
-        key: 'b9c4f15a-de2e-440b-97a0-7925abab9353',
-        network: 1,
-        infura_id: 'defa9004b56046e1a9ba73bc5d9e5776',
-        rpcUrl:'https://mainnet.infura.io/v3'
-    },
     
     Token		: "0x1c158ed21554507893fce5fecd6ddb48c2fa3f1b",
     Marketing	: "0xC1AE22aa796565cD6b572a07cb55e5E51504F5Cb",
@@ -23,7 +20,50 @@ export const environment = {
     Foundation	: "0x32f8718F5DfaE54aef19e6cC1872d438eb5a6f34",
     Adviser		: "0x8753E107c221FDcC02D21126f9B9c18054Dd463b",
 
-    USDTContractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-    PaymentContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86"
+    ETH_NETWORK : {
+      USDTContractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      PaymentContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86",
+      Web3Modal: {
+        network: 5,
+        rpcUrl:'https://rpc.ankr.com/eth_goerli',
+        chainName: 'Ethereum Chain'
+      },
+      nativeCurrency: {
+        name: 'Ethereum',
+        symbol: 'ETH',
+        decimals: 18
+      },
+      blockExplorerUrls:'https://goerli.infura.io/v3/'
+    },
+    BSC_NETWORK : {
+      USDTContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86",
+      PaymentContractAddress: "0x4036A25a132c8fc735F480b02a44c241d1DE7532",
+      Web3Modal: {
+        network: 97,
+        rpcUrl:'https://rpc.ankr.com/bsc_testnet_chapel',
+        chainName: 'Binance SmartChain',
+      },
+      nativeCurrency: {
+        name: 'Binance Coin',
+        symbol: 'BNB',
+        decimals: 18
+      },
+      blockExplorerUrls:'https://testnet.bscscan.com'
+    },
+    POLY_NETWORK : {
+      USDTContractAddress: "0xE097d6B3100777DC31B34dC2c58fB524C2e76921",
+      PaymentContractAddress: "0xD307E69756c5AdCe00234dBff03681c71e0daF86",
+      Web3Modal: {
+        network: 80001,
+        rpcUrl:'https://rpc.ankr.com/polygon_mumbai',
+        chainName: 'Polygon Chain'
+      },
+      nativeCurrency: {
+        name: 'Matic Coin',
+        symbol: 'MATIC',
+        decimals: 18
+      },
+      blockExplorerUrls:'https://mumbai-explorer.matic.today/'
+    }
   }
 };

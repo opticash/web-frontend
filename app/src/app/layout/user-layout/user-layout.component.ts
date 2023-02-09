@@ -18,26 +18,27 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
     date:Date;
     notificationsData:any;
     notificationsNewcount:number;
-    
+
     constructor(
         private authenticationService:AuthenticationService,
         private router: Router, 
         private userService: UserService,
         web3Service: Web3Service,
     ) {
-        super(web3Service)
+        super(web3Service);
     }
 
     ngOnInit(): void {
         this.date = new Date();
         this.userData = this.authenticationService.getUserData();
-        this.web3Service.walletAddress$.subscribe(x => {
-            this.walletAddress = x;
-            console.log('walletAddress', this.walletAddress);
-        });
-        this.web3Service.accountStatus$.subscribe(x => {
-            this.wrongNetwork = x;
-        });
+        // this.web3Service.walletAddress$.subscribe(x => {
+        //     this.walletAddress = x;
+        //     console.log('walletAddress', this.walletAddress);
+        // });
+        // this.web3Service.accountStatus$.subscribe(x => {
+        //     this.wrongNetwork = x;
+        // });
+        this.bindWeb3Service();
         this.getNotificationData();
     }
 
