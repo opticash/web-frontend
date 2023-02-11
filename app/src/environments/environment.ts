@@ -19,21 +19,20 @@ export const environment = {
     Private		: "0x45d998d4BaCb3FF79092c1DD437355017fe83d5D",
     Foundation	: "0x32f8718F5DfaE54aef19e6cC1872d438eb5a6f34",
     Adviser		: "0x8753E107c221FDcC02D21126f9B9c18054Dd463b",
-
     ETH_NETWORK : {
-      USDTContractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-      PaymentContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86",
+      USDTContractAddress: "0x51472dC2431541DEDC0d7bd4286c9901C01740B5",
+      PaymentContractAddress: "0x7FAE70b1a009484c79c2b94a22991bcD63248205",
       Web3Modal: {
         network: 5,
         rpcUrl:'https://rpc.ankr.com/eth_goerli',
-        chainName: 'Ethereum Chain'
+        chainName: 'Goerli test network'
       },
       nativeCurrency: {
         name: 'Ethereum',
         symbol: 'ETH',
         decimals: 18
       },
-      blockExplorerUrls:'https://goerli.infura.io/v3/'
+      blockExplorerUrls:'https://goerli.etherscan.io/'
     },
     BSC_NETWORK : {
       USDTContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86",
@@ -41,7 +40,7 @@ export const environment = {
       Web3Modal: {
         network: 97,
         rpcUrl:'https://rpc.ankr.com/bsc_testnet_chapel',
-        chainName: 'Binance SmartChain',
+        chainName: 'Binance TestChain',
       },
       nativeCurrency: {
         name: 'Binance Coin',
@@ -56,7 +55,7 @@ export const environment = {
       Web3Modal: {
         network: 80001,
         rpcUrl:'https://rpc.ankr.com/polygon_mumbai',
-        chainName: 'Polygon Chain'
+        chainName: 'Polygon TestChain'
       },
       nativeCurrency: {
         name: 'Matic Coin',

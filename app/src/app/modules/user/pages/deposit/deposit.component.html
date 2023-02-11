@@ -18,7 +18,7 @@
                             <img src="/assets/images/image.png" alt="">
                             <select class="form-control" formControlName="currency" (change)="resetValues()"     
                                 [ngClass]="{ 'is-invalid': submitted && f['currency'].errors }">
-                                <option value="ETH">ETH</option>
+                                <option value="{{networkType}}">{{networkType}}</option>
                                 <option value="USDT">USDT</option>
                                 <option value="CARD">Pay with card</option>
                             </select>

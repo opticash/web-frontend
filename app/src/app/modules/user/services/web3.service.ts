@@ -22,6 +22,7 @@ export class Web3Service {
     private provider: any;
     configToken:any = environment.config;
     web3Network: string;
+    networkType: string;
     providerOptions:any = {
         injected: {
             display: {
@@ -105,9 +106,22 @@ export class Web3Service {
         //         this.isWrongNetwork(network);
         //     });
         // }
-        this.web3Network = this.getWeb3Network();
+        this.web3Network = this.getWeb3Network() ? this.getWeb3Network() : 'ETH_NETWORK';
+        this.networkType = this.getNetworkType(this.web3Network);
         this.showModelConnetions();
         this.installMetamask();
+    }
+
+    getNetworkType(network:any):any{
+        console.log(network);
+        let networkType:string = '';
+        if(network === 'ETH_NETWORK'){
+            return networkType = 'ETH'
+        }else if(network === 'BSC_NETWORK'){
+            return networkType = 'BNB'
+        }else if(network === 'POLY_NETWORK'){
+            return networkType = 'MATIC'
+        }
     }
 
 

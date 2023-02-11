@@ -52,7 +52,6 @@
                 <h3>Thank you for your interest in Opticash</h3>
                 <p>You can purchase OPCH tokens now on the Buy and home page. You can get a quick response to any questions and chat with the project in our Telegram: https://t.me/opticash_io or email Info@opticash.io </p>
                 <a href="javascript:void(0)">INVITE YOUR FRIENDS</a>
-                <div class="elfsight-app-e9a5741e-4223-4a3d-9008-d6955c0732e9"></div>
             </div>
         </div>
         <br>
@@ -74,8 +73,8 @@
                 <h2>Select Network</h2>
             </div>
             <div class="select-icon">
-                <img src="/assets/images/eth.svg" alt="">
-                <select class="form-control" [(ngModel)]="web3Network">
+                <img [src]="'/assets/images/'+networkType+'.png'" alt="">
+                <select class="form-control" [(ngModel)]="web3Network" (change)="getNetworkType()">
                     <option value="ETH_NETWORK">ETHEREUM MAINNET</option>
                     <option value="BSC_NETWORK">BINANCE SMARTCHAIN</option>
                     <option value="POLY_NETWORK">POLYGON MAINNET</option>

@@ -17,6 +17,7 @@ export abstract class BaseWeb3Class {
     confirmModal: string = '';
     selectNetworkModal: string = '';
     web3Network: any = 'ETH_NETWORK';
+    networkType: any = 'ETH';
     configToken:any = environment.config;
 
     constructor(
@@ -27,6 +28,7 @@ export abstract class BaseWeb3Class {
 
     bindWeb3Service( ){
         this.web3Network = this.web3Service.getWeb3Network();
+        this.networkType = this.web3Service.networkType;
         this.wrongNetwork = this.web3Service.wrongNetwork;
         this.walletAddress = this.web3Service.walletAddress;
         this.activeToken = 'Community';
@@ -85,6 +87,10 @@ export abstract class BaseWeb3Class {
     }
     hideSelectNetworkModal(){
         this.selectNetworkModal = '';
+    }
+
+    getNetworkType(){
+        this.networkType = this.web3Service.getNetworkType(this.web3Network);
     }
  
 }

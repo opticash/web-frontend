@@ -11,7 +11,7 @@
                 <div class="wallat d-none d-sm-block">
                     <button *ngIf="!walletAddress" (click)="showSelectNetworkModal()" class="btn btn-primary">Connect Wallet</button>
                     <span *ngIf="walletAddress">
-                        <span *ngIf="!wrongNetwork" class="address"><img src="/assets/images/eth.svg" alt=""> {{walletAddress}}</span>
+                        <span *ngIf="!wrongNetwork" class="address"><img [src]="'/assets/images/'+networkType+'.png'" alt=""> {{walletAddress}}</span>
                         <button *ngIf="!wrongNetwork" class="disconnect" (click)="logoutWallet()">Disconnect</button>
                         <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger">Change Network</button>
                     </span>
@@ -77,8 +77,8 @@
                 <h2>Select Network</h2>
             </div>
             <div class="select-icon">
-                <img src="/assets/images/eth.svg" alt="">
-                <select class="form-control" [(ngModel)]="web3Network">
+                <img [src]="'/assets/images/'+networkType+'.png'" alt="">
+                <select class="form-control" [(ngModel)]="web3Network" (change)="getNetworkType()">
                     <option value="ETH_NETWORK">ETHEREUM MAINNET</option>
                     <option value="BSC_NETWORK">BINANCE SMARTCHAIN</option>
                     <option value="POLY_NETWORK">POLYGON MAINNET</option>

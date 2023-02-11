@@ -8,7 +8,6 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { BaseWeb3Class } from '../../base-web3.component';
 import { Web3Service } from '../../services/web3.service';
-import { environment } from 'environments/environment';
 
 @Component({
     selector: 'app-deposit',
@@ -21,7 +20,6 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     submitted: boolean = false;
     isButtonClicked: boolean = false;
     waitingTxShow: string = '';
-    currencyType:string = 'ETH';
     timeValueReconnect: any = 0;
     opchValue: number = 0;
     usdValue: number = 0;
@@ -46,7 +44,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     ngOnInit(): void {
         this.bindWeb3Service();
         this.form = new FormGroup({
-            currency: new FormControl(this.currencyType, [Validators.required]),
+            currency: new FormControl(this.networkType, [Validators.required]),
             amount: new FormControl('',[Validators.required, Validators.pattern(/^\d*(?:[.,]\d{1,6})?$/), Validators.maxLength(20)]),
         });
         this.submitted = false;
@@ -70,9 +68,9 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                         console.log("balance error ", error)
                     } else {
                         this.showConfirmModal();
-                        console.log('isApprovedUSDT=>',res);
+                        console.log('isApprovedUSDT =>',res);
                         const allowanceUSDT = this.web3Service.getValidValue(res);
-                        if (allowanceUSDT < this.form.value.amount) {
+                        if (Number(allowanceUSDT) < Number(this.form.value.amount)) {
                             this.isUSDTApprove = true;
                             this.isUSDTConfirm = false;
                             // enable approve button and disable confirm button
@@ -86,7 +84,6 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                     }
                 })
             } catch (err) {
-                console.log("err ", err)
                 this.timeValueReconnect = 0
                 console.log("errror ", err)
             }
@@ -245,13 +242,13 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         if(!this.form.value.amount.match(/^\d*(?:[.,]\d{1,6})?$/)) return;
         if(this.form.value.currency === 'USDT' || this.form.value.currency === 'CARD'){
             this.opchValue = this.form.value.amount * 10;
-        } else if(this.form.value.currency === 'ETH'){
+        } else if(this.form.value.currency === this.networkType){
             this.getEthValue();
         }
     }
 
     getEthValue(){
-        this.userServce.getEthValue().subscribe(data => {
+        this.userServce.getEthValue(this.networkType).subscribe(data => {
             this.usdValue = Number(data.USD);
             const value = Number(data.USD) * Number(this.form.value.amount) * 10;
             this.opchValue = Number(parseFloat(value.toString()).toFixed(2));
@@ -263,7 +260,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             walletAddress:this.walletAddress,
             amount:this.form.value.amount,
             currency:this.form.value.currency,
-            usdValue: this.form.value.currency === 'ETH' ? (this.usdValue * this.form.value.amount) : this.form.value.amount,
+            usdValue: this.form.value.currency === this.networkType ? (this.usdValue * this.form.value.amount) : this.form.value.amount,
         }
         this.isButtonClicked = true;
 
@@ -272,8 +269,10 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                 this.isButtonClicked = false;
                 if(data.type === true){
                     this.paymentId = data.id; 
-                    if(this.form.value.currency === 'ETH' || this.form.value.currency === 'USDT'){
+                    if(this.form.value.currency === 'USDT'){
                         this.isApprovedUSDT();
+                    } else if(this.form.value.currency === this.networkType){
+                        this.showConfirmModal();
                     } else {
                         this.isSendEth = true;
                     }
