@@ -41,4 +41,20 @@ export class DashboardComponent extends BaseWeb3Class implements OnInit {
         });
     }
 
+
+    shareInvitation(type:string){
+        const text = encodeURIComponent('You can purchase OPCH tokens now on the Buy and home page. You can get a quick response to any questions and chat with the project in our Telegram: https://t.me/opticash_io or email info@opticash.io');
+        let url = '';
+        if(type === 'twitter'){
+            url = 'https://twitter.com/intent/tweet?text='+text;
+        } else if (type === 'whatsapp'){
+            url = 'https://api.whatsapp.com/send?text='+text;
+        } else if (type === 'instagram'){
+            url = 'https://instagram.com/accounts/login/?text='+text;
+        } else if(type === 'telegram'){
+            url = 'https://t.me/share/url?url=https://opticash.io/&text='+text;
+        }
+        window.open(url,'_blank','location=yes,height=500,width=620,scrollbars=yes,status=yes');
+    }
+
 }

@@ -100,7 +100,7 @@
                 <span [ngClass]="{'disable' : !isUSDTApprove}">1</span>
                 <span [ngClass]="{'disable' : !isUSDTConfirm}">2</span>
             </div>
-            <div class="buttons" *ngIf="this.form.value.currency === 'ETH'">
+            <div class="buttons" *ngIf="this.form.value.currency === networkType">
                 <button (click)="sendETH()" class="btn btn-primary">CONFIRM</button>
             </div>
         </div>

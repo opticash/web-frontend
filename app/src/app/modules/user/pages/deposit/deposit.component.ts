@@ -48,7 +48,9 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             amount: new FormControl('',[Validators.required, Validators.pattern(/^\d*(?:[.,]\d{1,6})?$/), Validators.maxLength(20)]),
         });
         this.submitted = false;
-
+        this.web3Service.walletAddress$.subscribe(x => {
+            this.form.controls['currency'].setValue(this.networkType);
+        });    
         this.amountUpdate.pipe(debounceTime(400), distinctUntilChanged()).subscribe(value => {
             this.updateOpchValue()
         });
@@ -188,7 +190,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             this.hideConfirmModal();
             if (res) {
                 this.waitingTxShow = 'show';
-                this.listenETHTransferEvent()
+                this.listenETHTransferEvent();
                 console.log('depositETH', res);
                 this.transactionHash = res;
                 this.updateTx();
@@ -230,11 +232,11 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         if (this.form.invalid) {
             return;
         }
-        if(this.opchValue >= 50){
-            this.savePayment();
-        } else {
-            this.toastrService.error('Minimum OPCH token purchase value is 5$.')
-        }
+        this.savePayment();
+        // if(this.opchValue >= 50){
+        // } else {
+        //     this.toastrService.error('Minimum OPCH token purchase value is 5$.')
+        // }
     }
 
     updateOpchValue(){
@@ -260,6 +262,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             walletAddress:this.walletAddress,
             amount:this.form.value.amount,
             currency:this.form.value.currency,
+            chain:this.networkType,
             usdValue: this.form.value.currency === this.networkType ? (this.usdValue * this.form.value.amount) : this.form.value.amount,
         }
         this.isButtonClicked = true;

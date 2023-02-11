@@ -23,60 +23,8 @@ export class Web3Service {
     configToken:any = environment.config;
     web3Network: string;
     networkType: string;
-    providerOptions:any = {
-        injected: {
-            display: {
-                description: " "
-            },
-            package: null
-        },
-        'custom-walletlink': {
-            display: {
-                logo: 'assets/images/coinbase-wallet.svg',
-                name: 'Coinbase',
-                description: " "
-            },
-            options: {
-                appName: 'Opticash', // Your app name
-                networkUrl: this.configToken.ETH_NETWORK.Web3Modal.rpcUrl,
-                chainId: environment.config.ETH_NETWORK.Web3Modal.network,
-            },
-            package: WalletLink,
-            connector: async (_:any, options:any) => {
-                const { appName, networkUrl, chainId } = options
-                const walletLink = new WalletLink({
-                    appName: 'Opticash',
-                    appLogoUrl: 'assets/images/logo.png',
-                    darkMode: true
-                });
-                const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
-                await provider.enable();
-                return provider;
-            },
-        },
-        walletconnect: {
-            package: WalletConnectProvider,
-            display: {
-                description: " "
-            },
-            options: {
-                rpc: {
-                    1: environment.config.ETH_NETWORK.Web3Modal.rpcUrl,
-                    56: environment.config.BSC_NETWORK.Web3Modal.rpcUrl,
-                    137: environment.config.POLY_NETWORK.Web3Modal.rpcUrl,
-                    5: environment.config.ETH_NETWORK.Web3Modal.rpcUrl,
-                    97: environment.config.BSC_NETWORK.Web3Modal.rpcUrl,
-                    80001: environment.config.POLY_NETWORK.Web3Modal.rpcUrl,
-                }
-            },
-        }
-    };
-
-    web3Modal:any = new Web3Modal({
-        network: "mainnet", // optional
-        cacheProvider: true, // optional
-        providerOptions:this.providerOptions, // required
-    });
+    providerOptions:any;
+    web3Modal:any;
     private walletAddressSource = new Subject<any>();
     walletAddress$ = this.walletAddressSource.asObservable();
     private accountStatusSource = new Subject<any>();
@@ -86,6 +34,62 @@ export class Web3Service {
         private toastrService:ToastrService,
     ) {
         this.walletAddress = window.localStorage.getItem('accountAddress');
+        this.web3Network = this.getWeb3Network() ? this.getWeb3Network() : 'ETH_NETWORK';
+        this.networkType = this.getNetworkType(this.web3Network);
+        
+        this.providerOptions = {
+            injected: {
+                display: {
+                    description: " "
+                },
+                package: null
+            },
+            'custom-walletlink': {
+                display: {
+                    logo: 'assets/images/coinbase-wallet.svg',
+                    name: 'Coinbase',
+                    description: " "
+                },
+                options: {
+                    appName: 'Opticash', // Your app name
+                    networkUrl: this.configToken[this.web3Network].Web3Modal.rpcUrl,
+                    chainId: this.configToken[this.web3Network].Web3Modal.network,
+                },
+                package: WalletLink,
+                connector: async (_:any, options:any) => {
+                    const { appName, networkUrl, chainId } = options
+                    const walletLink = new WalletLink({
+                        appName: 'Opticash',
+                        appLogoUrl: 'assets/images/logo.png',
+                        darkMode: true
+                    });
+                    const provider = walletLink.makeWeb3Provider(networkUrl, chainId);
+                    await provider.enable();
+                    return provider;
+                },
+            },
+            walletconnect: {
+                package: WalletConnectProvider,
+                display: {
+                    description: " "
+                },
+                options: {
+                    rpc: {
+                        1: environment.config.ETH_NETWORK.Web3Modal.rpcUrl,
+                        56: environment.config.BSC_NETWORK.Web3Modal.rpcUrl,
+                        137: environment.config.POLY_NETWORK.Web3Modal.rpcUrl,
+                        5: environment.config.ETH_NETWORK.Web3Modal.rpcUrl,
+                        97: environment.config.BSC_NETWORK.Web3Modal.rpcUrl,
+                        80001: environment.config.POLY_NETWORK.Web3Modal.rpcUrl,
+                    }
+                },
+            }
+        };
+        this.web3Modal = new Web3Modal({
+            network: "mainnet", // optional
+            cacheProvider: true, // optional
+            providerOptions:this.providerOptions, // required
+        });
         if (typeof window.ethereum !== 'undefined' && this.walletAddress) {
             this.getAccountData()
             this.showModelConnetions();
@@ -93,21 +97,7 @@ export class Web3Service {
         } else {
             console .log('MetaMask is Not installed!');
         }
-
-        // if(window.ethereum){
-        //     window.ethereum.on('accountsChanged', async (accounts:any) => {
-        //         console.log('wrongNetwork',this.wrongNetwork);
-        //         this.walletAddressSource.next(accounts[0]);
-        //         const network = await this.web3js.eth.net.getId();
-        //         this.isWrongNetwork(network);
-        //     });
-            
-        //     window.ethereum.on('networkChanged', async (network:any) => {
-        //         this.isWrongNetwork(network);
-        //     });
-        // }
-        this.web3Network = this.getWeb3Network() ? this.getWeb3Network() : 'ETH_NETWORK';
-        this.networkType = this.getNetworkType(this.web3Network);
+        
         this.showModelConnetions();
         this.installMetamask();
     }
@@ -142,6 +132,8 @@ export class Web3Service {
         this.walletAddress = account[0]
         this.setWeb3WalletData(this.provider,this.walletAddress);
         this.walletAddressSource.next(this.walletAddress);
+        this.web3Network = this.getWeb3Network();
+        this.networkType = this.getNetworkType(this.web3Network);
     }
 
     isWrongNetwork(network:any){

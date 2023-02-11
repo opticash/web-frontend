@@ -49,6 +49,7 @@ export abstract class BaseWeb3Class {
             this.walletAddress = x;
             this.isWalletConnected = true;
             this.web3Network = this.web3Service.getWeb3Network();
+            this.networkType = this.web3Service.getNetworkType(this.web3Network);
             if(!this.wrongNetwork){
                 this.web3js = new Web3(this.web3Service.web3Provider);
             }
