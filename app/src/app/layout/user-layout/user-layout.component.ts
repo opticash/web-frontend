@@ -42,14 +42,6 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
         this.getNotificationData();
     }
 
-    getValidValue(valu:any) {
-        if (valu > 0) {
-          let usrBal = this.web3js.utils.fromWei(valu, 'ether')
-          return Number(usrBal).toFixed(2)
-        }
-        return valu
-    }
-
     logout(){
         this.web3Service.logoutWallet();
         this.authenticationService.logout();

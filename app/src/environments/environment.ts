@@ -51,7 +51,7 @@ export const environment = {
     },
     POLY_NETWORK : {
       USDTContractAddress: "0xE097d6B3100777DC31B34dC2c58fB524C2e76921",
-      PaymentContractAddress: "0xD307E69756c5AdCe00234dBff03681c71e0daF86",
+      PaymentContractAddress: "0x0a6bCb55b5981A25206B9C4b438a62CF76b66625",
       Web3Modal: {
         network: 80001,
         rpcUrl:'https://rpc.ankr.com/polygon_mumbai',

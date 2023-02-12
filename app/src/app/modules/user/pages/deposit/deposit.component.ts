@@ -29,7 +29,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     transactionHash: string;
     paymentId:string;
     isSendEth: boolean = false;
-
+    isTxComaplete: boolean = false;
     @Input() isSelector: boolean;
     constructor(
         private toastrService:ToastrService,
@@ -111,6 +111,8 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     listenApprovedEvent() {
         return new Promise(resolve => {
         const myContractInstance = new this.web3js.eth.Contract(AbiTB, this.configToken[this.web3Network].USDTContractAddress);
+        this.isTxComaplete = false;
+        this.checkTxComaplete('listenApprovedEvent')
         myContractInstance.events.Approval({}, (error:any, result:any) => {
             try {
                 if (result) {
@@ -119,12 +121,13 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                     this.isUSDTConfirm = true;
                     console.log("listen Approved Event =>", result);
                     this.toastrService.success("Approval Successfull");
-                    this.spinner.hide();
                 } else {
-                    this.spinner.hide();
                     console.error("listenRegisterEvent error", error)
                 }
+                this.isTxComaplete = false;
+                this.spinner.hide();
             } catch (error) {
+                this.isTxComaplete = false;
                 this.spinner.hide();
                 this.toastrService.error("Request Failed!");
                 console.log("Error Coming ", error)
@@ -136,18 +139,22 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     listenUSDTTransferEvent() {
         return new Promise(resolve => {
         const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
-        myContractInstance.events.DepositUSDT({}, (error:any, result:any) => {
+        this.isTxComaplete = false;
+        this.checkTxComaplete('listenUSDTTransferEvent')
+        myContractInstance.events.BuyOPCHfromUSDT({}, (error:any, result:any) => {
             console.log("listen Transfer Event, ", result);
-            this.waitingTxShow = '';
             try {
                 if (result) {
                     // disable approve button and enable confirm button
                     this.confirmTx();
                 } else {
-                    this.waitingTxShow = '';
                     console.error("listenRegisterEvent error", error)
                 }
+                this.waitingTxShow = '';
+                this.isTxComaplete = true;
             } catch (error) {
+                this.waitingTxShow = '';
+                this.isTxComaplete = true;
                 this.toastrService.error("Request Failed!");
                 console.log("Error Coming ", error)
             }
@@ -160,7 +167,11 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         const addr = this.walletAddress;
         const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
         this.spinner.show();
-        await myContractInstance.methods.depositUSDT(this.web3js.utils.toWei(this.form.value.amount, "ether")).send({ from: addr}, (err:any, res:any ) => {
+        let decimal = 'ether'
+        if(this.networkType==='ETH' || this.networkType==='MATIC'){
+            decimal = 'mwei'
+        }
+        await myContractInstance.methods.buyOPCHfromUSDT(this.web3js.utils.toWei(this.form.value.amount, decimal)).send({ from: addr}, (err:any, res:any ) => {
             this.spinner.hide();
             this.hideConfirmModal();
             try {
@@ -185,7 +196,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         const addr = this.walletAddress;
         const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
         this.spinner.show();
-        await myContractInstance.methods.depositETH().send({ from: addr, value: this.web3js.utils.toWei(this.form.value.amount, "ether") }, (err:any, res:any ) => {
+        await myContractInstance.methods.buyOPCH().send({ from: addr, value: this.web3js.utils.toWei(this.form.value.amount, "ether") }, (err:any, res:any ) => {
             this.spinner.hide();
             this.hideConfirmModal();
             if (res) {
@@ -203,22 +214,24 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     listenETHTransferEvent() {
         return new Promise(resolve => {
         const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
-        myContractInstance.events.DepositETH({}, (error:any, result:any) => {
+        this.isTxComaplete = false;
+        this.checkTxComaplete('listenETHTransferEvent');
+        myContractInstance.events.BuyOPCH({}, (error:any, result:any) => {
             console.log("listen Transfer Event, ", result);
-            this.waitingTxShow = '';
-            if (!error) {
                 try {
-                    // disable approve button and enable confirm button
-                    this.confirmTx();
+                    if (!error) {
+                        // disable approve button and enable confirm button
+                        this.confirmTx();
+                    } else {
+                        console.error("listenRegisterEvent error", error)
+                    }
+                    this.waitingTxShow = '';
+                    this.isTxComaplete = true;
                 } catch (error) {
+                    this.waitingTxShow = '';
                     this.toastrService.error("Request Failed!");
                     console.log("Error Coming ", error);
                 }
-            }
-            else {
-                this.waitingTxShow = '';
-                console.error("listenRegisterEvent error", error)
-            }
           });
         });
     }
@@ -332,6 +345,31 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
     resetValues(){
         this.form.controls['amount'].setValue('');
         this.amountUpdate.next(0);
+    }
+
+    checkTxComaplete(type:string){
+        setTimeout(() => {
+            if(!this.isTxComaplete){
+                this.toastrService.info('The transaction is taking too long to confirm on blockchain, please check back after sometime.')
+                switch (type) {
+                    case 'listenApprovedEvent':
+                        this.isUSDTApprove = false;
+                        this.isUSDTConfirm = true;
+                        this.spinner.hide();
+                        break;
+                    case 'listenUSDTTransferEvent':
+                        this.confirmTx();
+                        this.waitingTxShow = '';
+                        break;
+                    case 'listenETHTransferEvent':
+                        this.confirmTx();
+                        this.waitingTxShow = '';
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }, 30000);
     }
 
 }
