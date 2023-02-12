@@ -218,20 +218,20 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         this.checkTxComaplete('listenETHTransferEvent');
         myContractInstance.events.BuyOPCH({}, (error:any, result:any) => {
             console.log("listen Transfer Event, ", result);
-                try {
-                    if (!error) {
-                        // disable approve button and enable confirm button
-                        this.confirmTx();
-                    } else {
-                        console.error("listenRegisterEvent error", error)
-                    }
-                    this.waitingTxShow = '';
-                    this.isTxComaplete = true;
-                } catch (error) {
-                    this.waitingTxShow = '';
-                    this.toastrService.error("Request Failed!");
-                    console.log("Error Coming ", error);
+            try {
+                if (!error) {
+                    // disable approve button and enable confirm button
+                    this.confirmTx();
+                } else {
+                    console.error("listenRegisterEvent error", error)
                 }
+                this.waitingTxShow = '';
+                this.isTxComaplete = true;
+            } catch (error) {
+                this.waitingTxShow = '';
+                this.toastrService.error("Request Failed!");
+                console.log("Error Coming ", error);
+            }
           });
         });
     }
@@ -358,12 +358,12 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                         this.spinner.hide();
                         break;
                     case 'listenUSDTTransferEvent':
-                        this.confirmTx();
                         this.waitingTxShow = '';
+                        this.router.navigate(['transactions']);
                         break;
                     case 'listenETHTransferEvent':
-                        this.confirmTx();
                         this.waitingTxShow = '';
+                        this.router.navigate(['transactions']);
                         break;
                     default:
                         break;

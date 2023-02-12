@@ -26,11 +26,18 @@
                         </div>
                         <div class="pop-body">
                             <ul>
-                                <li *ngFor="let data of notificationsData"><a (click)="updateNotification(data.id)" href="{{data.link}}" target="_blank">
-                                    <h4>{{data.title}}</h4>
-                                    <div class="date">{{data.created | date}}</div>
-                                    <p>{{data.body}}</p>
-                                </a></li>
+                                <li *ngFor="let data of notificationsData">
+                                    <a *ngIf="data.link" (click)="updateNotification(data.id)" href="{{data.link}}" target="_blank">
+                                        <h4>{{data.title}}</h4>
+                                        <div class="date">{{data.created | date}}</div>
+                                        <p>{{data.body}}</p>
+                                    </a>
+                                    <span *ngIf="!data.link" (click)="updateNotification(data.id)">
+                                        <h4>{{data.title}}</h4>
+                                        <div class="date">{{data.created | date}}</div>
+                                        <p>{{data.body}}</p>
+                                    </span>
+                                </li>
                             </ul>
                         </div>
                     </div>
