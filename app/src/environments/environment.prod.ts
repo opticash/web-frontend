@@ -19,50 +19,51 @@ export const environment = {
     Private		: "0x45d998d4BaCb3FF79092c1DD437355017fe83d5D",
     Foundation	: "0x32f8718F5DfaE54aef19e6cC1872d438eb5a6f34",
     Adviser		: "0x8753E107c221FDcC02D21126f9B9c18054Dd463b",
+
     ETH_NETWORK : {
-      USDTContractAddress: "0x51472dC2431541DEDC0d7bd4286c9901C01740B5",
-      PaymentContractAddress: "0x7FAE70b1a009484c79c2b94a22991bcD63248205",
+      USDTContractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      PaymentContractAddress: "0x58c9ac08ecb1aa7ebdd603ff162c731434f64bd1",
       Web3Modal: {
-        network: 5,
-        rpcUrl:'https://rpc.ankr.com/eth_goerli',
-        chainName: 'Goerli test network'
+        network: 1,
+        rpcUrl:'https://mainnet.infura.io/v3/defa9004b56046e1a9ba73bc5d9e5776',
+        chainName: 'Ethereum Mainnet'
       },
       nativeCurrency: {
         name: 'Ethereum',
         symbol: 'ETH',
         decimals: 18
       },
-      blockExplorerUrls:'https://goerli.etherscan.io/'
+      blockExplorerUrls:'https://etherscan.io/'
     },
     BSC_NETWORK : {
-      USDTContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86",
-      PaymentContractAddress: "0x4036A25a132c8fc735F480b02a44c241d1DE7532",
+      USDTContractAddress: "0x55d398326f99059fF775485246999027B3197955",
+      PaymentContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86",
       Web3Modal: {
-        network: 97,
-        rpcUrl:'https://rpc.ankr.com/bsc_testnet_chapel',
-        chainName: 'Binance TestChain',
+        network: 56,
+        rpcUrl:'https://rpc.ankr.com/bsc',
+        chainName: 'Binance SmartChain Mainnet',
       },
       nativeCurrency: {
         name: 'Binance Coin',
         symbol: 'BNB',
         decimals: 18
       },
-      blockExplorerUrls:'https://testnet.bscscan.com'
+      blockExplorerUrls:'https://bscscan.com'
     },
     POLY_NETWORK : {
-      USDTContractAddress: "0xE097d6B3100777DC31B34dC2c58fB524C2e76921",
-      PaymentContractAddress: "0xD307E69756c5AdCe00234dBff03681c71e0daF86",
+      USDTContractAddress: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      PaymentContractAddress: "0xd307e69756c5adce00234dbff03681c71e0daf86",
       Web3Modal: {
-        network: 80001,
-        rpcUrl:'https://rpc.ankr.com/polygon_mumbai',
-        chainName: 'Polygon TestChain'
+        network: 137,
+        rpcUrl:'https://rpc.ankr.com/polygon',
+        chainName: 'Polygon Mainnet'
       },
       nativeCurrency: {
         name: 'Matic Coin',
         symbol: 'MATIC',
         decimals: 18
       },
-      blockExplorerUrls:'https://mumbai-explorer.matic.today/'
+      blockExplorerUrls:'https://polygonscan.com/'
     }
   }
 };
