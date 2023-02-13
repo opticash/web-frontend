@@ -78,13 +78,29 @@
                 <img (click)="hideSelectNetworkModal()" src="./assets/images/icon-close.svg" alt="" style="cursor:pointer;">
                 <h2>Select Network</h2>
             </div>
-            <div class="select-icon">
+            <!-- <div class="select-icon">
                 <img [src]="'/assets/images/'+networkType+'.png'" alt="">
                 <select class="form-control" [(ngModel)]="web3Network" (change)="getNetworkType()">
                     <option value="ETH_NETWORK">ETHEREUM MAINNET</option>
                     <option value="BSC_NETWORK">BINANCE SMARTCHAIN</option>
                     <option value="POLY_NETWORK">POLYGON MAINNET</option>
                 </select>
+            </div> -->
+            <div class="btn-group dropdown" dropdown>
+                <button id="button-basic" dropdownToggle type="button" class="btn-control">
+                    <img class="currency-icon" [src]="'/assets/images/'+networkType+'.png'" alt=""> {{networkName}}
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu">
+                    <li class="dropdown-item" (click)="getNetworkType('ETH_NETWORK')">
+                        <img class="currency-icon" [src]="'/assets/images/ETH.png'" alt=""> ETHEREUM MAINNET
+                    </li>
+                    <li class="dropdown-item" (click)="getNetworkType('BSC_NETWORK')">
+                        <img class="currency-icon" [src]="'/assets/images/BNB.png'" alt=""> BINANCE SMARTCHAIN
+                    </li>
+                    <li class="dropdown-item" (click)="getNetworkType('POLY_NETWORK')">
+                        <img class="currency-icon" [src]="'/assets/images/MATIC.png'" alt=""> POLYGON MAINNET
+                    </li>
+                </ul>
             </div>
             <span class="modal-info">Recommended Network: <span>Ethereum Mainnet</span></span>
             <br>

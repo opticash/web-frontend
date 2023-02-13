@@ -8,6 +8,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { MyTokenComponent } from './pages/my-token/my-token.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MyTokenComponent } from './pages/my-token/my-token.component';
     SharedModule,
     QRCodeModule,
     ToastrModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [],
 })

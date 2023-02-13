@@ -11,6 +11,7 @@ import { UserLayoutComponent } from './layout/user-layout/user-layout.component'
 import { SharedModule } from './shared/shared.module';
 import { AuthGuard } from './core/guard/auth.guard';
 import { SpinnerComponent } from './shared/component/spinner/spinner.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SpinnerComponent } from './shared/component/spinner/spinner.component';
     SharedModule,
     AuthModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [
     AuthGuard,

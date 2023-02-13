@@ -18,6 +18,7 @@ export abstract class BaseWeb3Class {
     selectNetworkModal: string = '';
     web3Network: any = 'ETH_NETWORK';
     networkType: any = 'ETH';
+    networkName: any = 'ETHEREUM MAINNET';
     configToken:any = environment.config;
 
     constructor(
@@ -90,7 +91,15 @@ export abstract class BaseWeb3Class {
         this.selectNetworkModal = '';
     }
 
-    getNetworkType(){
+    getNetworkType(type?:string){
+        this.web3Network = type;
+        if(type === 'ETH_NETWORK'){
+            this.networkName = 'ETHEREUM MAINNET'
+        } else if(type === 'BSC_NETWORK'){
+            this.networkName = 'BINANCE SMARTCHAIN'
+        } else if(type === 'POLY_NETWORK'){
+            this.networkName = 'POLYGON MAINNET'
+        }
         this.networkType = this.web3Service.getNetworkType(this.web3Network);
     }
  

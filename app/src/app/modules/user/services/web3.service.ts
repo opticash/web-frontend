@@ -103,7 +103,6 @@ export class Web3Service {
     }
 
     getNetworkType(network:any):any{
-        console.log(network);
         let networkType:string = '';
         if(network === 'ETH_NETWORK'){
             return networkType = 'ETH'
