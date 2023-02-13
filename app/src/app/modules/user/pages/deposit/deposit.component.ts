@@ -94,74 +94,89 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
 
     getApprovalUSDT = async() => {
         this.spinner.show();
-        console.log(2);
+        this.isTxComaplete = false;
+        this.checkTxComaplete('listenApprovedEvent')
         const addr = this.walletAddress;
         const myContractInstance = new this.web3js.eth.Contract(AbiTB, this.configToken[this.web3Network].USDTContractAddress);
         await myContractInstance.methods.approve(this.configToken[this.web3Network].PaymentContractAddress,"10000000000000000000000000").send({ from: addr }, (err:any, res:any ) => {
             if (res) {
                 console.log('get Approval USDT', res);
-                this.listenApprovedEvent();
+                // this.listenApprovedEvent();
             } else {
                 this.spinner.hide();
                 this.toastrService.error(err.message)
             }
+        }).then((result:any) => {
+            if (result) {
+                // disable approve button and enable confirm button
+                this.isUSDTApprove = false;
+                this.isUSDTConfirm = true;
+                console.log("listen Approved Event =>", result);
+                this.toastrService.success("Approval Successfull");
+            }
+            this.isTxComaplete = true;
+            this.spinner.hide();
+        }).catch((error:any) => {
+            console.log('then error =>', error);
+            this.isTxComaplete = true;
+            this.spinner.hide();
         });
     }
 
-    listenApprovedEvent() {
-        return new Promise(resolve => {
-        const myContractInstance = new this.web3js.eth.Contract(AbiTB, this.configToken[this.web3Network].USDTContractAddress);
-        this.isTxComaplete = false;
-        this.checkTxComaplete('listenApprovedEvent')
-        myContractInstance.events.Approval({}, (error:any, result:any) => {
-            try {
-                if (result) {
-                    // disable approve button and enable confirm button
-                    this.isUSDTApprove = false;
-                    this.isUSDTConfirm = true;
-                    console.log("listen Approved Event =>", result);
-                    this.toastrService.success("Approval Successfull");
-                } else {
-                    console.error("listenRegisterEvent error", error)
-                }
-                this.isTxComaplete = false;
-                this.spinner.hide();
-            } catch (error) {
-                this.isTxComaplete = false;
-                this.spinner.hide();
-                this.toastrService.error("Request Failed!");
-                console.log("Error Coming ", error)
-            }
-          });
-        });
-    }
+    // listenApprovedEvent() {
+    //     return new Promise(resolve => {
+    //     const myContractInstance = new this.web3js.eth.Contract(AbiTB, this.configToken[this.web3Network].USDTContractAddress);
+    //     this.isTxComaplete = false;
+    //     this.checkTxComaplete('listenApprovedEvent')
+    //     myContractInstance.events.Approval({}, (error:any, result:any) => {
+    //         try {
+    //             if (result) {
+    //                 // disable approve button and enable confirm button
+    //                 this.isUSDTApprove = false;
+    //                 this.isUSDTConfirm = true;
+    //                 console.log("listen Approved Event =>", result);
+    //                 this.toastrService.success("Approval Successfull");
+    //             } else {
+    //                 console.error("listenRegisterEvent error", error)
+    //             }
+    //             this.isTxComaplete = false;
+    //             this.spinner.hide();
+    //         } catch (error) {
+    //             this.isTxComaplete = false;
+    //             this.spinner.hide();
+    //             this.toastrService.error("Request Failed!");
+    //             console.log("Error Coming ", error)
+    //         }
+    //       });
+    //     });
+    // }
 
-    listenUSDTTransferEvent() {
-        return new Promise(resolve => {
-        const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
-        this.isTxComaplete = false;
-        this.checkTxComaplete('listenUSDTTransferEvent')
-        myContractInstance.events.BuyOPCHfromUSDT({}, (error:any, result:any) => {
-            console.log("listen Transfer Event, ", result);
-            try {
-                if (result) {
-                    // disable approve button and enable confirm button
-                    this.confirmTx();
-                } else {
-                    console.error("listenRegisterEvent error", error)
-                }
-                this.waitingTxShow = '';
-                this.isTxComaplete = true;
-            } catch (error) {
-                this.waitingTxShow = '';
-                this.isTxComaplete = true;
-                this.toastrService.error("Request Failed!");
-                console.log("Error Coming ", error)
-            }
+    // listenUSDTTransferEvent() {
+    //     return new Promise(resolve => {
+    //     const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
+    //     this.isTxComaplete = false;
+    //     this.checkTxComaplete('listenUSDTTransferEvent')
+    //     myContractInstance.events.BuyOPCHfromUSDT({}, (error:any, result:any) => {
+    //         console.log("listen Transfer Event, ", result);
+    //         try {
+    //             if (result) {
+    //                 // disable approve button and enable confirm button
+    //                 this.confirmTx();
+    //             } else {
+    //                 console.error("listenRegisterEvent error", error)
+    //             }
+    //             this.waitingTxShow = '';
+    //             this.isTxComaplete = true;
+    //         } catch (error) {
+    //             this.waitingTxShow = '';
+    //             this.isTxComaplete = true;
+    //             this.toastrService.error("Request Failed!");
+    //             console.log("Error Coming ", error)
+    //         }
             
-          });
-        });
-    }
+    //       });
+    //     });
+    // }
 
     sendUSDT = async() => {
         const addr = this.walletAddress;
@@ -177,7 +192,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             try {
                 if (res) {
                     this.waitingTxShow = 'show';
-                    this.listenUSDTTransferEvent();
+                    // this.listenUSDTTransferEvent();
                     console.log('depositUSDT', res);
                     this.transactionHash = res;
                     this.updateTx();
@@ -188,7 +203,16 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                 this.toastrService.error("Request Failed!");
                 console.log("Error Coming ", error)
             }
-            
+        }).then((result:any) => {
+            if (result) {
+                this.confirmTx();
+            }
+            this.waitingTxShow = '';
+            this.isTxComaplete = true;
+        }).catch((error:any) => {
+            this.waitingTxShow = '';
+            this.isTxComaplete = true;
+            console.log('sendUSDT then error =>', error);
         });
     }
 
@@ -201,40 +225,50 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             this.hideConfirmModal();
             if (res) {
                 this.waitingTxShow = 'show';
-                this.listenETHTransferEvent();
+                // this.listenETHTransferEvent();
                 console.log('depositETH', res);
                 this.transactionHash = res;
                 this.updateTx();
             } else {
                 this.toastrService.error(err.message)
             }
-        });
+        }).then((result:any) => {
+            if (result) {
+                this.confirmTx();
+            }
+            this.waitingTxShow = '';
+            this.isTxComaplete = true;
+        }).catch((error:any) => {
+            this.waitingTxShow = '';
+            this.isTxComaplete = true;
+            console.log('sendETH then error =>', error);
+        });;
     }
 
-    listenETHTransferEvent() {
-        return new Promise(resolve => {
-        const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
-        this.isTxComaplete = false;
-        this.checkTxComaplete('listenETHTransferEvent');
-        myContractInstance.events.BuyOPCH({}, (error:any, result:any) => {
-            console.log("listen Transfer Event, ", result);
-            try {
-                if (!error) {
-                    // disable approve button and enable confirm button
-                    this.confirmTx();
-                } else {
-                    console.error("listenRegisterEvent error", error)
-                }
-                this.waitingTxShow = '';
-                this.isTxComaplete = true;
-            } catch (error) {
-                this.waitingTxShow = '';
-                this.toastrService.error("Request Failed!");
-                console.log("Error Coming ", error);
-            }
-          });
-        });
-    }
+    // listenETHTransferEvent() {
+    //     return new Promise(resolve => {
+    //     const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
+    //     this.isTxComaplete = false;
+    //     this.checkTxComaplete('listenETHTransferEvent');
+    //     myContractInstance.events.BuyOPCH({}, (error:any, result:any) => {
+    //         console.log("listen Transfer Event, ", result);
+    //         try {
+    //             if (!error) {
+    //                 // disable approve button and enable confirm button
+    //                 this.confirmTx();
+    //             } else {
+    //                 console.error("listenRegisterEvent error", error)
+    //             }
+    //             this.waitingTxShow = '';
+    //             this.isTxComaplete = true;
+    //         } catch (error) {
+    //             this.waitingTxShow = '';
+    //             this.toastrService.error("Request Failed!");
+    //             console.log("Error Coming ", error);
+    //         }
+    //       });
+    //     });
+    // }
 
     get f(): { [key: string]: AbstractControl } {
         return this.form.controls;
@@ -245,11 +279,11 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         if (this.form.invalid) {
             return;
         }
-        this.savePayment();
-        // if(this.opchValue >= 50){
-        // } else {
-        //     this.toastrService.error('Minimum OPCH token purchase value is 5$.')
-        // }
+        if(this.opchValue >= 50){
+            this.savePayment();
+        } else {
+            this.toastrService.error('Minimum OPCH token purchase value is 5$.')
+        }
     }
 
     updateOpchValue(){
@@ -354,7 +388,6 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                 switch (type) {
                     case 'listenApprovedEvent':
                         this.isUSDTApprove = false;
-                        this.isUSDTConfirm = true;
                         this.spinner.hide();
                         break;
                     case 'listenUSDTTransferEvent':
@@ -368,6 +401,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
                     default:
                         break;
                 }
+                this.isUSDTConfirm = true;
             }
         }, 30000);
     }
