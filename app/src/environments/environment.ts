@@ -25,6 +25,7 @@ export const environment = {
       Web3Modal: {
         network: 5,
         rpcUrl:'https://rpc.ankr.com/eth_goerli',
+        walletUrl:'https://rpc.ankr.com/eth_goerli',
         chainName: 'Goerli test network'
       },
       nativeCurrency: {
@@ -40,6 +41,7 @@ export const environment = {
       Web3Modal: {
         network: 97,
         rpcUrl:'https://rpc.ankr.com/bsc_testnet_chapel',
+        walletUrl:'https://rpc.ankr.com/bsc_testnet_chapel',
         chainName: 'Binance TestChain',
       },
       nativeCurrency: {
@@ -55,6 +57,7 @@ export const environment = {
       Web3Modal: {
         network: 80001,
         rpcUrl:'https://rpc.ankr.com/polygon_mumbai',
+        walletUrl:'https://rpc.ankr.com/polygon_mumbai',
         chainName: 'Polygon TestChain'
       },
       nativeCurrency: {

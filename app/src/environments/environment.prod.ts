@@ -26,6 +26,7 @@ export const environment = {
       Web3Modal: {
         network: 1,
         rpcUrl:'https://mainnet.infura.io/v3/defa9004b56046e1a9ba73bc5d9e5776',
+        walletUrl:'https://mainnet.infura.io/v3/',
         chainName: 'Ethereum Mainnet'
       },
       nativeCurrency: {
@@ -41,6 +42,7 @@ export const environment = {
       Web3Modal: {
         network: 56,
         rpcUrl:'https://rpc.ankr.com/bsc',
+        walletUrl:'https://bsc-dataseed1.binance.org',
         chainName: 'Binance SmartChain Mainnet',
       },
       nativeCurrency: {
@@ -56,6 +58,7 @@ export const environment = {
       Web3Modal: {
         network: 137,
         rpcUrl:'https://rpc.ankr.com/polygon',
+        walletUrl:'https://polygon-rpc.com/',
         chainName: 'Polygon Mainnet'
       },
       nativeCurrency: {

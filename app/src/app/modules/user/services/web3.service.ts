@@ -183,7 +183,7 @@ export class Web3Service {
             method: 'wallet_addEthereumChain',
             params: [{
                 chainId: this.web3js.utils.toHex(this.configToken[this.web3Network].Web3Modal.network),
-                rpcUrls: [this.configToken[this.web3Network].Web3Modal.rpcUrl],
+                rpcUrls: [this.configToken[this.web3Network].Web3Modal.walletUrl],
                 chainName: this.configToken[this.web3Network].Web3Modal.chainName,
                 nativeCurrency: this.configToken[this.web3Network].nativeCurrency,
                 blockExplorerUrls: [this.configToken[this.web3Network].blockExplorerUrls]
