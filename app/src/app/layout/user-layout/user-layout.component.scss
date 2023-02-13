@@ -23,6 +23,7 @@
                 img{width:26px; margin-right:5px; display:inline-block;}
             }
             .disconnect{position:absolute; background:none; font-size:12px; color:#B6FF59; padding:0; border:none; left:33px; bottom:-16px;}
+            .wrongNetwork .disconnect{left:0px; bottom:-18px;}
         }
     }
 }

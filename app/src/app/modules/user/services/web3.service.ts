@@ -183,7 +183,7 @@ export class Web3Service {
             method: 'wallet_addEthereumChain',
             params: [{
                 chainId: this.web3js.utils.toHex(this.configToken[this.web3Network].Web3Modal.network),
-                rpcUrls: [this.configToken[this.web3Network].Web3Modal.walletUrl],
+                rpcUrls: [this.configToken[this.web3Network].Web3Modal.rpcUrl],
                 chainName: this.configToken[this.web3Network].Web3Modal.chainName,
                 nativeCurrency: this.configToken[this.web3Network].nativeCurrency,
                 blockExplorerUrls: [this.configToken[this.web3Network].blockExplorerUrls]
@@ -228,7 +228,6 @@ export class Web3Service {
         // });
 
         window.ethereum.on('networkChanged', (network:any) => {
-            console.log('networkChanged');
             this.isWrongNetwork(network);
             window.location.reload();
         });

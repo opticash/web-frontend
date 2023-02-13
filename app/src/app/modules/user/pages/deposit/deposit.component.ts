@@ -313,7 +313,6 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             usdValue: this.form.value.currency === this.networkType ? (this.usdValue * this.form.value.amount) : this.form.value.amount,
         }
         this.isButtonClicked = true;
-
         this.userServce.savePayment(obj).subscribe({
             next: (data:any) => {
                 this.isButtonClicked = false;
@@ -364,6 +363,7 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
             next: (data) => {
                 console.log('confirm Tx =>',data);
                 this.router.navigate(['transactions']);
+                this.userServce.getNotificationSubject.next(true);
             },
             error: (error) => {
                 console.error(error);

@@ -40,6 +40,9 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
         // });
         this.bindWeb3Service();
         this.getNotificationData();
+        this.userService.getNotificationSubject.subscribe((x) => {
+            this.getNotificationData();
+        });
     }
 
     logout(){
@@ -61,6 +64,7 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
             }
         })
     }
+    
     updateNotification(id?:number){
         let data;
         if(id){
@@ -71,10 +75,10 @@ export class UserLayoutComponent extends BaseWeb3Class implements OnInit {
     }
 
     showNotification(){
-        this.notificationPop = !this.notificationPop;
         if(this.notificationsNewcount > 0 && !this.notificationPop){
             this.updateNotification();
             this.notificationsNewcount = 0;
         }
+        this.notificationPop = !this.notificationPop;
     }
 }

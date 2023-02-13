@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ApiConstants } from 'app/constants/api.constants';
 import { BaseService } from 'app/core/service/base.service';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 
 export class UserService {
     currentLang:string;
     userAuth:string;
+    getNotificationSubject : Subject<boolean> = new Subject<boolean>() ;
     constructor(
         private baseService: BaseService,
     ) {
@@ -53,6 +55,5 @@ export class UserService {
     updateNotifications(data:any) {
         return this.baseService.postRequest(ApiConstants.UPDATE_NOTIFICATIONS,data);
     }
-    
     
 }

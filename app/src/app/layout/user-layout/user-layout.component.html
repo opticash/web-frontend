@@ -10,10 +10,10 @@
             <div class="ms-auto d-flex align-items-center">
                 <div class="wallat d-none d-sm-block">
                     <button *ngIf="!walletAddress" (click)="showSelectNetworkModal()" class="btn btn-primary">Connect Wallet</button>
-                    <span *ngIf="walletAddress">
+                    <span *ngIf="walletAddress" [ngClass]="{'wrongNetwork':wrongNetwork}">
                         <span *ngIf="!wrongNetwork" class="address"><img [src]="'/assets/images/'+networkType+'.png'" alt=""> {{walletAddress}}</span>
-                        <button *ngIf="!wrongNetwork" class="disconnect" (click)="logoutWallet()">Disconnect</button>
                         <button *ngIf="wrongNetwork" (click)="changeNetwork()" class="btn btn-danger">Change Network</button>
+                        <button class="disconnect" (click)="logoutWallet()">Disconnect</button>
                     </span>
                 </div>
                 
