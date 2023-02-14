@@ -15,6 +15,8 @@ export class AuthLayoutComponent {
     
     if(this.authenticationService.islogin()){
         this.router.navigate(['/dashboard']);
+    } else {
+      this.authenticationService.logout();
     }
     
   }

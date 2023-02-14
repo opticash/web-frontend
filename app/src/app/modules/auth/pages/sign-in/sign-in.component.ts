@@ -25,7 +25,6 @@ export class SignInComponent implements OnInit {
 
     ngOnInit(): void {
         this.authService.setRedirectURL(this.route.snapshot.queryParams['redirectURL']);
-        this.authenticationService.logout();
         this.form = new FormGroup({
             email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(100),]),
             passwd: new FormControl('', [Validators.required]),
