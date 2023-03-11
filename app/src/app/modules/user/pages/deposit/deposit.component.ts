@@ -186,13 +186,14 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         if(this.networkType==='ETH' || this.networkType==='MATIC'){
             decimal = 'mwei'
         }
-        await myContractInstance.methods.buyOPCHfromUSDT(this.web3js.utils.toWei(this.form.value.amount, decimal)).send({ from: addr}, (err:any, res:any ) => {
+        await myContractInstance.methods.buyOPCHfromUSDT(this.web3js.utils.toWei(this.form.value.amount, decimal)).send({from: addr, gasLimit:50000}, (err:any, res:any ) => {
             this.spinner.hide();
             this.hideConfirmModal();
             try {
                 if (res) {
                     this.waitingTxShow = 'show';
                     // this.listenUSDTTransferEvent();
+                    this.checkTxComaplete('listenUSDTTransferEvent');
                     console.log('depositUSDT', res);
                     this.transactionHash = res;
                     this.updateTx();
@@ -220,12 +221,13 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         const addr = this.walletAddress;
         const myContractInstance = new this.web3js.eth.Contract(AbiPC, this.configToken[this.web3Network].PaymentContractAddress);
         this.spinner.show();
-        await myContractInstance.methods.buyOPCH().send({ from: addr, value: this.web3js.utils.toWei(this.form.value.amount, "ether") }, (err:any, res:any ) => {
+        await myContractInstance.methods.buyOPCH().send({ from: addr, gasLimit:30000, value: this.web3js.utils.toWei(this.form.value.amount, "ether") }, (err:any, res:any ) => {
             this.spinner.hide();
             this.hideConfirmModal();
             if (res) {
                 this.waitingTxShow = 'show';
                 // this.listenETHTransferEvent();
+                this.checkTxComaplete('listenETHTransferEvent');
                 console.log('depositETH', res);
                 this.transactionHash = res;
                 this.updateTx();
