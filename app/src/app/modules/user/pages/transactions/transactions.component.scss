@@ -20,3 +20,17 @@
 }
 
 .no-data{text-align:center; font-size:1.25rem;}
+
+.promocional-dialog{
+    .modal-content{background:url(/assets/images/social-pop-up-web.png) no-repeat; background-size:100% 100%; padding:2rem;}
+    h3{ font-family:'nasalizationbold', sans-serif; font-size:2.5rem; text-transform: uppercase; color:#FFF; font-weight:600;  margin-top:2rem;  margin-bottom:2rem;
+        span{color:#C3FF43;}
+    }
+    .btn{font-size:1.625rem; font-weight:700; padding:.65rem 3rem;}
+    .dialog-close{background:#FFF url(/assets/images/X.svg) center center no-repeat; background-size:60% 60%; height:3rem; width:3rem; border-radius:50%;}
+    .social-icon{ margin-bottom:2rem;
+        a{display:inline-block; margin-right:2rem;}
+        img{width:3rem;}
+    }
+    p{color:#FFF; font-size:1rem; margin:0;}
+}

@@ -119,6 +119,23 @@
     .deposit-box {
         .top h3{font-size:15px;}
     }
+
+    body #promocionalDialog.promocional-dialog {
+        .modal-dialog{width:350px;}
+        .modal-content{padding:2rem 2rem 8rem ; position:relative; background-image: url(/assets/images/social-popup.png);}
+        h3{font-size:2.25rem; line-height:1.3em; margin:6rem 0rem;
+            br{display:none;}
+            span{display: block;}
+        }
+        .social-icon{margin-bottom:1rem;
+            a{margin-right:1.5rem;}
+            img{width:2.5rem;}
+        }
+        p{font-size:16px;}
+        .dialog-close{border:none; width:2.5rem; height:2.5rem; position:absolute; top:2rem; right:2rem;}
+        .btn {font-size: 1.5rem;padding: 0.8rem 3rem; }
+        .image{max-width:200px;}
+    }
 }
 
 @media (max-width: $screen-xs-max) {

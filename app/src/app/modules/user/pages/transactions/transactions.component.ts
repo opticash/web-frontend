@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -6,16 +8,19 @@ import { UserService } from '../../services/user.service';
     templateUrl: './transactions.component.html',
     styleUrls: ['./transactions.component.scss']
 })
-export class TransactionsComponent implements OnInit, AfterViewInit {
+export class TransactionsComponent implements AfterViewInit {
     pageData: any;
+    @ViewChild('promocionalModal', { static: false }) promocionalModal?: ModalDirective;
     constructor(
         private userServce: UserService,
+        private route: ActivatedRoute
     ) { }
 
-    ngOnInit(): void {
-    }
-
     ngAfterViewInit() {
+        this.route.queryParams.subscribe((params:any) => {
+            if(params.tx === 'successfully')
+            this.promocionalModal?.show();
+        });
         this.getData();
     }
 

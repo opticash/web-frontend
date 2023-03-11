@@ -9,6 +9,7 @@ import { TransactionsComponent } from './pages/transactions/transactions.compone
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { MyTokenComponent } from './pages/my-token/my-token.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     SharedModule,
     QRCodeModule,
     ToastrModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [],
 })

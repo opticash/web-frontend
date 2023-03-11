@@ -361,8 +361,8 @@ export class DepositComponent extends BaseWeb3Class implements OnInit {
         this.toastrService.success("Transfer Successfully");
         this.userServce.confirmTx(obj).subscribe({
             next: (data) => {
-                console.log('confirm Tx =>',data);
-                this.router.navigate(['transactions']);
+                console.log('confirm Tx => ',data);
+                this.router.navigate(['transactions'], { queryParams: { tx:'successfully' },  queryParamsHandling: 'merge'});
                 this.userServce.getNotificationSubject.next(true);
             },
             error: (error) => {

@@ -98,7 +98,6 @@
     .about-section .top1 h3,
     .about-page .top h2{font-size:2rem;}
     .promocional-dialog {
-        .modal-content{padding:2rem 2rem 4rem;}
         h3{font-size:2rem;}
         .dialog-close{width:2.5rem; height:2.5rem;}
         .btn {font-size: 1.25rem;padding: 0.4rem 2rem; }
@@ -317,8 +316,17 @@
     }
 
     .promocional-dialog {
-        .modal-content{padding:4rem 2rem 4rem; position:relative; background-image: url(../images/mobile-pop-background.jpg);}
-        h3{font-size:2.5rem; line-height:1.5em; margin-right:2rem;}
+        .modal-dialog{width:350px;}
+        .modal-content{padding:2rem 2rem 8rem ; position:relative; background-image: url(../images/social-popup.png);}
+        h3{font-size:2.25rem; line-height:1.3em; margin:6rem 0rem;
+            br{display:none;}
+            span{display: block;}
+        }
+        .social-icon{margin-bottom:1rem;
+            a{margin-right:1.5rem;}
+            img{width:2.5rem;}
+        }
+        p{font-size:16px;}
         .dialog-close{border:none; width:2.5rem; height:2.5rem; position:absolute; top:2rem; right:2rem;}
         .btn {font-size: 1.5rem;padding: 0.8rem 3rem; }
         .image{max-width:200px;}

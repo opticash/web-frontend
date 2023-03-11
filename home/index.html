@@ -491,7 +491,7 @@ gtag('config', 'G-G1CM0C3M9X');
 			</div>
 		</div>
 	</div>
-	<!--
+	
 	<div class="featured-box logo-box page-section">
 		<div class="container">
 			<h3>Featured In</h3>
@@ -502,10 +502,15 @@ gtag('config', 'G-G1CM0C3M9X');
 				<div class="slide-logo"><img src="images/partner-logo/yahoo-logo.png" alt=""></div>
 				<div class="slide-logo"><img src="images/partner-logo/crypto news.png" alt=""></div>
 				<div class="slide-logo"><img src="images/partner-logo/city-paper-logo.png" alt=""></div>
+				<div class="slide-logo"><img src="images/partner-logo/NewsBTC.png" alt=""></div>
+				<div class="slide-logo"><img src="images/partner-logo/Bitcoinist-logo.png" alt=""></div>
+				<div class="slide-logo"><img src="images/partner-logo/Beincrypto-logo.png" alt=""></div>
+				<div class="slide-logo"><img src="images/partner-logo/logo-white.svg" alt=""></div>
+				<div class="slide-logo"><img src="images/partner-logo/techcabal-logo.png" alt=""></div>
 			</div>
 		</div>
 	</div>
-	-->
+	
 
 	<div id="fAQs" class="faq page-section">
 		<div class="container">
@@ -804,21 +809,24 @@ gtag('config', 'G-G1CM0C3M9X');
 
 <div class="modal fade promocional-dialog" id="promocionalDialog" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<!-- <img src="/images/holiday.jpeg" alt="" style="width:100%; width:500px; margin:auto;"> -->
 		<div class="modal-content">
 		  	<button type="button" class="dialog-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			<div class="row">
-				<div class="col-md-5 text-md-center order-1 order-md-2">
-					<img class="image" src="images/3d-coin.png" alt="">
-				</div>
-				<div class="col-md-7 order-2 order-md-1">
-					<h3>Don't miss out! <br> Stand a chance to <span>win 50k</span> worth of token!</h3>
-					<a href="https://app.opticash.io/auth/sign-up" class="btn btn-primary btn-lg">SIGN UP</a>
+				<div class="col-12">
+					<h3>Join Us On our social <br> networks for more <br><span>updates</span></h3>
+					<div class="social-icon">
+						<a href="https://t.me/opticash_io" target="_blank"><img src="images/icon_telegram.svg" alt=""></a>
+						<a href="https://www.instagram.com/opticash.io" target="_blank"><img src="images/icon_instagram.svg" alt=""></a>
+						<a href="https://discord.gg/R27c2yDjuV" target="_blank"><img src="images/icon_discord.svg" alt=""></a>
+						<a href="https://twitter.com/Opticash_io" target="_blank"><img src="images/icon_twitter.svg" alt=""></a>
+						<a href="https://www.facebook.com/Opticash.io" target="_blank"><img src="images/icon_facebook.svg" alt=""></a>
+					</div>
+					<p>Click any icon to join</p>
 				</div>
 			</div>
-	  </div>
+	  	</div>
 	</div>
-  </div>
+</div>
 
 <script type="text/javascript">
 	//|| navigator.userLanguage || navigator.languages;
@@ -894,7 +902,7 @@ gtag('config', 'G-G1CM0C3M9X');
 		localStorage.setItem('siteCookies',1);
 	}
 	
-	var myModal = new bootstrap.Modal(document.getElementById('promocionalDialog'), {
+	var promocionalDialog = new bootstrap.Modal(document.getElementById('promocionalDialog'), {
 		keyboard: false
 	})
 	
@@ -980,7 +988,7 @@ gtag('config', 'G-G1CM0C3M9X');
 		document.getElementById('site-content').classList.add('show-loader');
 		document.getElementsByClassName('site-loader')[0].style.display = 'flex';
 		setTimeout(() => {
-			myModal.show();
+			promocionalDialog.show();
 		}, 8000);
 	}
 
