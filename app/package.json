@@ -38,7 +38,7 @@
     "walletlink": "^2.4.7",
     "web3": "^1.8.1",
     "web3-utils": "^1.8.1",
-    "web3modal": "^1.9.10",
+    "web3modal": "github:WalletConnect/web3modal",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
