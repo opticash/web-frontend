@@ -246,3 +246,8 @@
         // &.slick-active button:before{opacity:.75; color:black;}
     }
 }
+
+.certik-btn{ position: relative;
+    .certik-box{display:none; position:absolute!important; bottom: calc(100% + 30px); right:0; width:400px;}
+    &:hover .certik-box{display:block;}
+}

@@ -43,7 +43,20 @@
 		"query-input": "required name=search_term_string"
 	  }
 	}
-	</script>
+</script>
+
+<!-- paste the following code into the div you would like to show certik emblem -->
+<script>
+	// avoid quick flash of default text
+	(function hideEmblem() {
+	  var el = document.createElement('style');
+	  document.head.appendChild(el);
+	  var styleSheet = el.sheet;
+	  styleSheet.insertRule('.certik-emblem { display: none; }', 0);
+	})();
+  </script>
+  
+  <script async src="https://emblem.certik-assets.com/script?pid=opticash&vid=b5556f33"></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1CM0C3M9X"></script>
@@ -107,7 +120,6 @@ gtag('config', 'G-G1CM0C3M9X');
 
 <!---START: Home Layout-->
 <main id="page-content" class="landing-page" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-
 	<div id="win50K" class="page-hero">
 		<div class="container">
 			<div class="social-icon">
@@ -128,7 +140,14 @@ gtag('config', 'G-G1CM0C3M9X');
 						<p>Opticash is a web app that allows users to send fast <br> payments worldwide using blockchain technology.</p>
 						<br>
 						<a href="https://app.opticash.io/auth/deposit" class="btn btn-primary btn-lg">BUY EARLY</a>
-						<a href="#" class="btn btn-link btn-lg">Whitepaper</a>
+						<!-- <a href="#" class="btn btn-link btn-lg">Whitepaper</a> -->
+						<div class="btn btn-link btn-lg certik-btn"><img src="https://certik-project-logos.imgix.net/emblem/certik-logo-animated-dark.svg" alt="">
+							<div class="certik-box">
+								<div class="certik-emblem" data-id="b5556f33">
+									<a href="https://www.certik.com/projects/opticash?utm_source=SkyEmblem&utm_campaign=opticash&utm_medium=link">View project at certik.com</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-5">
@@ -804,6 +823,7 @@ gtag('config', 'G-G1CM0C3M9X');
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<div class="copyright">
 		<div class="container d-block d-md-flex text-center text-md-left justify-content-between">
