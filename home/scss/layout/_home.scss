@@ -248,6 +248,7 @@
 }
 
 .certik-btn{ position: relative;
-    .certik-box{display:none; position:absolute!important; bottom: calc(100% + 30px); right:0; width:400px;}
-    &:hover .certik-box{display:block;}
+    .certik-box{visibility: hidden; opacity:0; position:absolute!important; bottom: calc(100% + 30px); right:0; width:400px;
+        @include transition(all 0.4s ease-in-out);}
+    &:hover .certik-box{visibility: visible; opacity:1;}
 }
