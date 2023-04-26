@@ -548,6 +548,7 @@ gtag('config', 'G-G1CM0C3M9X');
 				<div class="slide-logo"><img loading="lazy" src="images/partner-logo/Beincrypto-logo.png" alt="Beincrypto"></div>
 				<div class="slide-logo"><img loading="lazy" src="images/partner-logo/logo-white.png" alt="Business2Community"></div>
 				<div class="slide-logo"><img loading="lazy" src="images/partner-logo/techcabal-logo.png" alt="TechCabal"></div>
+				<div class="slide-logo"><img loading="lazy" src="images/partner-logo/Insidebitcoinlogo.png" alt="InsideBitcoin"></div>
 			</div>
 		</div>
 	</div>
@@ -913,7 +914,7 @@ gtag('config', 'G-G1CM0C3M9X');
 <script src="js/bootstrap.min.js"></script>
 <script src="js/d3.min.js"></script>
 <script src="js/d3pie.js"></script>
-<script src="js/axios.min.js" async defer></script>
+<script src="js/axios.min.js"></script>
 <script src="js/slick.min.js"></script>
 <!-- <script src="js/PureSnow.js"></script> -->
 <script>
@@ -1127,7 +1128,6 @@ gtag('config', 'G-G1CM0C3M9X');
 		};
 
 		axios(config).then(function (response) {
-			console.log(response.data);
 			if(response.data.type){
 				const tweets = response.data.data;
 				let tweetHtml = '';
@@ -1288,6 +1288,7 @@ gtag('config', 'G-G1CM0C3M9X');
 		});
 		return tspan;
 	}
+	/***********
 	// Set the date we're counting down to
 	var countDownDate = new Date("Mar 20, 2023 00:00:00").getTime();
 
@@ -1305,19 +1306,19 @@ gtag('config', 'G-G1CM0C3M9X');
 	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-	
 	// Display the result in the element with id="demo"
 	document.getElementById("countDownBlock").innerHTML = `<span class="time"><span class="val"> ${days} </span><span class="type">Days</span></span>
 	<span class="time"><span class="val"> ${hours} </span><span class="type">Hours</span></span>
 	<span class="time"><span class="val"> ${minutes} </span><span class="type">Mins</span></span>
 	<span class="time"><span class="val"> ${seconds} </span><span class="type">Secs</span></span>`;
-
+	
 	// If the count down is finished, write some text
 	if (distance < 0) {
 		clearInterval(x);
 		document.getElementById("countDownBlock").innerHTML = "EXPIRED";
 	}
 	}, 1000);
+	***********/
 </script>
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
