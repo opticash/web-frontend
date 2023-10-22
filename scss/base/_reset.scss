@@ -1,0 +1,91 @@
+html,body{font-size: 16px;}
+body{background:#13150B; font-size:$ft16; font-weight:400; font-family:$ftDefault; color:$clDefault;}
+
+*:focus{outline: none!important;}
+
+a{color:$clPrimary; text-decoration:none;
+	@include transition(all 0.4s ease-in-out);
+	&:hover{color:$clDefault; text-decoration:none;}
+	&:focus{color:$clDefault; text-decoration:none;}
+}
+
+h1,.h1{ font-size:$ft50; font-family:$ftPrimary; margin-top:0;}
+h2,.h2{ font-size:$ft40; font-family:$ftPrimary; margin-top:0; color:#FFF;}
+h3,.h3{ font-size:$ft30; font-family:$ftPrimary; margin-top:0; color:#FFF;}
+h4,.h4{ font-size:16px; font-weight:normal; margin-top:10px;}
+h5,.h5{ font-size:13px; font-weight:bold; text-transform:uppercase;}
+h6,.h6{ font-size:1.000em; font-weight:normal;}
+
+p{ font-size:$ft14; line-height:1.5em; margin-bottom:15px;}
+
+
+img{ max-width:100%;}
+img.media-object,
+.input-group-addon img{ max-width:none;}
+
+caption{ padding:0;}
+.btn{border-radius:.6rem;}
+
+.btn-primary{background: linear-gradient(260deg, #C3FF43 20%, #E4D14E 96%); border:none; color:$clBlack;
+  &:hover{background:linear-gradient(0deg, #A9F52C, #A9F52C); color:$clBlack;}
+}
+.btn-link{text-decoration:none;}
+
+.external::after{
+	content: "";
+	width: 11px;
+	height: 11px;
+	margin-left: 4px;
+	margin-top:-4px;
+	background: url(../images/external-link-alt-solid.svg);
+	display: inline-block;
+}
+
+.carousel-control-next, .carousel-control-prev{height:32px; width:32px; opacity:1;}
+.carousel-control-prev-icon{background-image:url(../images/icon-arrow-circle-left-1.png);}
+.carousel-control-next-icon{background-image:url(../images/icon-arrow-circle-right-1.png);}
+.carousel-control-prev-icon:hover{background-image:url(../images/icon-arrow-circle-left.png);}
+.carousel-control-next-icon:hover{background-image:url(../images/icon-arrow-circle-right.png);}
+
+
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  *{
+    scrollbar-width: auto;
+    scrollbar-color: #c4c4c4 #f2f2f2;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f2f2f208;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #c3ff4323;
+    border-radius: 10px;
+    border: none;
+  }
+  #site-content{position: relative; z-index:1000;}
+  #snow{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1001;
+  }
+
+  .snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(white, white); /* Workaround for Chromium's selective color inversion */
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px white);
+}

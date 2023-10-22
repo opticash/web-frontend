@@ -1,0 +1,23 @@
+@media print {
+	.container{ width:auto; padding:0 15px}
+	#header,
+	#footer,
+	#menu,
+	.case-info #caseBox-toggle,
+	.table-top,
+	.right-link,
+	.reopen-box,
+	.modal,
+	.back-button,
+	.radio-list1.row,
+	.helpfull-title,
+	.case-search,
+	.columnsdd,
+	.paging-box{ display:none!important;}	
+	
+	.case-info .detail,
+	.case-table .openRow .toggle-box,
+	.collapse{ display:block!important;}
+	
+	
+}

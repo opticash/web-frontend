@@ -1,0 +1,20 @@
+<svg width="756" height="3" viewBox="0 0 756 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style type="text/css">
+    @keyframes moving1 {
+        0% { transform: translate(-756px,0); }
+        100% { transform: translate(0,0); }
+    }
+    @keyframes moving2 {
+        0% { transform: translate(0,0);}
+        100% { transform: translate(756px,0); }
+    }
+    .line1 {
+        animation: moving1 25s linear infinite;
+    }
+    .line2 {
+        animation: moving2 25s linear infinite;
+    }
+</style>
+<path d="M0.273438 1.27832L184.683 1.2783L374.941 1.27829L755.456 1.27826" stroke="#C3FF43" stroke-width="2" stroke-dasharray="10 10" class="line1"/>
+<path d="M0.273438 1.27832L184.683 1.2783L374.941 1.27829L755.456 1.27826" stroke="#C3FF43" stroke-width="2" stroke-dasharray="10 10" class="line2"/>
+</svg>
