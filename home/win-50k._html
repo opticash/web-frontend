@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OPCH - Privacy Policy</title>
+	<title>Win Crypto Tokens Worth $50,000 with OPCH</title>
 	<meta name="description"
-		content="OPCH's privacy policy guarantees the protection of your personal data. Read our policy to learn how we ensure your data is secure and used only for legitimate purposes.">
+		content="Join OPCH's $50,000 giveaway and earn crypto tokens with every purchaseat least $100 worth of $OPCH">
 	<meta name="author" content="OPCH">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
@@ -64,7 +64,7 @@
 							</button>
 							<div class="navbar-collapse collapse" id="navbar">
 								<ul class="list-unstyled list-inline top-link menu">
-									<!-- <li class="list-inline-item"><a href="win-50k.html">Win $50K</a></li> -->
+									<!-- <li class="list-inline-item"><a class="active" href="win-50k.html">Win $50K</a></li> -->
 									<li class="list-inline-item"><a href="index.html#whatOpticash">What is OPCH</a></li>
 									<li class="list-inline-item"><a href="index.html#token">Tokenomics</a></li>
 									<li class="list-inline-item"><a href="index.html#roadmap">Roadmap</a></li>
@@ -89,60 +89,48 @@
 		<!---END: Header-->
 
 		<!---START: Home Layout-->
-		<main id="page-content" class="static-content">
-			<div class="container">
-				<h1>Privacy policy</h1>
+		<main id="page-content" class="landing-page" data-bs-spy="scroll" data-bs-target="#navbar"
+			data-bs-smooth-scroll="true" data-bs-offset="500">
 
-				<p>OPCH is committed to protecting the privacy of our users. This Privacy Policy explains how we collect, use,
-					and disclose information when you use our website, mobile application, and other online services
-					(collectively, the “Services").</p>
-				<br>
-				<h2>Collection of Information:</h2>
-				<p>We collect information when you create an account, use the Services, or otherwise interact with us. This may
-					include:</p>
-				<ul>
-					<li>Personal information such as your name, email address, and phone number</li>
-					<li>Financial information such as your bank account or credit card details</li>
-					<li>Transactions and usage data, including information about your transactions on the blockchain</li>
-					<li>Log data, including information about your device, browser, and internet connection</li>
-					<li>Location information, including information about your device's location</li>
-				</ul>
-				<br>
-				<h2>Use of Information:</h2>
-				<p> We use the information we collect to provide, maintain, and improve the Services, and to communicate with
-					you. This may include:</p>
-				<ul>
-					<li>Providing customer support and addressing any issues you may have</li>
-					<li>Sending you updates and notifications about the Services</li>
-					<li>Conducting research and analysis to improve the Services</li>
-					<li>Complying with legal and regulatory requirements</li>
-				</ul>
-				<br>
-				<h2>Sharing of Information:</h2>
-				<p>We will not share your information with third parties without your consent, except in the following
-					circumstances:</p>
-				<ul>
-					<li>To comply with legal and regulatory requirements</li>
-					<li>To protect the safety, rights, or property of OPCH or its users</li>
-					<li>To detect and prevent fraud or other illegal activities</li>
-					<li>To provide the Services to you</li>
-				</ul>
-				<br>
-				<h2>Security:</h2>
-				<p>We take reasonable measures to protect the information we collect from loss, misuse, and unauthorized access,
-					disclosure, alteration, and destruction. However, no method of transmitting or storing data is completely
-					secure, and we cannot guarantee the security of your information.</p>
-				<br>
-				<h2>Changes to This Privacy Policy:</h2>
-				<p>We may update this Privacy Policy from time to time. If we make any changes, we will notify you by revising
-					the date at the top of this policy and, in some cases, providing you with additional notice (such as adding a
-					statement to our homepage or sending you an email notification).</p>
-				<br>
-				<h2>Contact Us:</h2>
-				<p> If you have any questions or concerns about this Privacy Policy, please contact us at Info@opticash.io <br>
-					By using OPCH's services, you consent to the collection, use, and sharing of your information as described in
-					this Privacy Policy.</p>
+			<div class="wink-page page-hero">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-7">
+							<h1>Win $50k worth of <span>OPCH</span> token!</h1>
+							<p>Its our duty to grow our online community and give lucky customers the chance to win $50k worth of
+								<span>OPCH token ($OPCH)</span>
+							</p>
+							<p class="p2">Be a lucky winner by following the instruction! A user have to hold at least $100 worth of
+								$OPCH to stand a chance to be a winner</p>
+							<a href="https://gleam.io/competitions/GHmy6--opch-tokens-worth-of-50000-usd-giveaway" target="_blank"
+								class="btn btn-primary">ENTER DRAW</a>
+						</div>
+						<div class="col-md-5 align-self-center">
+							<div class="img1"><img src="images/win-150k.png" alt=""></div>
+						</div>
+					</div>
+					<br><br><br>
+					<div class="row">
+						<div class="col-md-6 align-self-center">
+							<div class="circle">
+								<div>
+									<!--<p>Win</p> -->
+									<p class="p1">Win $50k</p>
+									<a href="https://gleam.io/competitions/GHmy6--opch-tokens-worth-of-50000-usd-giveaway" target="_blank"
+										class="btn btn-primary">ENTER DRAW</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="iframe-box">
+								<iframe src="https://gleam.io/competitions/GHmy6--opch-tokens-worth-of-50000-usd-giveaway"
+									frameborder="0"></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+			<div id="contact"></div>
 		</main>
 		<!---END: Home Layout-->
 
