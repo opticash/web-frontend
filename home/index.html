@@ -130,7 +130,7 @@
 			data-bs-offset="0" class="scrollspy-example" tabindex="0">
 			<div id="win50K" class="page-hero">
 				<div class="container">
-					<div class="social-icon">
+					<!-- <div class="social-icon">
 						<a href="https://twitter.com/Opticash_io" target="_blank"><img src="images/icon_twitter.svg" alt=""></a>
 						<a href="https://t.me/opticash_io" target="_blank"><img src="images/icon_telegram.svg" alt=""></a>
 						<a href="https://discord.gg/R27c2yDjuV" target="_blank"><img src="images/icon_discord.svg" alt=""></a>
@@ -142,12 +142,13 @@
 						<a href="https://www.youtube.com/@opticash" target="_blank"><img src="images/icon_youtube.svg" alt=""></a>
 						<a href="https://opticash.medium.com" target="_blank"><img src="images/icon_medium.svg" alt=""></a>
 						<a href="https://linktr.ee/opticash" target="_blank"><img src="images/icon_linktree.svg" alt=""></a>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="col-md-7">
 							<div class="box">
 								<h1><span>Send</span> fast payments worldwide using blockchain</h1>
-								<p>OPCH is a web app that allows users to send fast <br> payments worldwide using blockchain technology.
+								<p>
+									OPCH is a token that allows users to send fast <br> payments worldwide using blockchain technology.
 								</p>
 								<br>
 								<!-- <a href="https://app.opticash.io/auth/deposit" class="btn btn-primary btn-lg">BUY EARLY</a> -->
@@ -233,9 +234,8 @@
 							<div class="row">
 								<div class="col-md-5">
 									<h2>What is OPCH?</h2>
-									<p>OPCH is an all-in-one platform that simplifies money remittance across the world using crypto and
-										blockchain technology. You can trade, invest, chat and transfer fiat to crypto and vice versa very
-										conveniently.</p>
+									<p>OPCH is a utility token that simplifies money remittance across the world using crypto and
+										blockchain technology. Enables you to transfer fiat to crypto and vice versa very conveniently.</p>
 								</div>
 								<div class="ms-auto col-xl-6 col-md-7">
 									<div class="row">
@@ -672,9 +672,9 @@
 									</div>
 									<div data-bs-parent="#generalFaq" class="collapse show" id="qus0">
 										<div class="card-body">
-											OPCH is an all-in-one platform that simplifies money remittance across the world using crypto and
-											blockchain technology. You can trade, invest, chat and transfer fiat to crypto and vice versa very
-											conveniently.
+											OPCH is a utility token that simplifies money remittance across the world using crypto and
+											blockchain technology.
+											Enables you to transfer fiat to crypto and vice versa very conveniently.
 										</div>
 									</div>
 								</div>
@@ -900,10 +900,11 @@
 					<div class="box">
 						<div class="inner-box">
 							<h2>Join our Community</h2>
-							<p>OPCH is building an all-in-one platform that simplifies money remittance, enhances the crypto trade
-								experience, and nurtures an ecosystem of users who can trade and send cross-border payments in multiple
-								currencies at low transaction fees. We are working too hard with our roadmap. Join our community so you
-								can stay connected.</p>
+							<p>OPCH is a token that simplifies money remittance, enhances the crypto trade experience, and nurtures an
+								ecosystem of
+								users who can trade and send cross-border payments in multiple currencies at low transaction fees. We
+								are working too
+								hard with our roadmap. Join our community so you can stay connected.</p>
 							<a href="https://t.me/opticash_io" target="_blank" class="btn btn-primary">JOIN COMMUNITY</a>
 						</div>
 					</div>
@@ -930,7 +931,7 @@
 					<div class="col-lg-4 col-md-5 ms-auto">
 						<p>Don't hesitate to subscribe to latest news about OPCH services as well as crucial financial knowledge to
 							become successful investor globally.</p>
-						<div class="social-icon">
+						<!-- <div class="social-icon">
 							<a href="https://twitter.com/Opticash_io" target="_blank"><img src="images/icon_twitter.svg" alt=""></a>
 							<a href="https://t.me/opticash_io" target="_blank"><img src="images/icon_telegram.svg" alt=""></a>
 							<a href="https://discord.gg/R27c2yDjuV" target="_blank"><img src="images/icon_discord.svg" alt=""></a>
@@ -942,7 +943,7 @@
 							<a href="https://www.youtube.com/@opticash" target="_blank"><img src="images/icon_youtube.svg" alt=""></a>
 							<a href="https://opticash.medium.com" target="_blank"><img src="images/icon_medium.svg" alt=""></a>
 							<a href="https://linktr.ee/opticash" target="_blank"><img src="images/icon_linktree.svg" alt=""></a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -1150,26 +1151,26 @@
 		var chart, width, height, fontSize, innerRadius;
 		var isChartLoaded = false;
 
-		if (window.location.href.includes('#')) {
-			document.getElementById('site-content').classList.remove('show-loader');
-			document.getElementsByClassName('site-loader')[0].style.display = 'none';
-		} else {
-			document.getElementById('site-content').classList.add('show-loader');
-			document.getElementsByClassName('site-loader')[0].style.display = 'flex';
-			setTimeout(() => {
-				// promocionalDialog.show();
-			}, 8000);
-		}
+		// if (window.location.href.includes('#')) {
+		// 	document.getElementById('site-content').classList.remove('show-loader');
+		// 	document.getElementsByClassName('site-loader')[0].style.display = 'none';
+		// } else {
+		// 	document.getElementById('site-content').classList.add('show-loader');
+		// 	document.getElementsByClassName('site-loader')[0].style.display = 'flex';
+		// 	setTimeout(() => {
+		// 		// promocionalDialog.show();
+		// 	}, 8000);
+		// }
 
 		$(function () {
 			if (!$('.goog-te-combo').val()) {
 				$('.goog-te-combo').val('en').change();
 			}
 
-			setTimeout(() => {
-				$('#site-content').removeClass('show-loader');
-				$('.site-loader').fadeOut();
-			}, 1000);
+			// setTimeout(() => {
+			// 	$('#site-content').removeClass('show-loader');
+			// 	$('.site-loader').fadeOut();
+			// }, 1000);
 
 			// setTimeout(() => {
 			// 	$('#snow').fadeIn();
